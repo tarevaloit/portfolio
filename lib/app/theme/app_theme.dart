@@ -54,9 +54,11 @@ abstract final class AppTheme {
           textStyle: textTheme.labelLarge,
           shape: const StadiumBorder(),
           padding: const EdgeInsets.symmetric(
-            horizontal: AppSpacing.lg,
-            vertical: AppSpacing.md,
+            horizontal: AppSpacing.lg - 4,
+            vertical: AppSpacing.md - 2,
           ),
+          disabledBackgroundColor: AppColors.surfaceRaised,
+          disabledForegroundColor: AppColors.textMuted,
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
@@ -65,9 +67,10 @@ abstract final class AppTheme {
           textStyle: textTheme.labelLarge,
           shape: const StadiumBorder(),
           side: const BorderSide(color: AppColors.border),
+          disabledForegroundColor: AppColors.textMuted,
           padding: const EdgeInsets.symmetric(
-            horizontal: AppSpacing.lg,
-            vertical: AppSpacing.md,
+            horizontal: AppSpacing.lg - 4,
+            vertical: AppSpacing.md - 2,
           ),
         ),
       ),
@@ -76,6 +79,19 @@ abstract final class AppTheme {
           foregroundColor: AppColors.textPrimary,
           textStyle: textTheme.labelMedium,
         ),
+      ),
+      switchTheme: SwitchThemeData(
+        thumbColor: WidgetStateProperty.resolveWith(
+          (states) => states.contains(WidgetState.selected)
+              ? AppColors.onAccent
+              : AppColors.textMuted,
+        ),
+        trackColor: WidgetStateProperty.resolveWith(
+          (states) => states.contains(WidgetState.selected)
+              ? accent
+              : AppColors.surfaceRaised,
+        ),
+        trackOutlineColor: const WidgetStatePropertyAll(AppColors.border),
       ),
       extensions: [AppLayerColors.fromAccent(accent)],
     );
