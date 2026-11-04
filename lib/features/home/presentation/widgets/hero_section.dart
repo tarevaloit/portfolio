@@ -13,6 +13,9 @@ class HeroSection extends StatelessWidget {
 
   final VoidCallback onSeeProjects;
 
+  /// Below this width the plates go under the copy instead of beside it.
+  static const double sideBySideMinWidth = 900;
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -85,22 +88,28 @@ class HeroSection extends StatelessWidget {
 
     const plates = Entrance(index: 4, child: LayerPlates());
 
-    if (size.isCompact) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          copy,
-          const SizedBox(height: AppSpacing.xxl),
-          const Center(child: plates),
-        ],
-      );
-    }
-    return Row(
-      children: [
-        Expanded(child: copy),
-        const SizedBox(width: AppSpacing.xxl),
-        plates,
-      ],
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        // Side by side only when the copy column stays wide enough for the
+        // longest word of the title ("arquitectura") at this size.
+        if (constraints.maxWidth < sideBySideMinWidth) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              copy,
+              const SizedBox(height: AppSpacing.xxl),
+              const Center(child: plates),
+            ],
+          );
+        }
+        return Row(
+          children: [
+            Expanded(child: copy),
+            const SizedBox(width: AppSpacing.xxl),
+            plates,
+          ],
+        );
+      },
     );
   }
 }

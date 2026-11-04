@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:portfolio/core/l10n/l10n.dart';
 import 'package:portfolio/features/home/presentation/pages/home_page.dart';
+import 'package:portfolio/features/home/presentation/widgets/layer_plates.dart';
 import 'package:portfolio/features/projects/presentation/widgets/project_card.dart';
 
 import '../../helpers/pump_app.dart';
@@ -40,8 +42,44 @@ void main() {
             horizontal.single.physics,
             isA<NeverScrollableScrollPhysics>(),
           );
+
+          // The hero title never breaks a word: the plates move under the
+          // copy when the column would get too narrow.
+          final titleFinder = find.textContaining(
+            locale == AppLocale.es ? 'Apps Flutter' : 'Flutter apps',
+          );
+          final title = tester.getRect(titleFinder);
+          final plates = tester.getRect(find.byType(LayerPlates));
+          expect(
+            plates.left >= title.right || plates.top >= title.bottom,
+            isTrue,
+            reason: 'the plates overlap the title',
+          );
+          expect(
+            title.width,
+            greaterThanOrEqualTo(_longestWordWidth(tester, titleFinder)),
+            reason: 'a word of the hero title is wider than its column',
+          );
         },
       );
     }
   }
+}
+
+/// Width of the longest word of the text found by [finder], at its style.
+double _longestWordWidth(WidgetTester tester, Finder finder) {
+  final paragraph = tester.renderObject<RenderParagraph>(
+    find.descendant(of: finder, matching: find.byType(RichText)),
+  );
+  var longest = 0.0;
+  for (final word in paragraph.text.toPlainText().split(RegExp(r'\s+'))) {
+    final painter = TextPainter(
+      text: TextSpan(text: word, style: paragraph.text.style),
+      textDirection: TextDirection.ltr,
+      textScaler: paragraph.textScaler,
+    )..layout();
+    if (painter.width > longest) longest = painter.width;
+    painter.dispose();
+  }
+  return longest;
 }
