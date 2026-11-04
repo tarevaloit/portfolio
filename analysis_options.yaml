@@ -15,3 +15,5 @@ linter:
   rules:
     # Portfolio app, not a published package: public API docs are not required.
     public_member_api_docs: false
+    # Repository contracts are single-method interfaces on purpose.
+    one_member_abstracts: false
