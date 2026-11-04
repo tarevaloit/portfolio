@@ -39,7 +39,9 @@ class _MarqueeState extends State<Marquee> with SingleTickerProviderStateMixin {
   void _onTick(Duration elapsed) {
     final delta = elapsed - _last;
     _last = elapsed;
-    if (!_controller.hasClients) return;
+    if (!_controller.hasClients || !_controller.position.hasContentDimensions) {
+      return;
+    }
     final seconds = delta.inMicroseconds / Duration.microsecondsPerSecond;
     _controller.jumpTo(_controller.offset + widget.speed * seconds);
   }

@@ -6,6 +6,7 @@ export 'components/section_header.dart';
 export 'components/skeleton_box.dart';
 export 'components/tag_chip.dart';
 export 'layout/page_container.dart';
+export 'layout/responsive_grid.dart';
 export 'layout/screen_size.dart';
 export 'motion/entrance.dart';
 export 'motion/motion.dart';
