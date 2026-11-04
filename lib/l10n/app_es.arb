@@ -10,7 +10,7 @@
   },
   "switchLanguage": "English",
   "@switchLanguage": {
-    "description": "Link that switches the site to the other language. Written in the target language."
+    "description": "Accessible label of the link to the other language. Written in the target language."
   },
   "notFoundTitle": "Página no encontrada",
   "@notFoundTitle": {
@@ -35,10 +35,6 @@
   "navContact": "Contacto",
   "@navContact": {
     "description": "Nav link to the contact section."
-  },
-  "navLanguageShort": "EN",
-  "@navLanguageShort": {
-    "description": "Short label of the language switch in the nav. Shows the target language."
   },
   "architectureMode": "Modo arquitectura",
   "@architectureMode": {

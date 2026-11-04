@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:portfolio/core/architecture_mode/architecture_mode_toggle.dart';
 import 'package:portfolio/core/design_system/design_system.dart';
 import 'package:portfolio/core/l10n/l10n.dart';
+import 'package:portfolio/core/l10n/language_switch.dart';
 
 /// Sections the nav can scroll to.
 enum HomeSection { projects, experience, contact }
 
-/// Top bar: logo, section links, language switch and the architecture mode
+/// Top bar: logo, section links, `ES / EN` switch and the architecture mode
 /// toggle. Section links are hidden on compact screens.
 class HomeNavBar extends StatelessWidget {
   const HomeNavBar({required this.onSectionSelected, super.key});
@@ -18,7 +18,6 @@ class HomeNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final size = ScreenSize.of(context);
-    final locale = AppLocale.of(context);
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: AppSpacing.lg),
@@ -41,19 +40,7 @@ class HomeNavBar extends StatelessWidget {
             ),
             const SizedBox(width: AppSpacing.xs),
           ],
-          Tooltip(
-            message: l10n.switchLanguage,
-            excludeFromSemantics: true,
-            child: Semantics(
-              label: l10n.switchLanguage,
-              excludeSemantics: true,
-              button: true,
-              child: TextButton(
-                onPressed: () => context.go(locale.other.homePath),
-                child: Text(l10n.navLanguageShort),
-              ),
-            ),
-          ),
+          const LanguageSwitch(),
           const SizedBox(width: AppSpacing.xs),
           ArchitectureModeToggle(showLabel: !size.isCompact),
         ],
