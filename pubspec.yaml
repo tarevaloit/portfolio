@@ -43,6 +43,9 @@ flutter:
     - assets/content/en/
     - assets/content/en/projects/
 
+  shaders:
+    - shaders/blueprint.frag
+
   fonts:
     - family: BricolageGrotesque
       fonts:

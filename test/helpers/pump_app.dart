@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:portfolio/app/app.dart';
 import 'package:portfolio/app/di/repository_overrides.dart';
 import 'package:portfolio/core/router/app_router.dart';
+import 'package:portfolio/core/shaders/blueprint_background.dart';
 import 'package:portfolio/features/contact/domain/repositories/contact_repository.dart';
 import 'package:portfolio/features/projects/domain/repositories/projects_repository.dart';
 
@@ -44,6 +45,8 @@ extension PumpPortfolio on WidgetTester {
             projects: projectsRepository,
           ),
           appRouterProvider.overrideWithValue(router),
+          // Goldens and layout tests must not depend on the GPU shader.
+          backgroundEffectsEnabledProvider.overrideWithValue(false),
           ...overrides,
         ],
         child: const PortfolioApp(),

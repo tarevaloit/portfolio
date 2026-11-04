@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/misc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:portfolio/app/theme/app_theme.dart';
 import 'package:portfolio/core/l10n/l10n.dart';
+import 'package:portfolio/core/shaders/blueprint_background.dart';
 
 extension PumpLocalized on WidgetTester {
   /// Pumps [child] inside the app theme, localizations and a ProviderScope,
@@ -28,7 +29,10 @@ extension PumpLocalized on WidgetTester {
 
     await pumpWidget(
       ProviderScope(
-        overrides: overrides,
+        overrides: [
+          backgroundEffectsEnabledProvider.overrideWithValue(false),
+          ...overrides,
+        ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: AppTheme.dark(),
