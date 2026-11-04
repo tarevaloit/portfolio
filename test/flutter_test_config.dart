@@ -35,9 +35,10 @@ Future<void> _loadFont(String family, String path) async {
   await loader.load();
 }
 
-/// Accepts goldens that differ by less than [tolerance] (0.5 % of pixels).
+/// Accepts goldens that differ by less than [tolerance] (0.02 % of the
+/// pixels): enough for anti-aliasing noise, not for a changed word.
 class TolerantGoldenComparator extends LocalFileComparator {
-  TolerantGoldenComparator(super.testFile, {this.tolerance = 0.005});
+  TolerantGoldenComparator(super.testFile, {this.tolerance = 0.0002});
 
   final double tolerance;
 
