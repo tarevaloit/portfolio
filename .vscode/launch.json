@@ -1,0 +1,40 @@
+{
+  // Flutter Web launch configurations. Requires the Dart and Flutter
+  // extensions and Flutter 3.44+ (see dart.flutterSdkPath in
+  // .vscode/settings.json).
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Portfolio (Chrome)",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "deviceId": "chrome"
+    },
+    {
+      "name": "Portfolio (Chrome, WASM)",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "deviceId": "chrome",
+      "args": ["--wasm"]
+    },
+    {
+      "name": "Portfolio (web-server :8080)",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "deviceId": "web-server",
+      "args": ["--web-port", "8080"]
+    },
+    {
+      "name": "Portfolio (release, WASM)",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "deviceId": "chrome",
+      "flutterMode": "release",
+      "args": ["--wasm"]
+    }
+  ]
+}
