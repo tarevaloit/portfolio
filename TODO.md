@@ -50,6 +50,12 @@ Los textos de cards y descripciones salen de PLAN.md y del mockup. Faltan:
       partir del español).
 - [ ] Textos en inglés de la home en `lib/l10n/app_en.arb` (hero, métricas,
       contacto, footer, tip): traducciones mías del mockup.
+- [ ] Textos de ejemplo de las demos (`demoFundido*`, `demoLaburito*` en los
+      ARB): conversación del cerdito, oficios y nombres ficticios de
+      trabajadores. Los escribí yo para que las demos se entiendan; cambialos
+      por los de las apps reales si querés.
+- [ ] Demo de Fishar: usa los placeholders del mockup (`[Nombre del spot]`,
+      `[Especie] · [distancia] · [cantidad] capturas`).
 - [ ] Métricas de la home: son las del PLAN/mockup ("40+", "~1 s",
       "iOS + Android"). Confirmar que se pueden mostrar así.
 - [ ] Este portfolio: descripciones por capa y las 3 decisiones técnicas
@@ -71,7 +77,11 @@ Los textos de cards y descripciones salen de PLAN.md y del mockup. Faltan:
       `.fvmrc`). CI ya usa 3.44.0.
 
 ## Pendientes técnicos de fases futuras
-- [ ] Cards de proyecto clickeables + Hero transition al detalle (Fase 4).
+- [ ] Renderizar el cuerpo en Markdown del detalle (`{es,en}/projects/<slug>.md`)
+      cuando haya contenido; hoy ningún proyecto tiene.
+- [ ] Deferred import de la página de detalle (Fase 6).
+- [ ] Títulos de pestaña y `lang` del `<html>` según la ruta: hoy los pone cada
+      página con `Title`; revisarlo junto con los meta tags (Fase 6).
 - [ ] El toggle "Modo arquitectura" ya guarda su estado, pero el overlay y
       los badges de capa llegan en la Fase 5.
 - [ ] Nav en mobile: hoy oculta los links de sección; evaluar un menú.

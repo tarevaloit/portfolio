@@ -5,7 +5,7 @@ El código también es parte del portfolio: muestra clean architecture, tests y
 CI/CD, y tiene un "modo arquitectura" que superpone las capas de cada feature
 sobre la UI.
 
-> Estado: **Fase 3 — home**. Ver [PLAN.md](PLAN.md) para el roadmap
+> Estado: **Fase 4 — detalle de proyecto**. Ver [PLAN.md](PLAN.md) para el roadmap
 > completo y [TODO.md](TODO.md) para el contenido pendiente.
 >
 > Sitio: `[dominio]` (pendiente)
@@ -168,6 +168,27 @@ cada sección vive en el feature dueño de sus datos (`ProjectsSection`,
 - **Textos:** los textos fijos están en los ARB; los datos salen de
   `assets/content/`. Lo que falta se ve como placeholder (`[AÑO]`,
   `[TU EMAIL]`) y "Descargar CV" queda deshabilitado hasta que exista el PDF.
+
+## Detalle de proyecto
+
+`/projects/:slug` (y `/en/projects/:slug`) es una ruta hija de la home de cada
+idioma: la home queda abajo en el stack, así volver conserva su scroll y la
+transición puede animar entre las dos.
+
+- **Hero transitions:** el nombre de la card crece hasta el título gigante y
+  la portada de color se convierte en el teléfono (`project_heroes.dart`). El
+  vuelo dibuja un texto escalado y un bloque de color, así nada se re-layoutea
+  a mitad de animación. Con reduced motion no hay vuelo ni transición.
+- **Demos navegables** (`projects/presentation/demos/`): maquetas hechas en
+  Flutter de cada app, no su código. Fishar (mapa con spots y sheet), Fundido
+  (chat con el cerdito) y Laburito (flujo de contratación). "Este portfolio"
+  muestra la propia home en miniatura dentro del teléfono.
+- **Cómo está hecho:** las tres capas con los nombres reales de clases que
+  vienen del contenido, y el snippet con un resaltador de Dart propio
+  (`core/design_system/code/`), sin dependencias y determinista para los
+  goldens.
+- **Fuentes:** todos los símbolos salen de las fuentes incluidas. Lo que
+  Bricolage no tiene cae en JetBrains Mono; lo que ninguna tiene se dibuja.
 
 ## Desarrollo
 
