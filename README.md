@@ -5,7 +5,7 @@ El código también es parte del portfolio: muestra clean architecture, tests y
 CI/CD, y tiene un "modo arquitectura" que superpone las capas de cada feature
 sobre la UI.
 
-> Estado: **Fase 4 — detalle de proyecto**. Ver [PLAN.md](PLAN.md) para el roadmap
+> Estado: **Fase 5 — diferenciales**. Ver [PLAN.md](PLAN.md) para el roadmap
 > completo y [TODO.md](TODO.md) para el contenido pendiente.
 >
 > Sitio: `[dominio]` (pendiente)
@@ -20,7 +20,7 @@ sobre la UI.
 | i18n | `flutter_localizations` + ARB, español por defecto e inglés en `/en` |
 | Lints | `very_good_analysis` + `strict-casts`/`strict-inference`/`strict-raw-types` |
 | Modelos | freezed (entidades) + json_serializable (DTOs) |
-| Animación | flutter_animate (entradas), visibility_detector (reveal al scrollear) |
+| Animación | flutter_animate (entradas), visibility_detector (reveal al scrollear), fragment shader propio |
 | Tests | unit, widget, golden, responsive, reglas de arquitectura e integridad del contenido |
 | CI/CD | GitHub Actions → Firebase Hosting |
 
@@ -118,8 +118,8 @@ lib/
     design_system/     # tokens (colores, radios, espaciado), tipografía, componentes
     l10n/              # AppLocale (idioma ↔ URL) y context.l10n
     router/            # go_router, rutas por idioma, 404
-    architecture_mode/ # overlay + LayerBadge (Fase 5)
-    shaders/           # fragment shaders (Fase 5)
+    architecture_mode/ # LayerBadge, ArchitectureMap, grilla de plano, switch
+    shaders/           # BlueprintBackground (carga shaders/blueprint.frag)
   features/
     home/presentation/ # HomePage + nav, hero, métricas (compone secciones de los features)
     projects/{data,domain,presentation}/
@@ -189,6 +189,36 @@ transición puede animar entre las dos.
   goldens.
 - **Fuentes:** todos los símbolos salen de las fuentes incluidas. Lo que
   Bricolage no tiene cae en JetBrains Mono; lo que ninguna tiene se dibuja.
+
+## Modo arquitectura
+
+El toggle de la nav (y de la barra del detalle) superpone sobre la UI cómo
+está construida:
+
+- **Grilla de plano** sobre todas las páginas (`ArchitectureModeHost`, montado
+  una sola vez en `MaterialApp.builder`).
+- **`LayerBadge`** en cada sección: borde en el color de su capa y la cadena
+  real de clases, por ejemplo `ProjectsSection → projectsProvider →
+  GetProjects → ProjectsRepositoryImpl`. El overlay no cambia el tamaño ni la
+  posición del widget. Las demos del teléfono se marcan como "maqueta".
+- **Cards de proyecto:** la portada muestra las clases de cada capa de ese
+  proyecto, desde el contenido.
+- **Links a GitHub:** cada clase abre su archivo cuando el proyecto "Este
+  portfolio" tiene `links.github` en el contenido.
+
+Los nombres viven en
+[`architecture_map.dart`](lib/core/architecture_mode/architecture_map.dart) y
+[`architecture_map_test.dart`](test/architecture/architecture_map_test.dart)
+verifica que cada clase exista en su archivo y que su capa coincida con la
+carpeta: si se renombra algo, CI falla.
+
+## Fondo con shader
+
+[`shaders/blueprint.frag`](shaders/blueprint.frag) dibuja un brillo sutil que
+sigue al mouse y una bruma que se mueve con el tiempo y el scroll. Con reduced
+motion queda estático; si la plataforma no puede cargar el shader, se ve el
+fondo liso. Los tests lo apagan con `backgroundEffectsEnabledProvider` para que
+los goldens no dependan del GPU.
 
 ## Desarrollo
 

@@ -77,13 +77,18 @@ Los textos de cards y descripciones salen de PLAN.md y del mockup. Faltan:
       `.fvmrc`). CI ya usa 3.44.0.
 
 ## Pendientes técnicos de fases futuras
+- [ ] Rive: hoy el switch del modo arquitectura (`BlueprintSwitch`) y el
+      cerdito (`PiggyAvatar`) están animados en Flutter. Cuando haya `.riv`
+      exportados de rive.app, reemplazarlos. Inputs sugeridos de las state
+      machines: toggle → `isOn` (bool); cerdito → `talking` (bool) y
+      `happy` (trigger).
+- [ ] `links.github` de "Este portfolio" en `assets/content/projects/portfolio.json`:
+      activa los links "↗" de cada clase en el modo arquitectura.
 - [ ] Renderizar el cuerpo en Markdown del detalle (`{es,en}/projects/<slug>.md`)
       cuando haya contenido; hoy ningún proyecto tiene.
 - [ ] Deferred import de la página de detalle (Fase 6).
 - [ ] Títulos de pestaña y `lang` del `<html>` según la ruta: hoy los pone cada
       página con `Title`; revisarlo junto con los meta tags (Fase 6).
-- [ ] El toggle "Modo arquitectura" ya guarda su estado, pero el overlay y
-      los badges de capa llegan en la Fase 5.
 - [ ] Nav en mobile: hoy oculta los links de sección; evaluar un menú.
 - [ ] Favicon e íconos de la PWA: siguen siendo los default de Flutter (Fase 6).
 - [ ] `lang` del `<html>` y título de la pestaña según el idioma de la ruta (Fase 6).
