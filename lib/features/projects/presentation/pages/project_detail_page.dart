@@ -171,26 +171,37 @@ class _TopBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: AppSpacing.lg),
       child: Row(
         children: [
-          TextButton(
-            onPressed: () {
-              if (context.canPop()) {
-                context.pop();
-              } else {
-                context.go(AppLocale.of(context).homePath);
-              }
-            },
-            style: TextButton.styleFrom(
-              foregroundColor: colors.onSurface,
-              textStyle: AppTypography.monoStyle(size: 14),
+          Expanded(
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: TextButton(
+                onPressed: () {
+                  if (context.canPop()) {
+                    context.pop();
+                  } else {
+                    context.go(AppLocale.of(context).homePath);
+                  }
+                },
+                style: TextButton.styleFrom(
+                  foregroundColor: colors.onSurface,
+                  textStyle: AppTypography.monoStyle(size: 14),
+                ),
+                child: Text(
+                  l10n.detailBack,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
             ),
-            child: Text(l10n.detailBack),
           ),
-          const Spacer(),
-          Text(
-            l10n.detailCounter(pad(index + 1), pad(total)),
-            style: Theme.of(context).textTheme.labelMedium,
-          ),
-          const SizedBox(width: AppSpacing.md),
+          // The counter is decoration; on phones the switch matters more.
+          if (!ScreenSize.of(context).isCompact) ...[
+            Text(
+              l10n.detailCounter(pad(index + 1), pad(total)),
+              style: Theme.of(context).textTheme.labelMedium,
+            ),
+            const SizedBox(width: AppSpacing.md),
+          ],
           const LanguageSwitch(),
         ],
       ),
