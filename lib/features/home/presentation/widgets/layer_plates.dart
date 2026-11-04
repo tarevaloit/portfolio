@@ -12,8 +12,8 @@ class LayerPlates extends StatefulWidget {
 
   final double width;
 
-  static const double plateHeight = 108;
-  static const double step = 92;
+  static const double plateHeight = 104;
+  static const double step = 98;
 
   @override
   State<LayerPlates> createState() => _LayerPlatesState();
