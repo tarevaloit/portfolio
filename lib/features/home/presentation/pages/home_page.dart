@@ -38,14 +38,14 @@ class HomePage extends StatelessWidget {
                       BrandLogo(text: l10n.brandName),
                       const SizedBox(height: AppSpacing.xxl),
                       Text(
-                        l10n.homeHeroTitle,
+                        '${l10n.heroTitleLead} ${l10n.heroTitleHighlight}',
                         style: compact
                             ? textTheme.displaySmall
                             : textTheme.displayLarge,
                       ),
                       const SizedBox(height: AppSpacing.lg),
                       Text(
-                        l10n.homeUnderConstruction,
+                        l10n.heroBody,
                         style: textTheme.bodyLarge,
                       ),
                       const SizedBox(height: AppSpacing.xl),

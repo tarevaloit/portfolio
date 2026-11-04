@@ -8,14 +8,6 @@
   "@brandName": {
     "description": "Logo text shown in the nav. A blinking cursor is drawn after it."
   },
-  "homeHeroTitle": "Apps Flutter con arquitectura que aguanta.",
-  "@homeHeroTitle": {
-    "description": "Main hero headline on the home page."
-  },
-  "homeUnderConstruction": "Sitio en construcción.",
-  "@homeUnderConstruction": {
-    "description": "Temporary message on the empty home while the site is being built."
-  },
   "switchLanguage": "English",
   "@switchLanguage": {
     "description": "Link that switches the site to the other language. Written in the target language."
@@ -31,5 +23,173 @@
   "notFoundBackHome": "Volver al inicio",
   "@notFoundBackHome": {
     "description": "Link from the 404 page back to the home."
+  },
+  "navProjects": "Proyectos",
+  "@navProjects": {
+    "description": "Nav link to the projects section."
+  },
+  "navExperience": "Experiencia",
+  "@navExperience": {
+    "description": "Nav link to the experience section."
+  },
+  "navContact": "Contacto",
+  "@navContact": {
+    "description": "Nav link to the contact section."
+  },
+  "navLanguageShort": "EN",
+  "@navLanguageShort": {
+    "description": "Short label of the language switch in the nav. Shows the target language."
+  },
+  "architectureMode": "Modo arquitectura",
+  "@architectureMode": {
+    "description": "Label of the toggle that overlays the clean-architecture layers on the UI."
+  },
+  "heroEyebrow": "// flutter developer · buenos aires, argentina",
+  "@heroEyebrow": {
+    "description": "Small monospace line above the hero title."
+  },
+  "heroTitleLead": "Apps Flutter con arquitectura que",
+  "@heroTitleLead": {
+    "description": "First part of the hero title, before the highlighted word."
+  },
+  "heroTitleHighlight": "aguanta.",
+  "@heroTitleHighlight": {
+    "description": "Last part of the hero title, drawn in the accent color."
+  },
+  "heroBody": "Desde un MVP hasta una super-app con más de 40 microapps. Trabajo en el equipo Mobile Core de ueno bank y construyo productos propios bajo Byto Apps.",
+  "@heroBody": {
+    "description": "Hero paragraph under the title."
+  },
+  "heroCtaProjects": "Ver proyectos →",
+  "@heroCtaProjects": {
+    "description": "Primary hero button; scrolls to the projects."
+  },
+  "heroCtaCv": "Descargar CV",
+  "@heroCtaCv": {
+    "description": "Secondary hero button; downloads the CV PDF."
+  },
+  "layerPresentation": "presentation/",
+  "@layerPresentation": {
+    "description": "Name of the presentation layer."
+  },
+  "layerDomain": "domain/",
+  "@layerDomain": {
+    "description": "Name of the domain layer."
+  },
+  "layerData": "data/",
+  "@layerData": {
+    "description": "Name of the data layer."
+  },
+  "layerPresentationItems": "pages · widgets · state",
+  "@layerPresentationItems": {
+    "description": "What lives in the presentation layer (hero plate)."
+  },
+  "layerDomainItems": "entities · usecases · contracts",
+  "@layerDomainItems": {
+    "description": "What lives in the domain layer (hero plate)."
+  },
+  "layerDataItems": "repositories · datasources · dtos",
+  "@layerDataItems": {
+    "description": "What lives in the data layer (hero plate)."
+  },
+  "metricMicroappsValue": "40+",
+  "@metricMicroappsValue": {
+    "description": "Metric value."
+  },
+  "metricMicroappsLabel": "microapps integradas como packages",
+  "@metricMicroappsLabel": {
+    "description": "Metric label."
+  },
+  "metricFlagsValue": "~1 s",
+  "@metricFlagsValue": {
+    "description": "Metric value."
+  },
+  "metricFlagsLabel": "feature flags en tiempo real (vs. hasta 24 h)",
+  "@metricFlagsLabel": {
+    "description": "Metric label."
+  },
+  "metricStoresValue": "iOS + Android",
+  "@metricStoresValue": {
+    "description": "Metric value."
+  },
+  "metricStoresLabel": "deploy de una app bancaria a las stores",
+  "@metricStoresLabel": {
+    "description": "Metric label."
+  },
+  "stackItems": "Flutter,Dart,Clean Architecture,Firebase,Google Maps,Mercado Pago,Microapps,CI/CD",
+  "@stackItems": {
+    "description": "Comma-separated items of the stack marquee."
+  },
+  "projectsTitle": "Proyectos",
+  "@projectsTitle": {
+    "description": "Title of the projects section."
+  },
+  "projectsCount": "({count})",
+  "@projectsCount": {
+    "description": "Number of projects next to the title, zero-padded.",
+    "placeholders": {
+      "count": {
+        "type": "String",
+        "example": "04"
+      }
+    }
+  },
+  "projectsTip": "Tip: activá el modo arquitectura arriba a la derecha.",
+  "@projectsTip": {
+    "description": "Hint next to the projects title."
+  },
+  "projectsError": "No se pudieron cargar los proyectos.",
+  "@projectsError": {
+    "description": "Shown when the projects content fails to load."
+  },
+  "experienceTitle": "Experiencia",
+  "@experienceTitle": {
+    "description": "Title of the experience section."
+  },
+  "experiencePeriod": "{start} — {end}",
+  "@experiencePeriod": {
+    "description": "Period of a position.",
+    "placeholders": {
+      "start": {
+        "type": "String",
+        "example": "2022"
+      },
+      "end": {
+        "type": "String",
+        "example": "presente"
+      }
+    }
+  },
+  "experiencePresent": "presente",
+  "@experiencePresent": {
+    "description": "End of a current position."
+  },
+  "experienceYearUnknown": "[AÑO]",
+  "@experienceYearUnknown": {
+    "description": "Placeholder while a year is not filled in yet."
+  },
+  "experienceError": "No se pudo cargar la experiencia.",
+  "@experienceError": {
+    "description": "Shown when the experience content fails to load."
+  },
+  "contactTitle": "¿Armamos algo juntos?",
+  "@contactTitle": {
+    "description": "Title of the contact block."
+  },
+  "contactEmailPlaceholder": "[TU EMAIL]",
+  "@contactEmailPlaceholder": {
+    "description": "Placeholder while the email is not filled in yet."
+  },
+  "contactGithub": "GitHub ↗",
+  "@contactGithub": {
+    "description": "Link to GitHub."
+  },
+  "contactLinkedin": "LinkedIn ↗",
+  "@contactLinkedin": {
+    "description": "Link to LinkedIn."
+  },
+  "footerNote": "Hecho con Flutter Web · activá el modo arquitectura para ver cómo está construido.",
+  "@footerNote": {
+    "description": "Footer line."
   }
 }
