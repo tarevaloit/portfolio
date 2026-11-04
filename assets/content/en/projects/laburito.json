@@ -2,17 +2,30 @@
   "name": "Laburito",
   "category": "Final project · USAL",
   "badge": "Final project",
-  "summary": "A platform that connects people who need a service with tradespeople. Planned with IEEE 1058, risk management and burndown.",
-  "description": "A platform that connects clients with tradespeople. Final degree project at USAL, with an IEEE 1058 plan, risk matrix and burndown.",
+  "summary": "A geolocated platform that connects people looking for a service with tradespeople. Planned with IEEE 1058, risk management and burndown.",
+  "description": "A geolocated platform that connects Seekers with tradespeople. Final degree project at USAL (Professional Integration Seminar 2026), planned with IEEE 1058, a risk matrix and burndown.",
   "role": "[Role]",
-  "status": "Final project",
+  "status": "Sprint 6 · release v0.5.0",
   "architecture": {
-    "presentation": "[What the presentation layer does in the hiring flow]",
-    "domain": "[What the domain layer does in the hiring flow]",
-    "data": "[What the data layer does in the hiring flow]"
+    "presentation": "CrearPedidoScreen is a step-by-step form (what, where, photos, validity); CrearPedidoController, generated with riverpod_generator, holds the state.",
+    "domain": "freezed models and enums such as PedidoEstado, a Dart mirror of the transitions defined in the database.",
+    "data": "PedidosRepository queries Supabase: PostgreSQL with RLS and PostGIS for geolocation."
   },
   "decisions": [
-    { "title": "[Technical decision 1]", "body": "[To do]" },
-    { "title": "[Technical decision 2]", "body": "[To do]" }
-  ]
+    {
+      "title": "The database validates, the app follows",
+      "body": "Request states and their transitions live in PostgreSQL. PedidoEstado mirrors them in Dart only to avoid offering buttons the server would reject, and a test checks both tables match."
+    },
+    {
+      "title": "Keys out of the repository",
+      "body": "Supabase and Google Maps keys come in through --dart-define from an uncommitted .env. If they are missing, the app still starts and shows what to fill in instead of crashing."
+    },
+    {
+      "title": "Places API over HTTP",
+      "body": "Autocomplete and geocoding are called from Dart, so the key is restricted by API rather than by app. In production there would be two keys, one per kind of use."
+    }
+  ],
+  "mediaCaptions": {
+    "burndown-sprint-03": "Project burndown at the end of Sprint 3: ideal, planned and actual."
+  }
 }

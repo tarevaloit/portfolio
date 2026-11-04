@@ -2,8 +2,9 @@
   "order": 3,
   "monogram": "Fu",
   "color": "#F9A8D4",
+  "logo": "assets/projects/fundido-logo.webp",
   "platforms": ["[Plataformas]"],
-  "stack": ["Flutter", "[Proveedor de IA]", "[Backend/almacenamiento]"],
+  "stack": ["Flutter", "Bloc", "Firebase", "OpenAI", "Rive"],
   "links": {
     "appStore": null,
     "playStore": null,
@@ -13,8 +14,12 @@
   },
   "architecture": {
     "feature": "chat",
-    "presentation": ["[Clases de presentation]"],
-    "domain": ["[Clases de domain]"],
-    "data": ["[Clases de data]"]
+    "presentation": ["ChatPage", "ChatBloc", "ChatState"],
+    "domain": ["ChatMessage", "InterpretarGastoUseCase", "GastoAiRepository"],
+    "data": ["GastoAiRepositoryImpl", "OpenAiGastoService"]
+  },
+  "snippet": {
+    "path": "lib/domain/usecases/interpretar_gasto_usecase.dart",
+    "language": "dart"
   }
 }

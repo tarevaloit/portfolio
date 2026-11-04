@@ -60,33 +60,46 @@ void main() {
   });
 
   group('FundidoDemo', () {
-    testWidgets('a suggestion is sent and the piggy answers', (tester) async {
+    testWidgets('a complete expense is logged after "typing…"', (tester) async {
       await tester.pumpLocalized(
         phone(const FundidoDemo()),
         scrollable: false,
         reduceMotion: false,
       );
-      expect(
-        find.text('¡Hola! Contame qué gastaste o cobraste y lo anoto por vos.'),
-        findsOneWidget,
-      );
+      expect(find.text('Fundi'), findsOneWidget);
+      const ask = r'Ayer pizza y birra con los pibes, $4.500';
 
-      await tester.tap(
-        find.widgetWithText(ActionChip, r'Gasté $3.500 en el súper'),
-      );
+      await tester.tap(find.widgetWithText(ActionChip, ask));
       await tester.pump();
 
-      expect(
-        find.widgetWithText(ActionChip, r'Gasté $3.500 en el súper'),
-        findsNothing,
-      );
-      expect(find.text(r'Gasté $3.500 en el súper'), findsOneWidget);
+      expect(find.widgetWithText(ActionChip, ask), findsNothing);
+      expect(find.text(ask), findsOneWidget);
       expect(find.text('escribiendo…'), findsOneWidget);
 
       await tester.pump(FundidoDemo.replyDelay);
 
       expect(find.text('escribiendo…'), findsNothing);
-      expect(find.textContaining(r'Anotado: $3.500'), findsOneWidget);
+      expect(
+        find.text(r'Listo, gasto anotado: $4.500 en comida, de ayer.'),
+        findsOneWidget,
+      );
+    });
+
+    testWidgets('a message missing data gets a question, not "logged"', (
+      tester,
+    ) async {
+      await tester.pumpLocalized(phone(const FundidoDemo()), scrollable: false);
+
+      await tester.tap(find.widgetWithText(ActionChip, 'Cargué nafta'));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 10));
+      await tester.pump();
+
+      expect(
+        find.text('Dale, pero no me dijiste cuánto fue ni cuándo.'),
+        findsOneWidget,
+      );
+      expect(find.textContaining('anotado'), findsNothing);
     });
 
     testWidgets('all suggestions can be used once', (tester) async {
@@ -106,16 +119,14 @@ void main() {
 
       expect(find.byType(ActionChip), findsNothing);
       expect(
-        find.text(
-          r'You have $12,000 left for going out until the end of the month.',
-        ),
+        find.text(r'Logged: $18,000 in utilities, from today.'),
         findsOneWidget,
       );
     });
   });
 
   group('LaburitoDemo', () {
-    testWidgets('goes trade → professional → confirm → done and back', (
+    testWidgets('follows the real flow: what → where → when → posted', (
       tester,
     ) async {
       await tester.pumpLocalized(
@@ -126,29 +137,38 @@ void main() {
 
       await tester.tap(find.text('Electricidad'));
       await tester.pump();
-      expect(find.text('Elegí un profesional'), findsOneWidget);
-      expect(find.text('4,9 · 1,2 km'), findsOneWidget);
-
-      await tester.tap(find.text('Lucía R.'));
-      await tester.pump();
-      expect(find.text('Electricidad con Lucía R.'), findsOneWidget);
+      expect(find.text('¿Dónde?'), findsOneWidget);
+      expect(find.text('[Dirección del pedido]'), findsOneWidget);
 
       await tester.tap(find.byTooltip('Atrás'));
       await tester.pump();
-      expect(find.text('Elegí un profesional'), findsOneWidget);
+      expect(find.text('¿Qué necesitás?'), findsOneWidget);
 
-      await tester.tap(find.text('Lucía R.'));
+      await tester.tap(find.text('Electricidad'));
       await tester.pump();
-      await tester.tap(find.text('Pagar con Mercado Pago'));
+      await tester.tap(find.text('Usar esta ubicación'));
       await tester.pump();
-      expect(find.text('¡Listo! Lucía R. va en camino.'), findsOneWidget);
+      expect(find.text('¿Para cuándo?'), findsOneWidget);
+      // The urgency labels of PedidoUrgencia in the real app.
+      expect(find.text('Puede esperar'), findsOneWidget);
+      expect(find.text('Esta semana'), findsOneWidget);
+
+      await tester.tap(find.text('Es urgente'));
+      await tester.pump();
+      expect(
+        find.text(
+          '¡Pedido publicado! Los profesionales de Electricidad cerca tuyo '
+          'ya lo pueden ver.',
+        ),
+        findsOneWidget,
+      );
 
       await tester.tap(find.text('Empezar de nuevo'));
       await tester.pump();
       expect(find.text('¿Qué necesitás?'), findsOneWidget);
     });
 
-    testWidgets('formats numbers for the language', (tester) async {
+    testWidgets('is translated', (tester) async {
       await tester.pumpLocalized(
         phone(const LaburitoDemo()),
         scrollable: false,
@@ -157,8 +177,10 @@ void main() {
 
       await tester.tap(find.text('Plumbing'));
       await tester.pump();
+      await tester.tap(find.text('Use this location'));
+      await tester.pump();
 
-      expect(find.text('4.9 · 1.2 km'), findsOneWidget);
+      expect(find.text('It can wait'), findsOneWidget);
     });
   });
 }

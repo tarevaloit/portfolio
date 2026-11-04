@@ -2,8 +2,9 @@
   "order": 1,
   "monogram": "Fi",
   "color": "#5EEAD4",
+  "logo": "assets/projects/fishar-logo.webp",
   "platforms": ["iOS", "Android"],
-  "stack": ["Flutter", "Firebase", "Maps"],
+  "stack": ["Flutter", "Riverpod", "Supabase", "Google Maps", "Open-Meteo"],
   "links": {
     "appStore": null,
     "playStore": null,
@@ -13,8 +14,12 @@
   },
   "architecture": {
     "feature": "spots",
-    "presentation": ["SpotsMapPage", "SpotDetailSheet", "SpotsCubit"],
-    "domain": ["Spot", "GetNearbySpots", "SpotsRepository"],
-    "data": ["SpotsRepositoryImpl", "FirestoreSpotsDataSource", "SpotDto"]
+    "presentation": ["MapScreen", "mapSpotsProvider", "MapSpotsNotifier"],
+    "domain": ["FishingSpot", "GetSpotsUseCase", "IPostRepository"],
+    "data": ["PostRepositoryImpl", "PostRemoteDataSource", "FishingSpotModel"]
+  },
+  "snippet": {
+    "path": "lib/features/capture/domain/usecases/get_spots_usecase.dart",
+    "language": "dart"
   }
 }

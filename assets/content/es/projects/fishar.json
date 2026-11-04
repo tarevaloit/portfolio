@@ -2,17 +2,27 @@
   "name": "Fishar",
   "category": "App social · Byto Apps",
   "badge": "Beta · TestFlight",
-  "summary": "Red social de pesca para Android e iOS. Marcá spots en el mapa, compartí capturas y seguí a otros pescadores.",
-  "description": "Una red social para pescadores: marcás tus spots en el mapa, compartís lo que sacaste y descubrís dónde pesca la comunidad.",
+  "summary": "Red social de pesca para iOS y Android. Compartí capturas, guardá tus spots en el mapa y mirá el clima antes de salir.",
+  "description": "La red social de los pescadores: subís tus capturas, marcás los spots donde pican y mirás el clima antes de cargar la caña en el auto.",
   "role": "Diseño, desarrollo y publicación",
   "status": "TestFlight · Play closed testing",
   "architecture": {
-    "presentation": "Widgets sin lógica de negocio; el estado vive en el cubit.",
-    "domain": "Dart puro, sin Flutter ni Firebase: se testea en milisegundos.",
-    "data": "Implementa el contrato del dominio; cambiar de backend no toca la UI."
+    "presentation": "MapScreen lee mapSpotsProvider, un AsyncNotifier de Riverpod. Los widgets no saben que existe Supabase.",
+    "domain": "Dart puro: GetSpotsUseCase depende de la interfaz IPostRepository y devuelve Either<Failure, T> con fpdart.",
+    "data": "PostRepositoryImpl implementa el contrato sobre Supabase a través de PostRemoteDataSource y convierte modelos en entidades."
   },
   "decisions": [
-    { "title": "[Decisión técnica 1]", "body": "[Completar]" },
-    { "title": "[Decisión técnica 2]", "body": "[Completar]" }
+    {
+      "title": "Errores como valores",
+      "body": "Los casos de uso devuelven Either<Failure, T> con una jerarquía sellada de Failure: la UI decide qué mostrar ante cada falla sin try/catch desperdigados."
+    },
+    {
+      "title": "Supabase como backend",
+      "body": "Auth, PostgreSQL y Storage en un mismo servicio. Firebase queda solo para las notificaciones push."
+    },
+    {
+      "title": "Clima sin backend propio",
+      "body": "El pronóstico por hora y por día sale de Open-Meteo, que es de uso no comercial; la ficha de la tienda lo aclara y no promete precisión."
+    }
   ]
 }

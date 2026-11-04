@@ -2,17 +2,30 @@
   "name": "Laburito",
   "category": "Proyecto final · USAL",
   "badge": "Proyecto final",
-  "summary": "Plataforma que conecta a quien necesita un servicio con trabajadores de oficio. Planificada con IEEE 1058, riesgos y burndown.",
-  "description": "Plataforma que conecta clientes con trabajadores de oficio. Proyecto final de la USAL, con plan IEEE 1058, matriz de riesgos y burndown.",
+  "summary": "Plataforma geolocalizada que conecta a quien busca un servicio con profesionales de oficios. Planificada con IEEE 1058, riesgos y burndown.",
+  "description": "Plataforma geolocalizada que conecta Buscadores con Profesionales de oficios. Proyecto final de la USAL (Seminario de Integración Profesional 2026), planificado con IEEE 1058, matriz de riesgos y burndown.",
   "role": "[Rol]",
-  "status": "Proyecto final",
+  "status": "Sprint 6 · release v0.5.0",
   "architecture": {
-    "presentation": "[Qué hace la capa presentation en el flujo de contratación]",
-    "domain": "[Qué hace la capa domain en el flujo de contratación]",
-    "data": "[Qué hace la capa data en el flujo de contratación]"
+    "presentation": "CrearPedidoScreen es un formulario por pasos (qué, dónde, fotos, vigencia); CrearPedidoController, generado con riverpod_generator, lleva el estado.",
+    "domain": "Modelos con freezed y enums como PedidoEstado, espejo en Dart de las transiciones que define la base.",
+    "data": "PedidosRepository consulta Supabase: PostgreSQL con RLS y PostGIS para la geolocalización."
   },
   "decisions": [
-    { "title": "[Decisión técnica 1]", "body": "[Completar]" },
-    { "title": "[Decisión técnica 2]", "body": "[Completar]" }
-  ]
+    {
+      "title": "La base valida, la app acompaña",
+      "body": "Los estados del pedido y sus transiciones viven en PostgreSQL. PedidoEstado los refleja en Dart solo para no ofrecer botones que el servidor va a rechazar, y un test verifica que las dos tablas coincidan."
+    },
+    {
+      "title": "Claves fuera del repositorio",
+      "body": "Las claves de Supabase y Google Maps entran por --dart-define desde un .env que no se commitea. Si faltan, la app arranca igual y muestra qué completar en vez de romper."
+    },
+    {
+      "title": "Places API por HTTP",
+      "body": "El autocompletado y la geocodificación se llaman desde Dart, así que la clave se restringe por API y no por app. En producción serían dos claves, una por tipo de uso."
+    }
+  ],
+  "mediaCaptions": {
+    "burndown-sprint-03": "Burndown del proyecto al cierre del Sprint 3: ideal, planificada y real."
+  }
 }

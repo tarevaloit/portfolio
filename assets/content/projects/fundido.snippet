@@ -1,0 +1,13 @@
+// InterpretarGastoUseCase
+import '../entities/chat_message.dart';
+import '../repositories/gasto_ai_repository.dart';
+
+class InterpretarGastoUseCase {
+  final GastoAiRepository repository;
+
+  InterpretarGastoUseCase(this.repository);
+
+  Future<ChatMessage> call(List<ChatMessage> historial) {
+    return repository.interpretarGasto(historial);
+  }
+}

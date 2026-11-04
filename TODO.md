@@ -43,6 +43,21 @@ Los textos de cards y descripciones salen de PLAN.md y del mockup. Faltan:
 - [ ] Cuerpo largo opcional en Markdown (`{es,en}/projects/<slug>.md`).
 - [ ] Capturas y videos cortos de cada app (WebP, tamaños fijos).
 
+## Contenido real importado (revisar)
+Sacado de `~/Documents/mediomundo-app`, `~/Documents/laburito` y
+`~/Desktop/fundido_app` (sin leer `.env`):
+- [ ] Clases, stack, descripciones y decisiones técnicas de Fishar, Laburito y
+      Fundido: las decisiones las redacté yo a partir de README, docs y código.
+- [ ] Snippets copiados de cada repo (`assets/content/projects/*.snippet`).
+- [ ] Íconos de las apps y el burndown del Sprint 3 de Laburito (`assets/projects/`).
+- [ ] Estado de Laburito ("Sprint 6 · release v0.5.0") y de Fundido
+      ("Prototipo · 2025", último commit en julio de 2025).
+- [ ] `contact.github` = https://github.com/tarevaloit (dueño de los tres repos):
+      confirmar que es el perfil público que querés mostrar.
+- [ ] Rive real de Fundi en `fundido_app/assets/rive/pig_run_cycle.riv`:
+      confirmar licencia antes de usarlo.
+- [ ] Capturas de pantalla: no hay en ningún repo.
+
 ## Copy a revisar
 - [ ] Traducción al inglés del hero: "Flutter apps with architecture that holds
       up." (`lib/l10n/app_en.arb`). La propuse yo; validarla.

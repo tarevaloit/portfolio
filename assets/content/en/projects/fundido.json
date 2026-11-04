@@ -2,17 +2,27 @@
   "name": "Fundido",
   "category": "AI-powered personal finance",
   "badge": "Personal app",
-  "summary": "A chatbot with an AI-powered piggy: tell it your expenses and income and it keeps your personal finances organized.",
-  "description": "A personal finance chatbot with an AI-powered piggy: talk to it and it organizes your finances.",
+  "summary": "An expense app with conversational AI: you write to Fundi, the piggy, and it turns your sentences into expenses.",
+  "description": "An expense tracking app with conversational AI: tell Fundi what you spent and it turns your sentence into an expense with description, amount, date and category.",
   "role": "[Role]",
-  "status": "[Status]",
+  "status": "Prototype · 2025",
   "architecture": {
-    "presentation": "[What the presentation layer does in the chat]",
-    "domain": "[What the domain layer does in the chat]",
-    "data": "[What the data layer does in the chat]"
+    "presentation": "ChatPage listens to ChatBloc: each message is an event and the state brings Fundi's answer.",
+    "domain": "InterpretarGastoUseCase takes the chat history and depends on the GastoAiRepository contract.",
+    "data": "GastoAiRepositoryImpl delegates to OpenAiGastoService, which builds the OpenAI request and parses the answer."
   },
   "decisions": [
-    { "title": "[Technical decision 1]", "body": "[To do]" },
-    { "title": "[Technical decision 2]", "body": "[To do]" }
+    {
+      "title": "The AI returns data, not just text",
+      "body": "The prompt asks for two parts: a short sentence in the user's tone and a JSON block with description, amount, date and category, which the app parses and stores."
+    },
+    {
+      "title": "Never confirm halfway",
+      "body": "If a required field is missing, Fundi asks for it and does not say \"logged\": the expense is stored only once it has description, amount and date."
+    },
+    {
+      "title": "Relative dates resolved first",
+      "body": "\"Today\", \"yesterday\" or \"the day before\" are turned into YYYY-MM-DD with the device date inside the prompt, so the model does not guess the day."
+    }
   ]
 }

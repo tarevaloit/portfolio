@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:portfolio/core/design_system/design_system.dart';
 import 'package:portfolio/core/l10n/l10n.dart';
 
-/// Laburito mock: hiring flow in three steps (trade → professional →
-/// confirm) and a done screen. Example copy and fictional names.
+/// Laburito mock of the real "create request" flow of a Buscador: what
+/// trade, where (map pin), when (the real urgency options) and posted. The
+/// real app also has a photos step, left out to keep the mock short.
 class LaburitoDemo extends StatefulWidget {
   const LaburitoDemo({super.key});
 
@@ -12,14 +12,13 @@ class LaburitoDemo extends StatefulWidget {
   State<LaburitoDemo> createState() => _LaburitoDemoState();
 }
 
-enum _Step { trade, worker, confirm, done }
+enum _Step { trade, where, when, done }
 
 class _LaburitoDemoState extends State<LaburitoDemo> {
   static const Color _background = Color(0xFFFFF7ED);
   static const Color _orange = Color(0xFFFDBA74);
   static const Color _ink = Color(0xFF1C1917);
   static const Color _muted = Color(0xFF78716C);
-  static const Color _mercadoPago = Color(0xFF009EE3);
 
   static const List<IconData> _tradeIcons = [
     Icons.plumbing,
@@ -27,12 +26,14 @@ class _LaburitoDemoState extends State<LaburitoDemo> {
     Icons.local_fire_department,
     Icons.format_paint,
   ];
-  static const List<double> _ratings = [4.9, 4.8, 4.7];
-  static const List<double> _distances = [1.2, 2.5, 3.1];
+  static const List<IconData> _urgencyIcons = [
+    Icons.hourglass_empty,
+    Icons.event,
+    Icons.priority_high,
+  ];
 
   _Step _step = _Step.trade;
   int _trade = 0;
-  int _worker = 0;
 
   void _go(_Step step) => setState(() => _step = step);
 
@@ -40,21 +41,17 @@ class _LaburitoDemoState extends State<LaburitoDemo> {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final trades = l10n.demoLaburitoTrades.split(',');
-    final workers = l10n.demoLaburitoWorkers.split(',');
-    final number = NumberFormat(
-      '0.0',
-      Localizations.localeOf(context).languageCode,
-    );
+    final urgencies = l10n.demoLaburitoUrgencies.split(',');
 
     final title = switch (_step) {
       _Step.trade => l10n.demoLaburitoTradesTitle,
-      _Step.worker => l10n.demoLaburitoWorkersTitle,
-      _Step.confirm => l10n.demoLaburitoConfirmTitle,
+      _Step.where => l10n.demoLaburitoWhereTitle,
+      _Step.when => l10n.demoLaburitoWhenTitle,
       _Step.done => '',
     };
     final previous = switch (_step) {
-      _Step.worker => _Step.trade,
-      _Step.confirm => _Step.worker,
+      _Step.where => _Step.trade,
+      _Step.when => _Step.where,
       _ => null,
     };
 
@@ -64,75 +61,68 @@ class _LaburitoDemoState extends State<LaburitoDemo> {
         children: [
           for (final (index, trade) in trades.indexed)
             _Tile(
-              leading: Icon(
-                _tradeIcons[index % _tradeIcons.length],
-                color: _ink,
-                size: 20,
-              ),
+              icon: _tradeIcons[index % _tradeIcons.length],
               title: trade,
               onTap: () {
                 _trade = index;
-                _go(_Step.worker);
+                _go(_Step.where);
               },
             ),
         ],
       ),
-      _Step.worker => ListView(
+      _Step.where => Padding(
         padding: const EdgeInsets.all(12),
-        children: [
-          for (final (index, worker) in workers.indexed)
-            _Tile(
-              leading: Text(
-                worker.substring(0, 1),
-                style: AppTypography.sans(
-                  size: 15,
-                  weight: FontWeight.w700,
-                  color: _ink,
-                ),
-              ),
-              title: worker,
-              subtitle: l10n.demoLaburitoWorkerMeta(
-                number.format(_ratings[index % _ratings.length]),
-                number.format(_distances[index % _distances.length]),
-              ),
-              onTap: () {
-                _worker = index;
-                _go(_Step.confirm);
-              },
-            ),
-        ],
-      ),
-      _Step.confirm => Padding(
-        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white,
+            Expanded(
+              child: ClipRRect(
                 borderRadius: BorderRadius.circular(16),
-              ),
-              child: Text(
-                l10n.demoLaburitoSummary(trades[_trade], workers[_worker]),
-                style: AppTypography.sans(
-                  size: 15,
-                  weight: FontWeight.w600,
-                  color: _ink,
-                ),
+                child: const CustomPaint(painter: _MiniMapPainter()),
               ),
             ),
-            const Spacer(),
+            const SizedBox(height: 12),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: Row(
+                children: [
+                  const Icon(Icons.place, color: Color(0xFFEA580C), size: 18),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      l10n.demoLaburitoAddress,
+                      style: AppTypography.sans(size: 13, color: _ink),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 12),
             FilledButton(
-              onPressed: () => _go(_Step.done),
+              onPressed: () => _go(_Step.when),
               style: FilledButton.styleFrom(
-                backgroundColor: _mercadoPago,
+                backgroundColor: _ink,
                 foregroundColor: Colors.white,
               ),
-              child: Text(l10n.demoLaburitoPay),
+              child: Text(l10n.demoLaburitoUseLocation),
             ),
           ],
         ),
+      ),
+      _Step.when => ListView(
+        padding: const EdgeInsets.all(12),
+        children: [
+          for (final (index, urgency) in urgencies.indexed)
+            _Tile(
+              icon: _urgencyIcons[index % _urgencyIcons.length],
+              title: urgency,
+              onTap: () => _go(_Step.done),
+            ),
+        ],
       ),
       _Step.done => Center(
         child: Padding(
@@ -147,7 +137,7 @@ class _LaburitoDemoState extends State<LaburitoDemo> {
               ),
               const SizedBox(height: 16),
               Text(
-                l10n.demoLaburitoDone(workers[_worker]),
+                l10n.demoLaburitoDone(trades[_trade]),
                 textAlign: TextAlign.center,
                 style: AppTypography.sans(
                   size: 16,
@@ -212,16 +202,10 @@ class _LaburitoDemoState extends State<LaburitoDemo> {
 }
 
 class _Tile extends StatelessWidget {
-  const _Tile({
-    required this.leading,
-    required this.title,
-    required this.onTap,
-    this.subtitle,
-  });
+  const _Tile({required this.icon, required this.title, required this.onTap});
 
-  final Widget leading;
+  final IconData icon;
   final String title;
-  final String? subtitle;
   final VoidCallback onTap;
 
   @override
@@ -246,43 +230,17 @@ class _Tile extends StatelessWidget {
                     color: Color(0xFFFFEDD5),
                     shape: BoxShape.circle,
                   ),
-                  child: leading,
+                  child: Icon(icon, color: _LaburitoDemoState._ink, size: 20),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        title,
-                        style: AppTypography.sans(
-                          size: 14,
-                          weight: FontWeight.w600,
-                          color: _LaburitoDemoState._ink,
-                        ),
-                      ),
-                      if (subtitle != null)
-                        Row(
-                          children: [
-                            // An icon: no bundled font has the "★" glyph.
-                            const Icon(
-                              Icons.star_rounded,
-                              size: 13,
-                              color: Color(0xFFF59E0B),
-                            ),
-                            const SizedBox(width: 2),
-                            Flexible(
-                              child: Text(
-                                subtitle!,
-                                style: AppTypography.sans(
-                                  size: 11,
-                                  color: _LaburitoDemoState._muted,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                    ],
+                  child: Text(
+                    title,
+                    style: AppTypography.sans(
+                      size: 14,
+                      weight: FontWeight.w600,
+                      color: _LaburitoDemoState._ink,
+                    ),
                   ),
                 ),
                 const Icon(
@@ -297,4 +255,51 @@ class _Tile extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Simplified street map with the pin of the request, like the real
+/// `MiniMapaPedido`.
+class _MiniMapPainter extends CustomPainter {
+  const _MiniMapPainter();
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    canvas.drawRect(
+      Offset.zero & size,
+      Paint()..color = const Color(0xFFF1EDE4),
+    );
+    final street = Paint()
+      ..color = Colors.white
+      ..strokeWidth = 10;
+    for (final f in [0.22, 0.55, 0.85]) {
+      canvas
+        ..drawLine(
+          Offset(0, size.height * f),
+          Offset(size.width, size.height * f),
+          street,
+        )
+        ..drawLine(
+          Offset(size.width * f, 0),
+          Offset(size.width * f, size.height),
+          street,
+        );
+    }
+    canvas.drawRect(
+      Rect.fromLTWH(
+        size.width * 0.6,
+        size.height * 0.6,
+        size.width * 0.2,
+        size.height * 0.2,
+      ),
+      Paint()..color = const Color(0xFFD9EAD3),
+    );
+    final pin = Offset(size.width * 0.4, size.height * 0.42);
+    canvas
+      ..drawCircle(pin, 14, Paint()..color = const Color(0x33EA580C))
+      ..drawCircle(pin, 7, Paint()..color = const Color(0xFFEA580C))
+      ..drawCircle(pin, 3, Paint()..color = Colors.white);
+  }
+
+  @override
+  bool shouldRepaint(_MiniMapPainter oldDelegate) => false;
 }

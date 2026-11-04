@@ -2,17 +2,27 @@
   "name": "Fishar",
   "category": "Social app · Byto Apps",
   "badge": "Beta · TestFlight",
-  "summary": "A fishing social network for Android and iOS. Pin spots on the map, share your catches and follow other anglers.",
-  "description": "A social network for anglers: pin your spots on the map, share what you caught and find out where the community is fishing.",
+  "summary": "A fishing social network for iOS and Android. Share your catches, save your spots on the map and check the weather before heading out.",
+  "description": "The social network for anglers: post your catches, pin the spots where they bite and check the weather before loading the rod in the car.",
   "role": "Design, development and release",
   "status": "TestFlight · Play closed testing",
   "architecture": {
-    "presentation": "Widgets without business logic; state lives in the cubit.",
-    "domain": "Pure Dart, no Flutter or Firebase: tests run in milliseconds.",
-    "data": "Implements the domain contract; switching backends does not touch the UI."
+    "presentation": "MapScreen reads mapSpotsProvider, a Riverpod AsyncNotifier. Widgets do not know Supabase exists.",
+    "domain": "Pure Dart: GetSpotsUseCase depends on the IPostRepository interface and returns Either<Failure, T> with fpdart.",
+    "data": "PostRepositoryImpl implements the contract on Supabase through PostRemoteDataSource and maps models to entities."
   },
   "decisions": [
-    { "title": "[Technical decision 1]", "body": "[To do]" },
-    { "title": "[Technical decision 2]", "body": "[To do]" }
+    {
+      "title": "Errors as values",
+      "body": "Use cases return Either<Failure, T> with a sealed Failure hierarchy: the UI decides what to show for each failure, with no scattered try/catch."
+    },
+    {
+      "title": "Supabase as the backend",
+      "body": "Auth, PostgreSQL and Storage in a single service. Firebase is only used for push notifications."
+    },
+    {
+      "title": "Weather without a backend of its own",
+      "body": "Hourly and daily forecasts come from Open-Meteo, which is for non-commercial use; the store listing says so and promises no accuracy."
+    }
   ]
 }

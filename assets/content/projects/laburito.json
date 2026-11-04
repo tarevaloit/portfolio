@@ -2,8 +2,9 @@
   "order": 2,
   "monogram": "La",
   "color": "#FDBA74",
-  "platforms": ["[Plataformas]"],
-  "stack": ["Flutter", "Google Maps", "Firebase", "Mercado Pago", "Backend relacional"],
+  "logo": "assets/projects/laburito-logo.webp",
+  "platforms": ["Web", "Android", "iOS"],
+  "stack": ["Flutter", "Riverpod", "Supabase", "PostGIS", "Google Maps", "Mercado Pago"],
   "links": {
     "appStore": null,
     "playStore": null,
@@ -12,9 +13,19 @@
     "website": null
   },
   "architecture": {
-    "feature": "[feature del flujo de contratación]",
-    "presentation": ["[Clases de presentation]"],
-    "domain": ["[Clases de domain]"],
-    "data": ["[Clases de data]"]
-  }
+    "feature": "pedidos",
+    "presentation": ["CrearPedidoScreen", "CrearPedidoController", "MiniMapaPedido"],
+    "domain": ["Pedido", "PedidoEstado", "PedidoUrgencia"],
+    "data": ["PedidosRepository", "CategoriasRepository"]
+  },
+  "snippet": {
+    "path": "lib/features/pedidos/domain/pedido_estado.dart",
+    "language": "dart"
+  },
+  "media": [
+    {
+      "id": "burndown-sprint-03",
+      "asset": "assets/projects/laburito-burndown-sprint-03.webp"
+    }
+  ]
 }

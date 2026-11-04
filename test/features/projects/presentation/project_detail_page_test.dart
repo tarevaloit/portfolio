@@ -29,9 +29,11 @@ void main() {
       expect(find.text('iOS · Android'), findsOneWidget);
       expect(find.text('feature: spots'), findsOneWidget);
       expect(find.byType(LayerCard), findsNWidgets(3));
-      expect(find.text('GetNearbySpots'), findsOneWidget);
-      // Fishar has no real snippet yet.
-      expect(find.byType(CodeBlock), findsNothing);
+      expect(find.text('GetSpotsUseCase'), findsOneWidget);
+      // The real use case, copied from the Fishar repo.
+      expect(find.byType(CodeBlock), findsOneWidget);
+      // Fishar has no images besides its icon.
+      expect(find.text('Del proyecto'), findsNothing);
     });
 
     testWidgets('"Este portfolio" shows its real snippet and decisions', (
@@ -49,6 +51,31 @@ void main() {
       await tester.pumpPortfolio(location: '/projects/laburito');
 
       expect(find.text('Proyecto final · USAL'), findsOneWidget);
+    });
+
+    testWidgets('shows the app icon and the real images with captions', (
+      tester,
+    ) async {
+      final semantics = tester.ensureSemantics();
+      await tester.pumpPortfolio(location: '/projects/laburito');
+
+      final icon = find.byWidgetPredicate(
+        (w) =>
+            w is Image &&
+            w.image is AssetImage &&
+            (w.image as AssetImage).assetName ==
+                'assets/projects/laburito-logo.webp',
+      );
+      expect(icon, findsOneWidget);
+      expect(find.text('Del proyecto'), findsOneWidget);
+      expect(
+        find.bySemanticsLabel(
+          'Burndown del proyecto al cierre del Sprint 3: ideal, planificada '
+          'y real.',
+        ),
+        findsOneWidget,
+      );
+      semantics.dispose();
     });
 
     testWidgets('"Código" is disabled while there is no GitHub link', (

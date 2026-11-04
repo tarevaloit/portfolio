@@ -2,17 +2,27 @@
   "name": "Fundido",
   "category": "Finanzas personales con IA",
   "badge": "App personal",
-  "summary": "Un chatbot con un cerdito conectado a IA: le contás tus gastos e ingresos y te va organizando las finanzas personales.",
-  "description": "Chatbot de finanzas personales con un cerdito conectado a IA: le hablás y te organiza las finanzas.",
+  "summary": "Una app de gastos con IA conversacional: le escribís a Fundi, el cerdito, y convierte tus frases en gastos.",
+  "description": "App de gestión de gastos con IA conversacional: le contás a Fundi en qué gastaste y convierte tu frase en un gasto con descripción, monto, fecha y categoría.",
   "role": "[Rol]",
-  "status": "[Estado]",
+  "status": "Prototipo · 2025",
   "architecture": {
-    "presentation": "[Qué hace la capa presentation en el chat]",
-    "domain": "[Qué hace la capa domain en el chat]",
-    "data": "[Qué hace la capa data en el chat]"
+    "presentation": "ChatPage escucha a ChatBloc: cada mensaje es un evento y el estado trae la respuesta de Fundi.",
+    "domain": "InterpretarGastoUseCase recibe el historial del chat y depende del contrato GastoAiRepository.",
+    "data": "GastoAiRepositoryImpl delega en OpenAiGastoService, que arma el pedido a OpenAI y parsea la respuesta."
   },
   "decisions": [
-    { "title": "[Decisión técnica 1]", "body": "[Completar]" },
-    { "title": "[Decisión técnica 2]", "body": "[Completar]" }
+    {
+      "title": "La IA devuelve datos, no solo texto",
+      "body": "El prompt pide dos partes: una frase corta en el tono del usuario y un bloque JSON con descripción, monto, fecha y categoría, que la app parsea y guarda."
+    },
+    {
+      "title": "Nunca confirmar a medias",
+      "body": "Si falta un dato obligatorio, Fundi lo pregunta y no dice \"anotado\": el gasto se guarda recién con descripción, monto y fecha."
+    },
+    {
+      "title": "Fechas relativas resueltas antes",
+      "body": "\"Hoy\", \"ayer\" o \"anteayer\" se convierten a YYYY-MM-DD con la fecha del dispositivo dentro del prompt, así el modelo no adivina el día."
+    }
   ]
 }
