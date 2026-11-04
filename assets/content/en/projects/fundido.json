@@ -1,0 +1,18 @@
+{
+  "name": "Fundido",
+  "category": "AI-powered personal finance",
+  "badge": "Personal app",
+  "summary": "A chatbot with an AI-powered piggy: tell it your expenses and income and it keeps your personal finances organized.",
+  "description": "A personal finance chatbot with an AI-powered piggy: talk to it and it organizes your finances.",
+  "role": "[Role]",
+  "status": "[Status]",
+  "architecture": {
+    "presentation": "[What the presentation layer does in the chat]",
+    "domain": "[What the domain layer does in the chat]",
+    "data": "[What the data layer does in the chat]"
+  },
+  "decisions": [
+    { "title": "[Technical decision 1]", "body": "[To do]" },
+    { "title": "[Technical decision 2]", "body": "[To do]" }
+  ]
+}

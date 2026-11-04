@@ -1,0 +1,28 @@
+{
+  "name": "This portfolio",
+  "category": "Flutter Web · open source",
+  "badge": "You are here",
+  "summary": "Flutter Web compiled to WASM, content in JSON/Markdown and an architecture mode that shows how it is built.",
+  "description": "A case study of this very site.",
+  "role": "[Role]",
+  "status": "Online",
+  "architecture": {
+    "presentation": "Riverpod providers that expose the use cases; they do not know the data layer.",
+    "domain": "Pure Dart: entities, contracts and use cases. An architecture test checks it in CI.",
+    "data": "Reads JSON and Markdown from assets/content; falls back to Spanish when a translation is missing."
+  },
+  "decisions": [
+    {
+      "title": "The language comes from the URL",
+      "body": "/ is Spanish and /en is English. Each language has its own route branch that sets the page texts, so a shared link always opens in the language it was shared in."
+    },
+    {
+      "title": "Layer rules checked by a test",
+      "body": "A test walks lib/features and fails if domain imports Flutter or presentation imports data. The architecture does not rely on discipline."
+    },
+    {
+      "title": "Content without touching code",
+      "body": "Each project is a shared JSON plus one per language. Files are discovered from the AssetManifest, so adding a project means adding files."
+    }
+  ]
+}

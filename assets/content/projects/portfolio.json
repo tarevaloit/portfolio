@@ -1,0 +1,24 @@
+{
+  "order": 4,
+  "monogram": "{}",
+  "color": "#C6F432",
+  "platforms": ["Web"],
+  "stack": ["Flutter Web", "WASM", "go_router", "Riverpod"],
+  "links": {
+    "appStore": null,
+    "playStore": null,
+    "testFlight": null,
+    "github": null,
+    "website": null
+  },
+  "architecture": {
+    "feature": "projects",
+    "presentation": ["projectsProvider", "projectBySlugProvider", "projectsRepositoryProvider"],
+    "domain": ["Project", "ProjectsRepository", "GetProjects", "GetProjectBySlug"],
+    "data": ["ProjectsRepositoryImpl", "ProjectsLocalDataSource", "ProjectDto"]
+  },
+  "snippet": {
+    "path": "lib/features/projects/domain/usecases/get_project_by_slug.dart",
+    "language": "dart"
+  }
+}

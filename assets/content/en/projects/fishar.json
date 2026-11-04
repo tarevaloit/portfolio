@@ -1,0 +1,18 @@
+{
+  "name": "Fishar",
+  "category": "Social app · Byto Apps",
+  "badge": "Beta · TestFlight",
+  "summary": "A fishing social network for Android and iOS. Pin spots on the map, share your catches and follow other anglers.",
+  "description": "A social network for anglers: pin your spots on the map, share what you caught and find out where the community is fishing.",
+  "role": "Design, development and release",
+  "status": "TestFlight · Play closed testing",
+  "architecture": {
+    "presentation": "Widgets without business logic; state lives in the cubit.",
+    "domain": "Pure Dart, no Flutter or Firebase: tests run in milliseconds.",
+    "data": "Implements the domain contract; switching backends does not touch the UI."
+  },
+  "decisions": [
+    { "title": "[Technical decision 1]", "body": "[To do]" },
+    { "title": "[Technical decision 2]", "body": "[To do]" }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "entries": {
+    "ueno-itti": {
+      "role": "Flutter Developer — Mobile Core",
+      "highlights": [
+        "Features para una super-app que integra más de 40 microapps como packages.",
+        "Mantenimiento y versionado (tags) de las dependencias cross que usan todas las microapps.",
+        "Feature flags nativas en tiempo real (~1 s) en lugar de las hasta 24 h de Firebase Remote Config.",
+        "Generador de What's New con IA que analiza los cambios de cada microapp y redacta las novedades.",
+        "Deploy de la app a App Store y Google Play.",
+        "Revisiones de arquitectura en el SDK interno (por ejemplo, Strategy pattern para conexiones de feature flags)."
+      ]
+    },
+    "byto-apps": {
+      "role": "Founder · Freelance mobile developer",
+      "highlights": [
+        "Desarrollo de apps mobile para clientes internacionales.",
+        "Productos propios de punta a punta: idea, diseño, desarrollo y publicación."
+      ]
+    }
+  }
+}

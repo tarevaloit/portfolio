@@ -1,0 +1,18 @@
+{
+  "name": "Fundido",
+  "category": "Finanzas personales con IA",
+  "badge": "App personal",
+  "summary": "Un chatbot con un cerdito conectado a IA: le contás tus gastos e ingresos y te va organizando las finanzas personales.",
+  "description": "Chatbot de finanzas personales con un cerdito conectado a IA: le hablás y te organiza las finanzas.",
+  "role": "[Rol]",
+  "status": "[Estado]",
+  "architecture": {
+    "presentation": "[Qué hace la capa presentation en el chat]",
+    "domain": "[Qué hace la capa domain en el chat]",
+    "data": "[Qué hace la capa data en el chat]"
+  },
+  "decisions": [
+    { "title": "[Decisión técnica 1]", "body": "[Completar]" },
+    { "title": "[Decisión técnica 2]", "body": "[Completar]" }
+  ]
+}

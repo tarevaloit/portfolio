@@ -30,6 +30,16 @@ flutter:
   uses-material-design: true
   generate: true
 
+  # Asset folders are not recursive: each content folder is listed. New files
+  # inside them are picked up without code changes.
+  assets:
+    - assets/content/
+    - assets/content/projects/
+    - assets/content/es/
+    - assets/content/es/projects/
+    - assets/content/en/
+    - assets/content/en/projects/
+
   fonts:
     - family: BricolageGrotesque
       fonts:

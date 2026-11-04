@@ -1,0 +1,18 @@
+{
+  "entries": [
+    {
+      "id": "ueno-itti",
+      "order": 1,
+      "company": "ueno bank · itti",
+      "startYear": null,
+      "endYear": null
+    },
+    {
+      "id": "byto-apps",
+      "order": 2,
+      "company": "Byto Apps",
+      "startYear": null,
+      "endYear": null
+    }
+  ]
+}

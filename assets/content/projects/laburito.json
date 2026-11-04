@@ -1,0 +1,20 @@
+{
+  "order": 2,
+  "monogram": "La",
+  "color": "#FDBA74",
+  "platforms": ["[Plataformas]"],
+  "stack": ["Flutter", "Google Maps", "Firebase", "Mercado Pago", "Backend relacional"],
+  "links": {
+    "appStore": null,
+    "playStore": null,
+    "testFlight": null,
+    "github": null,
+    "website": null
+  },
+  "architecture": {
+    "feature": "[feature del flujo de contratación]",
+    "presentation": ["[Clases de presentation]"],
+    "domain": ["[Clases de domain]"],
+    "data": ["[Clases de data]"]
+  }
+}

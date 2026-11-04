@@ -1,0 +1,18 @@
+{
+  "name": "Fishar",
+  "category": "App social · Byto Apps",
+  "badge": "Beta · TestFlight",
+  "summary": "Red social de pesca para Android e iOS. Marcá spots en el mapa, compartí capturas y seguí a otros pescadores.",
+  "description": "Una red social para pescadores: marcás tus spots en el mapa, compartís lo que sacaste y descubrís dónde pesca la comunidad.",
+  "role": "Diseño, desarrollo y publicación",
+  "status": "TestFlight · Play closed testing",
+  "architecture": {
+    "presentation": "Widgets sin lógica de negocio; el estado vive en el cubit.",
+    "domain": "Dart puro, sin Flutter ni Firebase: se testea en milisegundos.",
+    "data": "Implementa el contrato del dominio; cambiar de backend no toca la UI."
+  },
+  "decisions": [
+    { "title": "[Decisión técnica 1]", "body": "[Completar]" },
+    { "title": "[Decisión técnica 2]", "body": "[Completar]" }
+  ]
+}

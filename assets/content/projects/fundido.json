@@ -1,0 +1,20 @@
+{
+  "order": 3,
+  "monogram": "Fu",
+  "color": "#F9A8D4",
+  "platforms": ["[Plataformas]"],
+  "stack": ["Flutter", "[Proveedor de IA]", "[Backend/almacenamiento]"],
+  "links": {
+    "appStore": null,
+    "playStore": null,
+    "testFlight": null,
+    "github": null,
+    "website": null
+  },
+  "architecture": {
+    "feature": "chat",
+    "presentation": ["[Clases de presentation]"],
+    "domain": ["[Clases de domain]"],
+    "data": ["[Clases de data]"]
+  }
+}

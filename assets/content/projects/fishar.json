@@ -1,0 +1,20 @@
+{
+  "order": 1,
+  "monogram": "Fi",
+  "color": "#5EEAD4",
+  "platforms": ["iOS", "Android"],
+  "stack": ["Flutter", "Firebase", "Maps"],
+  "links": {
+    "appStore": null,
+    "playStore": null,
+    "testFlight": null,
+    "github": null,
+    "website": null
+  },
+  "architecture": {
+    "feature": "spots",
+    "presentation": ["SpotsMapPage", "SpotDetailSheet", "SpotsCubit"],
+    "domain": ["Spot", "GetNearbySpots", "SpotsRepository"],
+    "data": ["SpotsRepositoryImpl", "FirestoreSpotsDataSource", "SpotDto"]
+  }
+}

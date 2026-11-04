@@ -1,0 +1,18 @@
+{
+  "name": "Laburito",
+  "category": "Proyecto final · USAL",
+  "badge": "Proyecto final",
+  "summary": "Plataforma que conecta a quien necesita un servicio con trabajadores de oficio. Planificada con IEEE 1058, riesgos y burndown.",
+  "description": "Plataforma que conecta clientes con trabajadores de oficio. Proyecto final de la USAL, con plan IEEE 1058, matriz de riesgos y burndown.",
+  "role": "[Rol]",
+  "status": "Proyecto final",
+  "architecture": {
+    "presentation": "[Qué hace la capa presentation en el flujo de contratación]",
+    "domain": "[Qué hace la capa domain en el flujo de contratación]",
+    "data": "[Qué hace la capa data en el flujo de contratación]"
+  },
+  "decisions": [
+    { "title": "[Decisión técnica 1]", "body": "[Completar]" },
+    { "title": "[Decisión técnica 2]", "body": "[Completar]" }
+  ]
+}

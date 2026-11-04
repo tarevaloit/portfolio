@@ -1,0 +1,28 @@
+{
+  "name": "Este portfolio",
+  "category": "Flutter Web · open source",
+  "badge": "Estás acá",
+  "summary": "Flutter Web compilado a WASM, contenido en JSON/Markdown y un modo arquitectura que muestra cómo está hecho.",
+  "description": "Caso de estudio del propio sitio.",
+  "role": "[Rol]",
+  "status": "Online",
+  "architecture": {
+    "presentation": "Providers de Riverpod que exponen los casos de uso; no conocen la capa de datos.",
+    "domain": "Dart puro: entidades, contratos y casos de uso. Un test de arquitectura lo verifica en CI.",
+    "data": "Lee JSON y Markdown de assets/content; si falta una traducción, usa la versión en español."
+  },
+  "decisions": [
+    {
+      "title": "El idioma sale de la URL",
+      "body": "/ es español y /en es inglés. Cada idioma tiene su propia rama de rutas que fija los textos de la página, así un link compartido siempre abre en el idioma en que se compartió."
+    },
+    {
+      "title": "Reglas de capas verificadas por un test",
+      "body": "Un test recorre lib/features y falla si domain importa Flutter o si presentation importa data. La arquitectura no depende de la disciplina."
+    },
+    {
+      "title": "Contenido sin tocar código",
+      "body": "Cada proyecto es un JSON compartido más uno por idioma. Los archivos se descubren desde el AssetManifest, así que agregar un proyecto es agregar archivos."
+    }
+  ]
+}
