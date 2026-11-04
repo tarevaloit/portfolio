@@ -8,7 +8,7 @@ sealed class ContentFailure implements Exception {
   final String message;
 
   @override
-  String toString() => '$runtimeType: $message';
+  String toString() => 'ContentFailure: $message';
 }
 
 /// The requested piece of content does not exist (for example an unknown
