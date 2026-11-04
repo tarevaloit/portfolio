@@ -3,8 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'layer_rules.dart';
 
 void main() {
-  test('lib/features respects the clean-architecture import rules', () {
-    final violations = scanFeatures();
+  test('lib/features and lib/core/domain respect the import rules', () {
+    final violations = scanLayers();
 
     expect(violations, isEmpty, reason: violations.join('\n'));
   });
@@ -40,6 +40,28 @@ void main() {
         violationsFor(domainFile, [
           'package:flutter_riverpod/flutter_riverpod.dart',
         ]),
+        hasLength(1),
+      );
+    });
+
+    test('domain can import the shared kernel in core/domain', () {
+      expect(
+        violationsFor(domainFile, [
+          'package:portfolio/core/domain/content_failure.dart',
+        ]),
+        isEmpty,
+      );
+    });
+
+    test('the shared kernel follows the domain rules', () {
+      const kernelFile = 'lib/core/domain/content_language.dart';
+      expect(violationsFor(kernelFile, ['dart:core']), isEmpty);
+      expect(
+        violationsFor(kernelFile, ['package:flutter/foundation.dart']),
+        hasLength(1),
+      );
+      expect(
+        violationsFor(kernelFile, ['package:portfolio/core/l10n/l10n.dart']),
         hasLength(1),
       );
     });

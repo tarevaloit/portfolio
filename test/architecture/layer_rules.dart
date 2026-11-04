@@ -3,7 +3,8 @@ import 'dart:io';
 /// Clean-architecture import rules, checked by `layer_rules_test.dart`.
 ///
 /// - `domain/` is pure Dart: only core `dart:` libraries, a few annotation
-///   packages and other `domain/` files.
+///   packages, other `domain/` files and the shared kernel in
+///   `lib/core/domain/` (which follows the same rules).
 /// - `data/` implements domain contracts and never imports `presentation/`.
 /// - `presentation/` never imports `data/`; it only knows `domain/`.
 enum Layer { domain, data, presentation }
@@ -32,6 +33,9 @@ final RegExp _layerPattern = RegExp(
   '^lib/features/[^/]+/(domain|data|presentation)/',
 );
 
+/// Shared domain kernel (for example `ContentLanguage`, `ContentFailure`).
+const String sharedDomainRoot = 'lib/core/domain/';
+
 final RegExp _directivePattern = RegExp(
   r'''^\s*(?:import|export)\s+['"]([^'"]+)['"]''',
   multiLine: true,
@@ -41,6 +45,7 @@ final RegExp _directivePattern = RegExp(
 /// `lib/features/projects/domain/project.dart`, or `null` if it is not
 /// inside a feature layer.
 Layer? layerOf(String path) {
+  if (path.startsWith(sharedDomainRoot)) return Layer.domain;
   final match = _layerPattern.firstMatch(path);
   if (match == null) return null;
   return Layer.values.byName(match.group(1)!);
@@ -114,18 +119,21 @@ String? _packageOf(String uri) {
   return uri.substring('package:'.length).split('/').first;
 }
 
-/// Scans every Dart file under `lib/features` and returns all violations.
-List<String> scanFeatures({String root = 'lib/features'}) {
-  final directory = Directory(root);
-  if (!directory.existsSync()) return const [];
-
+/// Scans every Dart file under [roots] and returns all violations.
+List<String> scanLayers({
+  List<String> roots = const ['lib/features', 'lib/core/domain'],
+}) {
   final violations = <String>[];
-  for (final entity in directory.listSync(recursive: true)) {
-    if (entity is! File || !entity.path.endsWith('.dart')) continue;
-    final path = entity.path.replaceAll(r'\', '/');
-    violations.addAll(
-      violationsFor(path, directivesOf(entity.readAsStringSync())),
-    );
+  for (final root in roots) {
+    final directory = Directory(root);
+    if (!directory.existsSync()) continue;
+    for (final entity in directory.listSync(recursive: true)) {
+      if (entity is! File || !entity.path.endsWith('.dart')) continue;
+      final path = entity.path.replaceAll(r'\', '/');
+      violations.addAll(
+        violationsFor(path, directivesOf(entity.readAsStringSync())),
+      );
+    }
   }
   return violations;
 }
