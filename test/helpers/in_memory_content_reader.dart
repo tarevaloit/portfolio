@@ -14,6 +14,10 @@ class InMemoryContentReader implements ContentAssetReader {
 
   final Map<String, String> _files;
 
+  /// Adds or replaces a file after creation.
+  void put(String path, Object value) =>
+      _files[path] = value is String ? value : jsonEncode(value);
+
   /// Paths read so far, to assert on caching.
   final List<String> reads = [];
 

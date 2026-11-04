@@ -9,8 +9,3 @@ targets:
           checked: true
           # Typos in content keys fail loudly instead of being ignored.
           disallow_unrecognized_keys: true
-      freezed:
-        options:
-          # Entities are pure domain objects: no JSON in the domain layer.
-          from_json: false
-          to_json: false
