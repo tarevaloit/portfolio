@@ -192,9 +192,10 @@ class _CoverLayers extends StatelessWidget {
         width: double.infinity,
         height: double.infinity,
         color: AppColors.background.withValues(alpha: 0.9),
+        // Three layers of up to two lines each fit the 180 px compact cover.
         padding: const EdgeInsets.fromLTRB(
           AppSpacing.lg,
-          AppSpacing.xxl,
+          AppSpacing.md,
           AppSpacing.lg,
           AppSpacing.md,
         ),
