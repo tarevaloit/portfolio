@@ -1,0 +1,4 @@
+tags:
+  # Golden tests compare pixels; text rendering differs between macOS and
+  # Linux, so CI runs them only on macOS.
+  golden:
