@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:portfolio/core/architecture_mode/architecture_mode_controller.dart';
+import 'package:portfolio/core/architecture_mode/architecture_mode_toggle.dart';
 import 'package:portfolio/core/platform/link_opener.dart';
 import 'package:portfolio/features/contact/domain/entities/contact_info.dart';
 import 'package:portfolio/features/experience/presentation/widgets/experience_section.dart';
@@ -51,7 +52,7 @@ void main() {
     );
     expect(container.read(architectureModeProvider), isFalse);
 
-    await tester.tap(find.byType(Switch));
+    await tester.tap(find.byType(ArchitectureModeToggle).first);
     await tester.pump();
 
     expect(container.read(architectureModeProvider), isTrue);
@@ -91,7 +92,7 @@ void main() {
 
     expect(find.widgetWithText(TextButton, 'Proyectos'), findsNothing);
     expect(find.widgetWithText(TextButton, 'EN'), findsOneWidget);
-    expect(find.byType(Switch), findsOneWidget);
+    expect(find.byType(ArchitectureModeToggle), findsOneWidget);
   });
 
   testWidgets('with motion on, animations settle and leave no timers', (
