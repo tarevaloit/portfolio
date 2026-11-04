@@ -353,9 +353,9 @@
   "@demoLaburitoWorkers": {
     "description": "Laburito demo: comma-separated example worker names (fictional)."
   },
-  "demoLaburitoWorkerMeta": "{rating} ★ · {distance} km",
+  "demoLaburitoWorkerMeta": "{rating} · {distance} km",
   "@demoLaburitoWorkerMeta": {
-    "description": "Laburito demo: rating and distance of a worker.",
+    "description": "Laburito demo: rating (drawn after a star icon) and distance of a worker.",
     "placeholders": {
       "rating": {
         "type": "String",

@@ -10,7 +10,9 @@ abstract final class AppTypography {
   static const String display = 'BricolageGrotesque';
   static const String mono = 'JetBrainsMono';
 
-  /// Bricolage Grotesque: display and body text.
+  /// Bricolage Grotesque: display and body text. Glyphs it lacks (such as
+  /// "↗") come from JetBrains Mono, which is bundled too, instead of a
+  /// font downloaded at runtime.
   static TextStyle sans({
     required double size,
     FontWeight weight = FontWeight.w400,
@@ -20,6 +22,7 @@ abstract final class AppTypography {
   }) {
     return TextStyle(
       fontFamily: display,
+      fontFamilyFallback: const [mono],
       fontSize: size,
       fontWeight: weight,
       height: height,

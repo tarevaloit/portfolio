@@ -262,12 +262,25 @@ class _Tile extends StatelessWidget {
                         ),
                       ),
                       if (subtitle != null)
-                        Text(
-                          subtitle!,
-                          style: AppTypography.sans(
-                            size: 11,
-                            color: _LaburitoDemoState._muted,
-                          ),
+                        Row(
+                          children: [
+                            // An icon: no bundled font has the "★" glyph.
+                            const Icon(
+                              Icons.star_rounded,
+                              size: 13,
+                              color: Color(0xFFF59E0B),
+                            ),
+                            const SizedBox(width: 2),
+                            Flexible(
+                              child: Text(
+                                subtitle!,
+                                style: AppTypography.sans(
+                                  size: 11,
+                                  color: _LaburitoDemoState._muted,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                     ],
                   ),

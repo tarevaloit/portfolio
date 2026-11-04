@@ -82,12 +82,9 @@ class _MarqueeState extends State<Marquee> with SingleTickerProviderStateMixin {
                 const SizedBox(width: AppSpacing.xl),
                 Center(child: Text(item, style: itemStyle)),
                 const SizedBox(width: AppSpacing.xl),
-                Text(
-                  '✦',
-                  style: itemStyle.copyWith(
-                    color: colors.primary,
-                    fontSize: 10,
-                  ),
+                SizedBox.square(
+                  dimension: 10,
+                  child: CustomPaint(painter: _SparklePainter(colors.primary)),
                 ),
               ],
             );
@@ -96,4 +93,33 @@ class _MarqueeState extends State<Marquee> with SingleTickerProviderStateMixin {
       ),
     );
   }
+}
+
+/// Four-pointed star between marquee items. Drawn, because neither bundled
+/// font has the "✦" glyph.
+class _SparklePainter extends CustomPainter {
+  const _SparklePainter(this.color);
+
+  final Color color;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final c = size.center(Offset.zero);
+    final r = size.shortestSide / 2;
+    final inner = r * 0.28;
+    final path = Path()
+      ..moveTo(c.dx, c.dy - r)
+      ..lineTo(c.dx + inner, c.dy - inner)
+      ..lineTo(c.dx + r, c.dy)
+      ..lineTo(c.dx + inner, c.dy + inner)
+      ..lineTo(c.dx, c.dy + r)
+      ..lineTo(c.dx - inner, c.dy + inner)
+      ..lineTo(c.dx - r, c.dy)
+      ..lineTo(c.dx - inner, c.dy - inner)
+      ..close();
+    canvas.drawPath(path, Paint()..color = color);
+  }
+
+  @override
+  bool shouldRepaint(_SparklePainter oldDelegate) => color != oldDelegate.color;
 }

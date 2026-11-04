@@ -76,7 +76,7 @@
   "demoLaburitoTrades": "Plumbing,Electrical,Gas,Painting",
   "demoLaburitoWorkersTitle": "Choose a professional",
   "demoLaburitoWorkers": "Carlos M.,Lucía R.,Jorge P.",
-  "demoLaburitoWorkerMeta": "{rating} ★ · {distance} km",
+  "demoLaburitoWorkerMeta": "{rating} · {distance} km",
   "demoLaburitoConfirmTitle": "Confirm the request",
   "demoLaburitoSummary": "{trade} with {worker}",
   "demoLaburitoPay": "Pay with Mercado Pago",
