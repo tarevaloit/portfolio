@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/core/architecture_mode/architecture_map.dart';
+import 'package:portfolio/core/architecture_mode/layer_badge.dart';
 import 'package:portfolio/core/design_system/design_system.dart';
 import 'package:portfolio/core/l10n/l10n.dart';
 import 'package:portfolio/features/projects/domain/entities/project.dart';
@@ -101,7 +103,10 @@ class HowItsBuiltSection extends StatelessWidget {
         if (snippet != null) ...[
           const SizedBox(height: AppSpacing.lg),
           RevealOnScroll(
-            child: CodeBlock(path: snippet.path, code: snippet.code),
+            child: LayerBadge(
+              chain: ArchitectureMap.codeBlock,
+              child: CodeBlock(path: snippet.path, code: snippet.code),
+            ),
           ),
         ],
       ],

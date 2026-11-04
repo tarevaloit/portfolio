@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:portfolio/core/architecture_mode/architecture_map.dart';
+import 'package:portfolio/core/architecture_mode/architecture_mode_toggle.dart';
+import 'package:portfolio/core/architecture_mode/layer_badge.dart';
 import 'package:portfolio/core/design_system/design_system.dart';
 import 'package:portfolio/core/l10n/l10n.dart';
 import 'package:portfolio/core/l10n/language_switch.dart';
@@ -121,22 +124,28 @@ class _ProjectDetailPageState extends ConsumerState<ProjectDetailPage> {
                 ),
                 SizedBox(height: size.isCompact ? AppSpacing.xl : 72),
                 PageContainer(
-                  child: _DetailHero(
-                    project: project,
-                    demo: ProjectDemo(
+                  child: LayerBadge(
+                    chain: ArchitectureMap.projectDetail,
+                    child: _DetailHero(
                       project: project,
-                      extraDemos: widget.extraDemos,
+                      demo: ProjectDemo(
+                        project: project,
+                        extraDemos: widget.extraDemos,
+                      ),
+                      onHowItsBuilt: _scrollToHowItsBuilt,
                     ),
-                    onHowItsBuilt: _scrollToHowItsBuilt,
                   ),
                 ),
                 SizedBox(height: size.sectionSpacing),
                 const PageContainer(child: Divider()),
                 SizedBox(height: size.sectionSpacing * 0.75),
                 PageContainer(
-                  child: HowItsBuiltSection(
-                    key: _howItsBuiltKey,
-                    project: project,
+                  child: LayerBadge(
+                    chain: ArchitectureMap.howItsBuilt,
+                    child: HowItsBuiltSection(
+                      key: _howItsBuiltKey,
+                      project: project,
+                    ),
                   ),
                 ),
                 if (project.decisions.isNotEmpty) ...[
@@ -165,6 +174,7 @@ class _TopBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final colors = Theme.of(context).colorScheme;
+    final compact = ScreenSize.of(context).isCompact;
     String pad(int value) => value.toString().padLeft(2, '0');
 
     return Padding(
@@ -187,7 +197,7 @@ class _TopBar extends StatelessWidget {
                   textStyle: AppTypography.monoStyle(size: 14),
                 ),
                 child: Text(
-                  l10n.detailBack,
+                  compact ? l10n.detailBackShort : l10n.detailBack,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -195,7 +205,7 @@ class _TopBar extends StatelessWidget {
             ),
           ),
           // The counter is decoration; on phones the switch matters more.
-          if (!ScreenSize.of(context).isCompact) ...[
+          if (!compact) ...[
             Text(
               l10n.detailCounter(pad(index + 1), pad(total)),
               style: Theme.of(context).textTheme.labelMedium,
@@ -203,6 +213,8 @@ class _TopBar extends StatelessWidget {
             const SizedBox(width: AppSpacing.md),
           ],
           const LanguageSwitch(),
+          const SizedBox(width: AppSpacing.xs),
+          ArchitectureModeToggle(showLabel: !compact),
         ],
       ),
     );
@@ -331,13 +343,17 @@ class _DetailHero extends ConsumerWidget {
       ],
     );
 
-    final phone = Semantics(
-      container: true,
-      label: l10n.detailDemoLabel(project.name),
-      child: ProjectCoverHero(
-        slug: project.slug,
-        color: accent,
-        child: PhoneFrame(child: demo),
+    final phone = LayerBadge(
+      chain: ArchitectureMap.demo(project.slug),
+      isMock: true,
+      child: Semantics(
+        container: true,
+        label: l10n.detailDemoLabel(project.name),
+        child: ProjectCoverHero(
+          slug: project.slug,
+          color: accent,
+          child: PhoneFrame(child: demo),
+        ),
       ),
     );
 

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:portfolio/core/architecture_mode/architecture_mode_controller.dart';
 import 'package:portfolio/core/design_system/design_system.dart';
+import 'package:portfolio/core/l10n/l10n.dart';
 import 'package:portfolio/features/projects/domain/entities/project.dart';
 import 'package:portfolio/features/projects/presentation/widgets/project_heroes.dart';
 
@@ -92,14 +95,15 @@ class _ProjectCardState extends State<ProjectCard> {
   }
 }
 
-class _Cover extends StatelessWidget {
+class _Cover extends ConsumerWidget {
   const _Cover({required this.project});
 
   final Project project;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final compact = ScreenSize.of(context).isCompact;
+    final showLayers = ref.watch(architectureModeProvider);
     return SizedBox(
       height: compact ? 180 : 220,
       child: Stack(
@@ -150,7 +154,75 @@ class _Cover extends StatelessWidget {
               ),
             ),
           ),
+          // Architecture mode: the cover shows the real classes of each
+          // layer of this project, from the content.
+          Positioned.fill(
+            child: AnimatedSwitcher(
+              duration: context.reduceMotion ? Duration.zero : AppMotion.medium,
+              child: showLayers
+                  ? _CoverLayers(project: project)
+                  : const SizedBox.shrink(),
+            ),
+          ),
         ],
+      ),
+    );
+  }
+}
+
+class _CoverLayers extends StatelessWidget {
+  const _CoverLayers({required this.project});
+
+  final Project project;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final architecture = project.architecture;
+    final layers = AppLayerColors.of(context);
+    final rows = [
+      (l10n.layerPresentation, layers.presentation, architecture.presentation),
+      (l10n.layerDomain, layers.domain, architecture.domain),
+      (l10n.layerData, layers.data, architecture.data),
+    ];
+    return Semantics(
+      label: l10n.projectLayers(project.name),
+      child: Container(
+        color: AppColors.background.withValues(alpha: 0.9),
+        padding: const EdgeInsets.fromLTRB(
+          AppSpacing.lg,
+          AppSpacing.xxl,
+          AppSpacing.lg,
+          AppSpacing.md,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            for (final (name, color, detail) in rows)
+              Padding(
+                padding: const EdgeInsets.only(top: AppSpacing.xs),
+                child: Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: '$name ',
+                        style: TextStyle(color: color),
+                      ),
+                      TextSpan(text: detail.classes.join(' · ')),
+                    ],
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTypography.monoStyle(
+                    size: 11,
+                    height: 1.5,
+                    color: AppColors.textPrimary,
+                  ),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }

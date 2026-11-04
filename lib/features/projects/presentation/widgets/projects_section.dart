@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:portfolio/core/architecture_mode/architecture_map.dart';
+import 'package:portfolio/core/architecture_mode/layer_badge.dart';
 import 'package:portfolio/core/design_system/design_system.dart';
 import 'package:portfolio/core/l10n/l10n.dart';
 import 'package:portfolio/core/router/app_router.dart';
@@ -41,12 +43,15 @@ class ProjectsSection extends ConsumerWidget {
               for (final (index, project) in projects.indexed)
                 RevealOnScroll(
                   delay: AppMotion.stagger * (index % columns),
-                  child: ProjectCard(
-                    project: project,
-                    onTap: () => context.go(
-                      AppRoutes.projectPath(
-                        AppLocale.of(context),
-                        project.slug,
+                  child: LayerBadge(
+                    chain: ArchitectureMap.projectCard,
+                    child: ProjectCard(
+                      project: project,
+                      onTap: () => context.go(
+                        AppRoutes.projectPath(
+                          AppLocale.of(context),
+                          project.slug,
+                        ),
                       ),
                     ),
                   ),
