@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:portfolio/app/app.dart';
+import 'package:portfolio/app/di/repository_overrides.dart';
 import 'package:portfolio/core/router/app_router.dart';
 
 extension PumpPortfolio on WidgetTester {
@@ -23,7 +24,10 @@ extension PumpPortfolio on WidgetTester {
     addTearDown(router.dispose);
     await pumpWidget(
       ProviderScope(
-        overrides: [appRouterProvider.overrideWithValue(router)],
+        overrides: [
+          ...repositoryOverrides(),
+          appRouterProvider.overrideWithValue(router),
+        ],
         child: const PortfolioApp(),
       ),
     );

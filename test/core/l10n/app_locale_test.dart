@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:portfolio/core/domain/domain.dart';
 import 'package:portfolio/core/l10n/app_locale.dart';
 
 void main() {
@@ -20,6 +21,11 @@ void main() {
       expect(AppLocale.fromPath('/en'), AppLocale.en);
       expect(AppLocale.fromPath('/en/projects/fishar'), AppLocale.en);
       expect(AppLocale.fromPath('/english'), AppLocale.es);
+    });
+
+    test('every locale maps to its content language', () {
+      expect(AppLocale.es.contentLanguage, ContentLanguage.es);
+      expect(AppLocale.en.contentLanguage, ContentLanguage.en);
     });
 
     test('other switches between the two languages', () {

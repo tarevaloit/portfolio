@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:portfolio/core/domain/domain.dart';
 
 /// Locales supported by the site and how they map to URLs.
 ///
@@ -26,6 +27,9 @@ enum AppLocale {
     assert(subpath.startsWith('/'), 'subpath must start with "/"');
     return '$pathPrefix$subpath';
   }
+
+  /// Content language used to ask the domain layer for texts.
+  ContentLanguage get contentLanguage => ContentLanguage.values.byName(name);
 
   /// The locale that the language switch links to.
   AppLocale get other => this == AppLocale.es ? AppLocale.en : AppLocale.es;
