@@ -74,3 +74,14 @@ Map<String, Object?> projectTextsJson({String name = 'Demo'}) {
     ],
   };
 }
+
+/// Fishar-like project with a GitHub link, for the "Código" button.
+final Project fisharWithGithub =
+    buildProject(
+      slug: 'fishar',
+      name: 'Fishar',
+    ).copyWith(
+      links: ProjectLinks(
+        github: Uri.parse('https://github.com/example/fishar'),
+      ),
+    );

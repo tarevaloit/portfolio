@@ -8,6 +8,7 @@ import 'package:portfolio/app/app.dart';
 import 'package:portfolio/app/di/repository_overrides.dart';
 import 'package:portfolio/core/router/app_router.dart';
 import 'package:portfolio/features/contact/domain/repositories/contact_repository.dart';
+import 'package:portfolio/features/projects/domain/repositories/projects_repository.dart';
 
 extension PumpPortfolio on WidgetTester {
   /// Pumps the whole app starting at [location] and returns its router.
@@ -20,6 +21,7 @@ extension PumpPortfolio on WidgetTester {
     Size size = const Size(1440, 900),
     bool reduceMotion = true,
     ContactRepository? contactRepository,
+    ProjectsRepository? projectsRepository,
     List<Override> overrides = const [],
   }) async {
     view
@@ -37,7 +39,10 @@ extension PumpPortfolio on WidgetTester {
     await pumpWidget(
       ProviderScope(
         overrides: [
-          ...repositoryOverrides(contact: contactRepository),
+          ...repositoryOverrides(
+            contact: contactRepository,
+            projects: projectsRepository,
+          ),
           appRouterProvider.overrideWithValue(router),
           ...overrides,
         ],
@@ -53,9 +58,16 @@ extension PumpPortfolio on WidgetTester {
     return router;
   }
 
-  /// Lets a navigation and its page transition finish. `pumpAndSettle`
-  /// cannot be used because the logo cursor blinks forever.
-  Future<void> pumpNavigation() => pump(const Duration(seconds: 1));
+  /// Lets a navigation and its page transition finish, including content
+  /// that a new route loads from the asset bundle. `pumpAndSettle` cannot
+  /// be used because the logo cursor blinks forever.
+  Future<void> pumpNavigation() async {
+    await pump();
+    await runAsync(
+      () => Future<void>.delayed(const Duration(milliseconds: 50)),
+    );
+    await pump(const Duration(seconds: 1));
+  }
 
   /// Scrolls [finder] into view and taps it.
   Future<void> tapVisible(Finder finder) async {

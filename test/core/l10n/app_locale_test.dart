@@ -28,6 +28,14 @@ void main() {
       expect(AppLocale.en.contentLanguage, ContentLanguage.en);
     });
 
+    test('translate keeps the page when switching language', () {
+      expect(AppLocale.en.translate('/'), '/en');
+      expect(AppLocale.en.translate('/projects/fishar'), '/en/projects/fishar');
+      expect(AppLocale.es.translate('/en'), '/');
+      expect(AppLocale.es.translate('/en/projects/fishar'), '/projects/fishar');
+      expect(AppLocale.es.translate('/projects/fishar'), '/projects/fishar');
+    });
+
     test('other switches between the two languages', () {
       expect(AppLocale.es.other, AppLocale.en);
       expect(AppLocale.en.other, AppLocale.es);
