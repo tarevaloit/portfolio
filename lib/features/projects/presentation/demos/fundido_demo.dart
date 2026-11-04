@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/design_system/design_system.dart';
 import 'package:portfolio/core/l10n/l10n.dart';
+import 'package:portfolio/features/projects/presentation/demos/piggy_avatar.dart';
 
 /// Fundido mock: a chat with the piggy. Tapping a suggestion sends it,
 /// shows "typing…" and then the scripted reply. Example copy.
@@ -100,10 +101,9 @@ class _FundidoDemoState extends State<FundidoDemo> {
             padding: const EdgeInsets.fromLTRB(16, 18, 16, 12),
             child: Row(
               children: [
-                const SizedBox(
-                  width: 38,
-                  height: 38,
-                  child: CustomPaint(painter: PiggyPainter()),
+                PiggyAvatar(
+                  talking: _typing,
+                  celebrations: _messages.where((m) => !m.fromUser).length,
                 ),
                 const SizedBox(width: 10),
                 Column(
@@ -220,46 +220,4 @@ class _Bubble extends StatelessWidget {
       ),
     );
   }
-}
-
-/// The piggy, drawn with shapes until the Rive version (Phase 5).
-class PiggyPainter extends CustomPainter {
-  const PiggyPainter();
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final s = size.shortestSide;
-    final center = Offset(size.width / 2, size.height / 2);
-    final pink = Paint()..color = const Color(0xFFF9A8D4);
-    final dark = Paint()..color = const Color(0xFFF472B6);
-    final ink = Paint()..color = const Color(0xFF831843);
-
-    for (final dx in [-0.28, 0.28]) {
-      canvas.drawPath(
-        Path()
-          ..moveTo(center.dx + dx * s - 0.12 * s, center.dy - 0.25 * s)
-          ..lineTo(center.dx + dx * s * 1.3, center.dy - 0.5 * s)
-          ..lineTo(center.dx + dx * s + 0.12 * s, center.dy - 0.3 * s)
-          ..close(),
-        dark,
-      );
-    }
-    canvas
-      ..drawCircle(center, s * 0.42, pink)
-      ..drawOval(
-        Rect.fromCenter(
-          center: center.translate(0, s * 0.1),
-          width: s * 0.36,
-          height: s * 0.24,
-        ),
-        dark,
-      )
-      ..drawCircle(center.translate(-s * 0.07, s * 0.1), s * 0.04, ink)
-      ..drawCircle(center.translate(s * 0.07, s * 0.1), s * 0.04, ink)
-      ..drawCircle(center.translate(-s * 0.15, -s * 0.1), s * 0.045, ink)
-      ..drawCircle(center.translate(s * 0.15, -s * 0.1), s * 0.045, ink);
-  }
-
-  @override
-  bool shouldRepaint(PiggyPainter oldDelegate) => false;
 }
