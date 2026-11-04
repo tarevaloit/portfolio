@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:portfolio/core/design_system/design_system.dart';
 import 'package:portfolio/core/l10n/l10n.dart';
+import 'package:portfolio/core/router/app_router.dart';
 import 'package:portfolio/features/projects/presentation/providers/projects_providers.dart';
 import 'package:portfolio/features/projects/presentation/widgets/project_card.dart';
 
@@ -39,7 +41,15 @@ class ProjectsSection extends ConsumerWidget {
               for (final (index, project) in projects.indexed)
                 RevealOnScroll(
                   delay: AppMotion.stagger * (index % columns),
-                  child: ProjectCard(project: project),
+                  child: ProjectCard(
+                    project: project,
+                    onTap: () => context.go(
+                      AppRoutes.projectPath(
+                        AppLocale.of(context),
+                        project.slug,
+                      ),
+                    ),
+                  ),
                 ),
             ],
           ),

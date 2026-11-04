@@ -13,7 +13,7 @@ void main() {
   Widget card() => SizedBox(
     width: 560,
     height: 460,
-    child: ProjectCard(project: project),
+    child: ProjectCard(project: project, onTap: () {}),
   );
 
   testWidgets('shows monogram, badge, name, category, summary and stack', (

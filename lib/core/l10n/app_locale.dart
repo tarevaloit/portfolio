@@ -31,6 +31,16 @@ enum AppLocale {
   /// Content language used to ask the domain layer for texts.
   ContentLanguage get contentLanguage => ContentLanguage.values.byName(name);
 
+  /// [path] (a URL path in any locale) rewritten for this locale, so the
+  /// language switch keeps the current page: `/projects/fishar` →
+  /// `/en/projects/fishar` and back.
+  String translate(String path) {
+    final from = AppLocale.fromPath(path);
+    final rest = path.substring(from.pathPrefix.length);
+    if (rest.isEmpty || rest == '/') return homePath;
+    return this.path(rest);
+  }
+
   /// The locale that the language switch links to.
   AppLocale get other => this == AppLocale.es ? AppLocale.en : AppLocale.es;
 

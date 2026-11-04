@@ -47,7 +47,9 @@ class LanguageSwitch extends StatelessWidget {
                   button: true,
                   excludeSemantics: true,
                   child: TextButton(
-                    onPressed: () => context.go(locale.homePath),
+                    onPressed: () => context.go(
+                      locale.translate(GoRouterState.of(context).uri.path),
+                    ),
                     style: TextButton.styleFrom(
                       minimumSize: const Size(36, 36),
                       padding: const EdgeInsets.symmetric(horizontal: 8),

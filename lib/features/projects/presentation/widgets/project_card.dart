@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/design_system/design_system.dart';
 import 'package:portfolio/features/projects/domain/entities/project.dart';
+import 'package:portfolio/features/projects/presentation/widgets/project_heroes.dart';
 
 /// Project card of the home grid: colored cover with the monogram and the
 /// badge, then name, category, summary and stack.
 ///
-/// Lifts on hover. [onTap] is wired in Phase 4 (detail page).
+/// Lifts on hover and keyboard focus; Enter or Space activates it. The name
+/// and the cover are Heroes that fly into the detail page.
 class ProjectCard extends StatefulWidget {
   const ProjectCard({required this.project, this.onTap, super.key});
 
@@ -18,12 +20,13 @@ class ProjectCard extends StatefulWidget {
 
 class _ProjectCardState extends State<ProjectCard> {
   bool _hovered = false;
+  bool _focused = false;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final project = widget.project;
-    final lifted = _hovered && !context.reduceMotion;
+    final lifted = (_hovered || _focused) && !context.reduceMotion;
 
     final card = AnimatedContainer(
       duration: AppMotion.fast,
@@ -42,7 +45,10 @@ class _ProjectCardState extends State<ProjectCard> {
       ),
       foregroundDecoration: BoxDecoration(
         borderRadius: AppRadii.mdAll,
-        border: Border.all(color: theme.colorScheme.outline),
+        border: Border.all(
+          color: _focused ? Color(project.color) : theme.colorScheme.outline,
+          width: _focused ? 2 : 1,
+        ),
       ),
       child: ClipRRect(
         borderRadius: AppRadii.mdAll,
@@ -56,16 +62,31 @@ class _ProjectCardState extends State<ProjectCard> {
       ),
     );
 
+    final onTap = widget.onTap;
     return Semantics(
       container: true,
-      button: widget.onTap != null,
+      button: onTap != null,
+      // Hover is tracked directly so the lift does not depend on the focus
+      // highlight mode; the detector handles focus and Enter/Space.
       child: MouseRegion(
-        cursor: widget.onTap == null
-            ? MouseCursor.defer
-            : SystemMouseCursors.click,
         onEnter: (_) => setState(() => _hovered = true),
         onExit: (_) => setState(() => _hovered = false),
-        child: GestureDetector(onTap: widget.onTap, child: card),
+        child: FocusableActionDetector(
+          enabled: onTap != null,
+          mouseCursor: onTap == null
+              ? MouseCursor.defer
+              : SystemMouseCursors.click,
+          onShowFocusHighlight: (value) => setState(() => _focused = value),
+          actions: {
+            ActivateIntent: CallbackAction<ActivateIntent>(
+              onInvoke: (_) {
+                onTap?.call();
+                return null;
+              },
+            ),
+          },
+          child: GestureDetector(onTap: onTap, child: card),
+        ),
       ),
     );
   }
@@ -79,11 +100,17 @@ class _Cover extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final compact = ScreenSize.of(context).isCompact;
-    return Container(
+    return SizedBox(
       height: compact ? 180 : 220,
-      color: Color(project.color),
       child: Stack(
         children: [
+          Positioned.fill(
+            child: ProjectCoverHero(
+              slug: project.slug,
+              color: Color(project.color),
+              child: ColoredBox(color: Color(project.color)),
+            ),
+          ),
           Positioned(
             left: AppSpacing.lg,
             bottom: AppSpacing.sm,
@@ -145,7 +172,10 @@ class _Body extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (ScreenSize.of(context).isCompact) ...[
-              Text(project.name, style: theme.textTheme.titleLarge),
+              ProjectNameHero(
+                slug: project.slug,
+                child: Text(project.name, style: theme.textTheme.titleLarge),
+              ),
               const SizedBox(height: AppSpacing.xxs),
               Text(project.category, style: theme.textTheme.labelSmall),
             ] else
@@ -154,9 +184,15 @@ class _Body extends StatelessWidget {
                 textBaseline: TextBaseline.alphabetic,
                 children: [
                   Expanded(
-                    child: Text(
-                      project.name,
-                      style: theme.textTheme.titleLarge,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: ProjectNameHero(
+                        slug: project.slug,
+                        child: Text(
+                          project.name,
+                          style: theme.textTheme.titleLarge,
+                        ),
+                      ),
                     ),
                   ),
                   const SizedBox(width: AppSpacing.md),
