@@ -45,6 +45,12 @@ void main() {
       expect(find.text('The language comes from the URL'), findsOneWidget);
     });
 
+    testWidgets('the eyebrow does not repeat the badge', (tester) async {
+      await tester.pumpPortfolio(location: '/projects/laburito');
+
+      expect(find.text('Proyecto final · USAL'), findsOneWidget);
+    });
+
     testWidgets('"Código" is disabled while there is no GitHub link', (
       tester,
     ) async {

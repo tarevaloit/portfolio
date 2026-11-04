@@ -243,7 +243,7 @@ class _DetailHero extends ConsumerWidget {
         Entrance(
           index: 0,
           child: Text(
-            '${project.category} · ${project.badge}',
+            _eyebrow(project),
             style: AppTypography.monoStyle(size: 15, color: accent),
           ),
         ),
@@ -392,3 +392,10 @@ class _Meta extends StatelessWidget {
     );
   }
 }
+
+/// "Category · badge", skipping the badge when the category already says it
+/// (Laburito: "Proyecto final · USAL" + "Proyecto final").
+String _eyebrow(Project project) =>
+    project.category.toLowerCase().contains(project.badge.toLowerCase())
+    ? project.category
+    : '${project.category} · ${project.badge}';
