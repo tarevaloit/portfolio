@@ -3,6 +3,7 @@ import 'package:portfolio/core/architecture_mode/architecture_map.dart';
 import 'package:portfolio/core/architecture_mode/layer_badge.dart';
 import 'package:portfolio/core/design_system/design_system.dart';
 import 'package:portfolio/core/l10n/l10n.dart';
+import 'package:portfolio/core/shaders/blueprint_background.dart';
 import 'package:portfolio/features/contact/presentation/widgets/contact_section.dart';
 import 'package:portfolio/features/experience/presentation/widgets/experience_section.dart';
 import 'package:portfolio/features/home/presentation/widgets/hero_section.dart';
@@ -41,69 +42,72 @@ class _HomePageState extends State<HomePage> {
     final gap = SizedBox(height: size.sectionSpacing);
 
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              PageContainer(
-                child: LayerBadge(
-                  chain: ArchitectureMap.navBar,
-                  child: HomeNavBar(onSectionSelected: _scrollTo),
-                ),
-              ),
-              SizedBox(height: size.isCompact ? AppSpacing.xxl : 96),
-              PageContainer(
-                child: LayerBadge(
-                  chain: ArchitectureMap.hero,
-                  child: HeroSection(
-                    onSeeProjects: () => _scrollTo(HomeSection.projects),
-                  ),
-                ),
-              ),
-              SizedBox(height: size.isCompact ? AppSpacing.xxl : 72),
-              const PageContainer(
-                child: RevealOnScroll(
+      body: BlueprintPage(
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                PageContainer(
                   child: LayerBadge(
-                    chain: ArchitectureMap.metrics,
-                    child: MetricsRow(),
+                    chain: ArchitectureMap.navBar,
+                    labelAlignment: Alignment.bottomLeft,
+                    child: HomeNavBar(onSectionSelected: _scrollTo),
                   ),
                 ),
-              ),
-              const SizedBox(height: AppSpacing.xxl),
-              LayerBadge(
-                chain: ArchitectureMap.marquee,
-                child: Marquee(items: _stackItems(context)),
-              ),
-              gap,
-              PageContainer(
-                child: LayerBadge(
-                  chain: ArchitectureMap.projects,
-                  child: ProjectsSection(
-                    key: _sectionKeys[HomeSection.projects],
+                SizedBox(height: size.isCompact ? AppSpacing.xxl : 96),
+                PageContainer(
+                  child: LayerBadge(
+                    chain: ArchitectureMap.hero,
+                    child: HeroSection(
+                      onSeeProjects: () => _scrollTo(HomeSection.projects),
+                    ),
                   ),
                 ),
-              ),
-              gap,
-              PageContainer(
-                child: LayerBadge(
-                  chain: ArchitectureMap.experience,
-                  child: ExperienceSection(
-                    key: _sectionKeys[HomeSection.experience],
+                SizedBox(height: size.isCompact ? AppSpacing.xxl : 72),
+                const PageContainer(
+                  child: RevealOnScroll(
+                    child: LayerBadge(
+                      chain: ArchitectureMap.metrics,
+                      child: MetricsRow(),
+                    ),
                   ),
                 ),
-              ),
-              gap,
-              PageContainer(
-                child: LayerBadge(
-                  chain: ArchitectureMap.contact,
-                  child: ContactSection(
-                    key: _sectionKeys[HomeSection.contact],
+                const SizedBox(height: AppSpacing.xxl),
+                LayerBadge(
+                  chain: ArchitectureMap.marquee,
+                  child: Marquee(items: _stackItems(context)),
+                ),
+                gap,
+                PageContainer(
+                  child: LayerBadge(
+                    chain: ArchitectureMap.projects,
+                    child: ProjectsSection(
+                      key: _sectionKeys[HomeSection.projects],
+                    ),
                   ),
                 ),
-              ),
-              const PageContainer(child: HomeFooter()),
-            ],
+                gap,
+                PageContainer(
+                  child: LayerBadge(
+                    chain: ArchitectureMap.experience,
+                    child: ExperienceSection(
+                      key: _sectionKeys[HomeSection.experience],
+                    ),
+                  ),
+                ),
+                gap,
+                PageContainer(
+                  child: LayerBadge(
+                    chain: ArchitectureMap.contact,
+                    child: ContactSection(
+                      key: _sectionKeys[HomeSection.contact],
+                    ),
+                  ),
+                ),
+                const PageContainer(child: HomeFooter()),
+              ],
+            ),
           ),
         ),
       ),

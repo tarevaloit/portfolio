@@ -28,6 +28,7 @@ class LayerBadge extends ConsumerWidget {
     required this.chain,
     required this.child,
     this.isMock = false,
+    this.labelAlignment = Alignment.topRight,
     super.key,
   });
 
@@ -38,6 +39,10 @@ class LayerBadge extends ConsumerWidget {
 
   /// Marks hand-made mocks (the phone demos), which are not the real app.
   final bool isMock;
+
+  /// Corner of the label. The label stays inside the widget (so its links
+  /// can be tapped); pick the corner the content leaves empty.
+  final Alignment labelAlignment;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -53,7 +58,11 @@ class LayerBadge extends ConsumerWidget {
           child: AnimatedSwitcher(
             duration: duration,
             child: enabled
-                ? _Overlay(chain: chain, isMock: isMock)
+                ? _Overlay(
+                    chain: chain,
+                    isMock: isMock,
+                    alignment: labelAlignment,
+                  )
                 : const SizedBox.shrink(),
           ),
         ),
@@ -63,10 +72,15 @@ class LayerBadge extends ConsumerWidget {
 }
 
 class _Overlay extends ConsumerWidget {
-  const _Overlay({required this.chain, required this.isMock});
+  const _Overlay({
+    required this.chain,
+    required this.isMock,
+    required this.alignment,
+  });
 
   final List<LayerRef> chain;
   final bool isMock;
+  final Alignment alignment;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -85,16 +99,16 @@ class _Overlay extends ConsumerWidget {
             ),
           ),
         ),
-        Positioned(
-          top: 6,
-          left: 6,
-          right: 6,
-          child: Align(
-            alignment: Alignment.topLeft,
-            child: _Label(
-              chain: chain,
-              isMock: isMock,
-              repository: repository,
+        Positioned.fill(
+          child: Padding(
+            padding: const EdgeInsets.all(6),
+            child: Align(
+              alignment: alignment,
+              child: _Label(
+                chain: chain,
+                isMock: isMock,
+                repository: repository,
+              ),
             ),
           ),
         ),

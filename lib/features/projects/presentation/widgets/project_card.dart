@@ -185,9 +185,12 @@ class _CoverLayers extends StatelessWidget {
       (l10n.layerDomain, layers.domain, architecture.domain),
       (l10n.layerData, layers.data, architecture.data),
     ];
+    // Expand: AnimatedSwitcher lays its child out with loose constraints.
     return Semantics(
       label: l10n.projectLayers(project.name),
       child: Container(
+        width: double.infinity,
+        height: double.infinity,
         color: AppColors.background.withValues(alpha: 0.9),
         padding: const EdgeInsets.fromLTRB(
           AppSpacing.lg,

@@ -12,6 +12,7 @@ import 'package:portfolio/core/l10n/l10n.dart';
 import 'package:portfolio/core/l10n/language_switch.dart';
 import 'package:portfolio/core/platform/link_opener.dart';
 import 'package:portfolio/core/router/not_found_page.dart';
+import 'package:portfolio/core/shaders/blueprint_background.dart';
 import 'package:portfolio/features/projects/domain/entities/project.dart';
 import 'package:portfolio/features/projects/presentation/demos/project_demo.dart';
 import 'package:portfolio/features/projects/presentation/providers/projects_providers.dart';
@@ -114,48 +115,51 @@ class _ProjectDetailPageState extends ConsumerState<ProjectDetailPage> {
       title: context.l10n.projectPageTitle(project.name),
       color: Color(project.color),
       child: Scaffold(
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                PageContainer(
-                  child: _TopBar(index: index, total: total),
-                ),
-                SizedBox(height: size.isCompact ? AppSpacing.xl : 72),
-                PageContainer(
-                  child: LayerBadge(
-                    chain: ArchitectureMap.projectDetail,
-                    child: _DetailHero(
-                      project: project,
-                      demo: ProjectDemo(
+        body: BlueprintPage(
+          child: SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  PageContainer(
+                    child: _TopBar(index: index, total: total),
+                  ),
+                  SizedBox(height: size.isCompact ? AppSpacing.xl : 72),
+                  PageContainer(
+                    child: LayerBadge(
+                      chain: ArchitectureMap.projectDetail,
+                      labelAlignment: Alignment.topLeft,
+                      child: _DetailHero(
                         project: project,
-                        extraDemos: widget.extraDemos,
+                        demo: ProjectDemo(
+                          project: project,
+                          extraDemos: widget.extraDemos,
+                        ),
+                        onHowItsBuilt: _scrollToHowItsBuilt,
                       ),
-                      onHowItsBuilt: _scrollToHowItsBuilt,
                     ),
                   ),
-                ),
-                SizedBox(height: size.sectionSpacing),
-                const PageContainer(child: Divider()),
-                SizedBox(height: size.sectionSpacing * 0.75),
-                PageContainer(
-                  child: LayerBadge(
-                    chain: ArchitectureMap.howItsBuilt,
-                    child: HowItsBuiltSection(
-                      key: _howItsBuiltKey,
-                      project: project,
-                    ),
-                  ),
-                ),
-                if (project.decisions.isNotEmpty) ...[
+                  SizedBox(height: size.sectionSpacing),
+                  const PageContainer(child: Divider()),
                   SizedBox(height: size.sectionSpacing * 0.75),
                   PageContainer(
-                    child: DecisionsSection(decisions: project.decisions),
+                    child: LayerBadge(
+                      chain: ArchitectureMap.howItsBuilt,
+                      child: HowItsBuiltSection(
+                        key: _howItsBuiltKey,
+                        project: project,
+                      ),
+                    ),
                   ),
+                  if (project.decisions.isNotEmpty) ...[
+                    SizedBox(height: size.sectionSpacing * 0.75),
+                    PageContainer(
+                      child: DecisionsSection(decisions: project.decisions),
+                    ),
+                  ],
+                  SizedBox(height: size.sectionSpacing),
                 ],
-                SizedBox(height: size.sectionSpacing),
-              ],
+              ),
             ),
           ),
         ),
@@ -346,6 +350,7 @@ class _DetailHero extends ConsumerWidget {
     final phone = LayerBadge(
       chain: ArchitectureMap.demo(project.slug),
       isMock: true,
+      labelAlignment: Alignment.bottomCenter,
       child: Semantics(
         container: true,
         label: l10n.detailDemoLabel(project.name),
