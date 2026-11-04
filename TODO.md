@@ -48,6 +48,10 @@ Los textos de cards y descripciones salen de PLAN.md y del mockup. Faltan:
       up." (`lib/l10n/app_en.arb`). La propuse yo; validarla.
 - [ ] Todas las traducciones al inglés de `assets/content/en/` (las hice yo a
       partir del español).
+- [ ] Textos en inglés de la home en `lib/l10n/app_en.arb` (hero, métricas,
+      contacto, footer, tip): traducciones mías del mockup.
+- [ ] Métricas de la home: son las del PLAN/mockup ("40+", "~1 s",
+      "iOS + Android"). Confirmar que se pueden mostrar así.
 - [ ] Este portfolio: descripciones por capa y las 3 decisiones técnicas
       (`es/projects/portfolio.json`). Las escribí yo a partir de lo que tiene
       el repo; revisar el tono.
@@ -67,6 +71,10 @@ Los textos de cards y descripciones salen de PLAN.md y del mockup. Faltan:
       `.fvmrc`). CI ya usa 3.44.0.
 
 ## Pendientes técnicos de fases futuras
+- [ ] Cards de proyecto clickeables + Hero transition al detalle (Fase 4).
+- [ ] El toggle "Modo arquitectura" ya guarda su estado, pero el overlay y
+      los badges de capa llegan en la Fase 5.
+- [ ] Nav en mobile: hoy oculta los links de sección; evaluar un menú.
 - [ ] Favicon e íconos de la PWA: siguen siendo los default de Flutter (Fase 6).
 - [ ] `lang` del `<html>` y título de la pestaña según el idioma de la ruta (Fase 6).
 - [ ] Loader HTML y OG tags (Fase 6).

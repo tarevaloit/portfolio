@@ -5,7 +5,7 @@ El código también es parte del portfolio: muestra clean architecture, tests y
 CI/CD, y tiene un "modo arquitectura" que superpone las capas de cada feature
 sobre la UI.
 
-> Estado: **Fase 2 — dominio y datos**. Ver [PLAN.md](PLAN.md) para el roadmap
+> Estado: **Fase 3 — home**. Ver [PLAN.md](PLAN.md) para el roadmap
 > completo y [TODO.md](TODO.md) para el contenido pendiente.
 >
 > Sitio: `[dominio]` (pendiente)
@@ -20,7 +20,8 @@ sobre la UI.
 | i18n | `flutter_localizations` + ARB, español por defecto e inglés en `/en` |
 | Lints | `very_good_analysis` + `strict-casts`/`strict-inference`/`strict-raw-types` |
 | Modelos | freezed (entidades) + json_serializable (DTOs) |
-| Tests | unit, widget, reglas de arquitectura e integridad del contenido |
+| Animación | flutter_animate (entradas), visibility_detector (reveal al scrollear) |
+| Tests | unit, widget, golden, responsive, reglas de arquitectura e integridad del contenido |
 | CI/CD | GitHub Actions → Firebase Hosting |
 
 ## Arquitectura
@@ -120,7 +121,7 @@ lib/
     architecture_mode/ # overlay + LayerBadge (Fase 5)
     shaders/           # fragment shaders (Fase 5)
   features/
-    home/presentation/ # página de inicio (compone secciones de otros features)
+    home/presentation/ # HomePage + nav, hero, métricas (compone secciones de los features)
     projects/{data,domain,presentation}/
     experience/{data,domain,presentation}/
     contact/{data,domain,presentation}/
@@ -149,6 +150,25 @@ acento (lima `#C6F432`) se puede cambiar con `AppTheme.dark(accent: ...)`. Los
 colores de las capas se exponen como `ThemeExtension` (`AppLayerColors`), así
 el color de domain sigue al acento.
 
+## Home
+
+La home (`features/home/presentation/pages/home_page.dart`) solo compone:
+cada sección vive en el feature dueño de sus datos (`ProjectsSection`,
+`ExperienceSection`, `ContactSection`) y lee su provider.
+
+- **Responsive:** `ScreenSize` define compacto (< 768 px), medio (768–1279) y
+  amplio (≥ 1280). El contenido tiene un máximo de 1200 px.
+  [`responsive_test.dart`](test/features/home/responsive_test.dart) renderiza
+  la home con el contenido real en ambos idiomas a 360, 768, 1280 y 1440 px y
+  falla ante cualquier overflow o scroll horizontal.
+- **Animaciones:** entrada escalonada del hero, reveal de cada sección al
+  entrar al viewport, planchas flotantes, marquee infinito y hover en las cards.
+  Todas leen `MediaQuery.disableAnimations` y muestran el estado final con
+  reduced motion.
+- **Textos:** los textos fijos están en los ARB; los datos salen de
+  `assets/content/`. Lo que falta se ve como placeholder (`[AÑO]`,
+  `[TU EMAIL]`) y "Descargar CV" queda deshabilitado hasta que exista el PDF.
+
 ## Desarrollo
 
 Requiere Flutter 3.44.0 (stable).
@@ -171,14 +191,23 @@ flutter test
 flutter build web --wasm
 ```
 
+Los golden tests (`test/goldens/`) llevan el tag `golden` y se generan en
+macOS, porque Linux renderiza el texto distinto. Para regenerarlos después de
+un cambio visual:
+
+```bash
+flutter test --tags golden --update-goldens
+```
+
 Las traducciones se generan desde `lib/l10n/*.arb` con `flutter gen-l10n`
 (también corre solo con `flutter pub get`).
 
 ## CI/CD
 
 [`.github/workflows/ci.yml`](.github/workflows/ci.yml) corre en cada PR y push:
-generación de código, formato, `flutter analyze --fatal-infos`, `flutter test` y
-`flutter build web --wasm`. En push a `main` despliega `build/web` a Firebase
+generación de código, formato, `flutter analyze --fatal-infos`, `flutter test`
+(sin goldens) y `flutter build web --wasm` en Linux, y los golden tests en un
+job de macOS. En push a `main` despliega `build/web` a Firebase
 Hosting, siempre que estén configurados la variable `FIREBASE_PROJECT_ID` y el
 secret `FIREBASE_SERVICE_ACCOUNT`.
 
