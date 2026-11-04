@@ -1,5 +1,7 @@
 export 'app_layer_colors.dart';
 export 'app_typography.dart';
+export 'code/code_block.dart';
+export 'code/dart_highlighter.dart';
 export 'components/brand_logo.dart';
 export 'components/marquee.dart';
 export 'components/section_header.dart';
