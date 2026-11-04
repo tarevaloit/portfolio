@@ -1,0 +1,35 @@
+{
+  "@@locale": "es",
+  "appTitle": "Tobias Arevalo · Flutter Developer",
+  "@appTitle": {
+    "description": "Browser tab title."
+  },
+  "brandName": "tobias.dev",
+  "@brandName": {
+    "description": "Logo text shown in the nav. A blinking cursor is drawn after it."
+  },
+  "homeHeroTitle": "Apps Flutter con arquitectura que aguanta.",
+  "@homeHeroTitle": {
+    "description": "Main hero headline on the home page."
+  },
+  "homeUnderConstruction": "Sitio en construcción.",
+  "@homeUnderConstruction": {
+    "description": "Temporary message on the empty home while the site is being built."
+  },
+  "switchLanguage": "English",
+  "@switchLanguage": {
+    "description": "Link that switches the site to the other language. Written in the target language."
+  },
+  "notFoundTitle": "Página no encontrada",
+  "@notFoundTitle": {
+    "description": "Title of the 404 page."
+  },
+  "notFoundBody": "La dirección que abriste no existe.",
+  "@notFoundBody": {
+    "description": "Body of the 404 page."
+  },
+  "notFoundBackHome": "Volver al inicio",
+  "@notFoundBackHome": {
+    "description": "Link from the 404 page back to the home."
+  }
+}

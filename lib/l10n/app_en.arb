@@ -1,0 +1,11 @@
+{
+  "@@locale": "en",
+  "appTitle": "Tobias Arevalo · Flutter Developer",
+  "brandName": "tobias.dev",
+  "homeHeroTitle": "Flutter apps with architecture that holds up.",
+  "homeUnderConstruction": "Site under construction.",
+  "switchLanguage": "Español",
+  "notFoundTitle": "Page not found",
+  "notFoundBody": "The address you opened does not exist.",
+  "notFoundBackHome": "Back to home"
+}
