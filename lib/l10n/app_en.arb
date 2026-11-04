@@ -82,5 +82,9 @@
   "demoLaburitoPay": "Pay with Mercado Pago",
   "demoLaburitoDone": "Done! {worker} is on the way.",
   "demoLaburitoRestart": "Start over",
-  "demoBack": "Back"
+  "demoBack": "Back",
+  "architectureMock": "mock",
+  "architectureOpenSource": "See {name} on GitHub",
+  "detailBackShort": "← projects",
+  "projectLayers": "Layers of {name}"
 }

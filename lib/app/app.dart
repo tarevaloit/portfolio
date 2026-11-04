@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:portfolio/app/theme/app_theme.dart';
+import 'package:portfolio/core/architecture_mode/blueprint_grid.dart';
 import 'package:portfolio/core/l10n/l10n.dart';
 import 'package:portfolio/core/router/app_router.dart';
 
@@ -20,6 +21,9 @@ class PortfolioApp extends ConsumerWidget {
       supportedLocales: AppLocalizations.supportedLocales,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       routerConfig: ref.watch(appRouterProvider),
+      // The blueprint grid of the architecture mode, over every page.
+      builder: (context, child) =>
+          ArchitectureModeHost(child: child ?? const SizedBox.shrink()),
     );
   }
 }

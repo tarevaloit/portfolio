@@ -406,5 +406,33 @@
   "demoBack": "Atrás",
   "@demoBack": {
     "description": "Back button inside a demo."
+  },
+  "architectureMock": "maqueta",
+  "@architectureMock": {
+    "description": "Architecture mode: marks the phone demos, which are hand-made mocks, not the real app."
+  },
+  "architectureOpenSource": "Ver {name} en GitHub",
+  "@architectureOpenSource": {
+    "description": "Accessible label of a class link in an architecture badge.",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "GetProjects"
+      }
+    }
+  },
+  "detailBackShort": "← proyectos",
+  "@detailBackShort": {
+    "description": "Short back link on phones."
+  },
+  "projectLayers": "Capas de {name}",
+  "@projectLayers": {
+    "description": "Accessible label of the layers shown on a project card in architecture mode.",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Fishar"
+      }
+    }
   }
 }
