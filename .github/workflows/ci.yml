@@ -43,7 +43,8 @@ jobs:
         run: flutter analyze --fatal-infos --fatal-warnings
 
       - name: Test
-        run: flutter test
+        # Goldens run in the macOS job below.
+        run: flutter test --exclude-tags golden
 
       - name: Build web (WASM)
         run: flutter build web --wasm --release
@@ -54,9 +55,43 @@ jobs:
           path: build/web
           retention-days: 7
 
+  goldens:
+    name: Golden tests (macOS)
+    # Goldens are generated on macOS; Linux renders text slightly
+    # differently.
+    runs-on: macos-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Generate code
+        run: |
+          flutter gen-l10n
+          dart run build_runner build --delete-conflicting-outputs
+
+      - name: Golden tests
+        run: flutter test --tags golden
+
+      - name: Upload golden failures
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: golden-failures
+          path: test/**/failures/
+          retention-days: 7
+
   deploy:
     name: Deploy to Firebase Hosting
-    needs: build
+    needs: [build, goldens]
     # Runs only on pushes to main, and only once the Firebase project is
     # configured (repository variable FIREBASE_PROJECT_ID + secret
     # FIREBASE_SERVICE_ACCOUNT). See TODO.md.
