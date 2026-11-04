@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:portfolio/app/app.dart';
 import 'package:portfolio/app/di/repository_overrides.dart';
 import 'package:portfolio/core/router/app_router.dart';
+import 'package:portfolio/features/contact/domain/repositories/contact_repository.dart';
 
 extension PumpPortfolio on WidgetTester {
   /// Pumps the whole app starting at [location] and returns its router.
@@ -18,6 +19,7 @@ extension PumpPortfolio on WidgetTester {
     String location = '/',
     Size size = const Size(1440, 900),
     bool reduceMotion = true,
+    ContactRepository? contactRepository,
     List<Override> overrides = const [],
   }) async {
     view
@@ -35,7 +37,7 @@ extension PumpPortfolio on WidgetTester {
     await pumpWidget(
       ProviderScope(
         overrides: [
-          ...repositoryOverrides(),
+          ...repositoryOverrides(contact: contactRepository),
           appRouterProvider.overrideWithValue(router),
           ...overrides,
         ],
