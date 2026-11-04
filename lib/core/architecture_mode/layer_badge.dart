@@ -128,18 +128,35 @@ class _Label extends ConsumerWidget {
   final bool isMock;
   final Uri? repository;
 
+  /// Below this width only the ends of a long chain are drawn, so the label
+  /// stays on one line on phones.
+  static const double compactWidth = 420;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    return LayoutBuilder(
+      builder: (context, constraints) =>
+          _build(context, ref, compact: constraints.maxWidth < compactWidth),
+    );
+  }
+
+  Widget _build(BuildContext context, WidgetRef ref, {required bool compact}) {
     final l10n = context.l10n;
     final arrowStyle = AppTypography.monoStyle(
       size: 10,
       color: AppColors.textMuted,
     );
+    final elided = compact && chain.length > 2;
+    final shown = elided ? [chain.first, chain.last] : chain;
 
     final items = <Widget>[];
-    for (final (index, layerRef) in chain.indexed) {
+    for (final (index, layerRef) in shown.indexed) {
       if (index > 0) {
-        items.add(ExcludeSemantics(child: Text('→', style: arrowStyle)));
+        items.add(
+          ExcludeSemantics(
+            child: Text(elided ? '→ … →' : '→', style: arrowStyle),
+          ),
+        );
       }
       items.add(
         _Chip(
@@ -160,7 +177,7 @@ class _Label extends ConsumerWidget {
       );
     }
 
-    return DecoratedBox(
+    final label = DecoratedBox(
       decoration: BoxDecoration(
         color: AppColors.background.withValues(alpha: 0.92),
         borderRadius: BorderRadius.circular(8),
@@ -175,6 +192,12 @@ class _Label extends ConsumerWidget {
           children: items,
         ),
       ),
+    );
+    if (!elided) return label;
+    // Screen readers still get the whole chain.
+    return Semantics(
+      label: chain.map((r) => '${r.layer.name}: ${r.name}').join(', '),
+      child: ExcludeSemantics(child: label),
     );
   }
 }

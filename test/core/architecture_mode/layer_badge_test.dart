@@ -22,7 +22,7 @@ class _On extends ArchitectureModeController {
 }
 
 void main() {
-  const box = SizedBox(width: 400, height: 200, key: Key('child'));
+  const box = SizedBox(width: 600, height: 200, key: Key('child'));
 
   Future<void> pumpBadge(
     WidgetTester tester, {
@@ -61,11 +61,11 @@ void main() {
     expect(find.text('ProjectsRepositoryImpl'), findsOneWidget);
     expect(
       find.byType(LayerBadge).evaluate().single.size,
-      const Size(400, 200),
+      const Size(600, 200),
     );
     expect(
       tester.getSize(find.byKey(const Key('child'))),
-      const Size(400, 200),
+      const Size(600, 200),
     );
   });
 
@@ -87,6 +87,27 @@ void main() {
         'https://github.com/example/portfolio/blob/main/lib/a/domain/g.dart',
       ),
     );
+  });
+
+  testWidgets('on a narrow widget, a long chain shows only its ends', (
+    tester,
+  ) async {
+    await tester.pumpLocalized(
+      const Center(
+        child: LayerBadge(
+          chain: _chain,
+          child: SizedBox(width: 300, height: 200),
+        ),
+      ),
+      scrollable: false,
+      overrides: [architectureModeProvider.overrideWith(_On.new)],
+    );
+    await tester.pump();
+
+    expect(find.text('ProjectsSection'), findsOneWidget);
+    expect(find.text('GetProjects'), findsNothing);
+    expect(find.text('ProjectsRepositoryImpl'), findsOneWidget);
+    expect(find.text('→ … →'), findsOneWidget);
   });
 
   testWidgets('mocks are labelled as such', (tester) async {
