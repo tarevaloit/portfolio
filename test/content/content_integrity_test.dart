@@ -53,6 +53,18 @@ void main() {
         }
       });
 
+      test('every logo and image is bundled', () async {
+        final bundled = await reader.list('assets/projects/');
+        for (final project in await projects(language)) {
+          for (final asset in [
+            ?project.logo,
+            for (final media in project.media) media.asset,
+          ]) {
+            expect(bundled, contains(asset), reason: project.slug);
+          }
+        }
+      });
+
       test('experience loads', () async {
         final entries = await container.read(
           experienceProvider(language).future,

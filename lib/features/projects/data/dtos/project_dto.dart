@@ -15,6 +15,8 @@ class ProjectDto {
     required this.architecture,
     this.links = const ProjectLinksDto(),
     this.snippet,
+    this.logo,
+    this.media = const [],
   });
 
   factory ProjectDto.fromJson(Map<String, dynamic> json) =>
@@ -29,6 +31,22 @@ class ProjectDto {
   final ProjectLinksDto links;
   final ProjectArchitectureDto architecture;
   final CodeSnippetDto? snippet;
+
+  /// Asset path of the app icon.
+  final String? logo;
+  final List<ProjectMediaDto> media;
+}
+
+/// An image; its caption lives in the texts of each language, by [id].
+@JsonSerializable()
+class ProjectMediaDto {
+  const ProjectMediaDto({required this.id, required this.asset});
+
+  factory ProjectMediaDto.fromJson(Map<String, dynamic> json) =>
+      _$ProjectMediaDtoFromJson(json);
+
+  final String id;
+  final String asset;
 }
 
 @JsonSerializable()

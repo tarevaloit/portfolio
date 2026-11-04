@@ -71,6 +71,14 @@ class ProjectsRepositoryImpl implements ProjectsRepository {
         ? null
         : await _source.snippet(slug);
 
+    for (final media in shared.media) {
+      if (!texts.mediaCaptions.containsKey(media.id)) {
+        throw InvalidContent(
+          'projects/$slug.json',
+          'image "${media.id}" has no caption (mediaCaptions)',
+        );
+      }
+    }
     return _toEntity(slug, shared, texts, body, snippetCode);
   }
 }
@@ -124,6 +132,14 @@ Project _toEntity(
         TechDecision(title: decision.title, body: decision.body),
     ]),
     body: body,
+    logo: shared.logo,
+    media: List.unmodifiable([
+      for (final media in shared.media)
+        ProjectMedia(
+          asset: media.asset,
+          caption: texts.mediaCaptions[media.id]!,
+        ),
+    ]),
     snippet: snippet == null || snippetCode == null
         ? null
         : CodeSnippet(

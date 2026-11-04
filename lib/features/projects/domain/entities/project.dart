@@ -44,7 +44,21 @@ abstract class Project with _$Project {
 
     /// Optional code sample for "Cómo está hecho".
     CodeSnippet? snippet,
+
+    /// App icon, as an asset path.
+    String? logo,
+
+    /// Real images of the project (screenshots, diagrams, charts).
+    @Default(<ProjectMedia>[]) List<ProjectMedia> media,
   }) = _Project;
+}
+
+/// An image of the project with the text that describes it, which is also
+/// what screen readers announce.
+@freezed
+abstract class ProjectMedia with _$ProjectMedia {
+  const factory ProjectMedia({required String asset, required String caption}) =
+      _ProjectMedia;
 }
 
 /// External links of a project. Any of them can be missing.

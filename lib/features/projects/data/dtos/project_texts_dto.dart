@@ -15,6 +15,7 @@ class ProjectTextsDto {
     required this.status,
     required this.architecture,
     this.decisions = const [],
+    this.mediaCaptions = const {},
   });
 
   factory ProjectTextsDto.fromJson(Map<String, dynamic> json) =>
@@ -29,6 +30,9 @@ class ProjectTextsDto {
   final String status;
   final LayerTextsDto architecture;
   final List<TechDecisionDto> decisions;
+
+  /// Caption of each image, by the media id of the shared file.
+  final Map<String, String> mediaCaptions;
 }
 
 /// One-line explanation of each layer.

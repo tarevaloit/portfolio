@@ -42,6 +42,8 @@ flutter:
     - assets/content/es/projects/
     - assets/content/en/
     - assets/content/en/projects/
+    # Real images of the projects (WebP, fixed sizes).
+    - assets/projects/
 
   shaders:
     - shaders/blueprint.frag

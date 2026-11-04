@@ -17,6 +17,7 @@ import 'package:portfolio/features/projects/domain/entities/project.dart';
 import 'package:portfolio/features/projects/presentation/demos/project_demo.dart';
 import 'package:portfolio/features/projects/presentation/providers/projects_providers.dart';
 import 'package:portfolio/features/projects/presentation/widgets/detail/how_its_built_section.dart';
+import 'package:portfolio/features/projects/presentation/widgets/detail/media_section.dart';
 import 'package:portfolio/features/projects/presentation/widgets/detail/phone_frame.dart';
 import 'package:portfolio/features/projects/presentation/widgets/project_heroes.dart';
 
@@ -157,6 +158,10 @@ class _ProjectDetailPageState extends ConsumerState<ProjectDetailPage> {
                       child: DecisionsSection(decisions: project.decisions),
                     ),
                   ],
+                  if (project.media.isNotEmpty) ...[
+                    SizedBox(height: size.sectionSpacing * 0.75),
+                    PageContainer(child: MediaSection(media: project.media)),
+                  ],
                   SizedBox(height: size.sectionSpacing),
                 ],
               ),
@@ -253,9 +258,28 @@ class _DetailHero extends ConsumerWidget {
       ScreenSize.expanded => 144.0,
     };
 
+    final logo = project.logo;
     final copy = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        if (logo != null) ...[
+          Entrance(
+            index: 0,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(14),
+              child: Image.asset(
+                logo,
+                width: 56,
+                height: 56,
+                // The name right below already says which app it is.
+                excludeFromSemantics: true,
+                errorBuilder: (context, error, stackTrace) =>
+                    const SizedBox.square(dimension: 56),
+              ),
+            ),
+          ),
+          const SizedBox(height: AppSpacing.lg),
+        ],
         Entrance(
           index: 0,
           child: Text(

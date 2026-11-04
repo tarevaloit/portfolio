@@ -293,49 +293,49 @@
   "@demoFisharHint": {
     "description": "Fishar demo: hint while no spot is selected. Example copy."
   },
-  "demoFundidoName": "Cerdito",
+  "demoFundidoName": "Fundi",
   "@demoFundidoName": {
-    "description": "Fundido demo: name of the chatbot. Example copy."
+    "description": "Fundido demo: name of the assistant, as in the real app (Fundi)."
   },
   "demoFundidoStatus": "en línea",
   "@demoFundidoStatus": {
     "description": "Fundido demo: status under the name. Example copy."
   },
-  "demoFundidoGreeting": "¡Hola! Contame qué gastaste o cobraste y lo anoto por vos.",
+  "demoFundidoGreeting": "¡Hola! Soy Fundi. Contame en qué gastaste y lo anoto.",
   "@demoFundidoGreeting": {
-    "description": "Fundido demo: first message of the piggy. Example copy."
+    "description": "Fundido demo: first message. Example copy."
   },
-  "demoFundidoAsk1": "Gasté $3.500 en el súper",
+  "demoFundidoAsk1": "Ayer pizza y birra con los pibes, $4.500",
   "@demoFundidoAsk1": {
-    "description": "Fundido demo: suggested user message. Example copy."
+    "description": "Fundido demo: suggested message with every required field. Example copy."
   },
-  "demoFundidoReply1": "Anotado: $3.500 en Supermercado. Llevás el 40 % del presupuesto de comida del mes.",
+  "demoFundidoReply1": "Listo, gasto anotado: $4.500 en comida, de ayer.",
   "@demoFundidoReply1": {
-    "description": "Fundido demo: piggy reply. Example copy."
+    "description": "Fundido demo: reply when the expense is complete. Mirrors the real prompt."
   },
-  "demoFundidoAsk2": "Cobré el sueldo",
+  "demoFundidoAsk2": "Cargué nafta",
   "@demoFundidoAsk2": {
-    "description": "Fundido demo: suggested user message. Example copy."
+    "description": "Fundido demo: suggested message missing the amount. Example copy."
   },
-  "demoFundidoReply2": "¡Bien ahí! Separé el 20 % para ahorro, como quedamos.",
+  "demoFundidoReply2": "Dale, pero no me dijiste cuánto fue ni cuándo.",
   "@demoFundidoReply2": {
-    "description": "Fundido demo: piggy reply. Example copy."
+    "description": "Fundido demo: reply asking for missing fields; the real prompt never says \"logged\" here."
   },
-  "demoFundidoAsk3": "¿Cuánto me queda para salidas?",
+  "demoFundidoAsk3": "Hoy pagué la luz, $18.000",
   "@demoFundidoAsk3": {
-    "description": "Fundido demo: suggested user message. Example copy."
+    "description": "Fundido demo: suggested message. Example copy."
   },
-  "demoFundidoReply3": "Te quedan $12.000 para salidas hasta fin de mes.",
+  "demoFundidoReply3": "Anotado: $18.000 en servicios, de hoy.",
   "@demoFundidoReply3": {
-    "description": "Fundido demo: piggy reply. Example copy."
+    "description": "Fundido demo: reply. Category names come from the real prompt."
   },
   "demoFundidoTyping": "escribiendo…",
   "@demoFundidoTyping": {
     "description": "Fundido demo: typing indicator."
   },
-  "demoFundidoInput": "Escribile al cerdito…",
+  "demoFundidoInput": "Escribile a Fundi…",
   "@demoFundidoInput": {
-    "description": "Fundido demo: disabled input placeholder. Example copy."
+    "description": "Fundido demo: disabled input placeholder."
   },
   "demoLaburitoTradesTitle": "¿Qué necesitás?",
   "@demoLaburitoTradesTitle": {
@@ -343,59 +343,15 @@
   },
   "demoLaburitoTrades": "Plomería,Electricidad,Gas,Pintura",
   "@demoLaburitoTrades": {
-    "description": "Laburito demo: comma-separated trades. Example copy."
+    "description": "Laburito demo: comma-separated trades, from the real app categories."
   },
-  "demoLaburitoWorkersTitle": "Elegí un profesional",
-  "@demoLaburitoWorkersTitle": {
-    "description": "Laburito demo: step 2 title. Example copy."
-  },
-  "demoLaburitoWorkers": "Carlos M.,Lucía R.,Jorge P.",
-  "@demoLaburitoWorkers": {
-    "description": "Laburito demo: comma-separated example worker names (fictional)."
-  },
-  "demoLaburitoWorkerMeta": "{rating} · {distance} km",
-  "@demoLaburitoWorkerMeta": {
-    "description": "Laburito demo: rating (drawn after a star icon) and distance of a worker.",
-    "placeholders": {
-      "rating": {
-        "type": "String",
-        "example": "4,9"
-      },
-      "distance": {
-        "type": "String",
-        "example": "1,2"
-      }
-    }
-  },
-  "demoLaburitoConfirmTitle": "Confirmá el pedido",
-  "@demoLaburitoConfirmTitle": {
-    "description": "Laburito demo: step 3 title. Example copy."
-  },
-  "demoLaburitoSummary": "{trade} con {worker}",
-  "@demoLaburitoSummary": {
-    "description": "Laburito demo: summary of the request.",
+  "demoLaburitoDone": "¡Pedido publicado! Los profesionales de {trade} cerca tuyo ya lo pueden ver.",
+  "@demoLaburitoDone": {
+    "description": "Laburito demo: success message. Example copy.",
     "placeholders": {
       "trade": {
         "type": "String",
         "example": "Plomería"
-      },
-      "worker": {
-        "type": "String",
-        "example": "Carlos M."
-      }
-    }
-  },
-  "demoLaburitoPay": "Pagar con Mercado Pago",
-  "@demoLaburitoPay": {
-    "description": "Laburito demo: pay button. Example copy."
-  },
-  "demoLaburitoDone": "¡Listo! {worker} va en camino.",
-  "@demoLaburitoDone": {
-    "description": "Laburito demo: success message. Example copy.",
-    "placeholders": {
-      "worker": {
-        "type": "String",
-        "example": "Carlos M."
       }
     }
   },
@@ -434,5 +390,29 @@
         "example": "Fishar"
       }
     }
+  },
+  "detailMedia": "Del proyecto",
+  "@detailMedia": {
+    "description": "Title of the section with real images of a project."
+  },
+  "demoLaburitoWhereTitle": "¿Dónde?",
+  "@demoLaburitoWhereTitle": {
+    "description": "Laburito demo: step 2 title (real step \"donde\")."
+  },
+  "demoLaburitoAddress": "[Dirección del pedido]",
+  "@demoLaburitoAddress": {
+    "description": "Laburito demo: placeholder address next to the map pin."
+  },
+  "demoLaburitoUseLocation": "Usar esta ubicación",
+  "@demoLaburitoUseLocation": {
+    "description": "Laburito demo: confirms the location. Example copy."
+  },
+  "demoLaburitoWhenTitle": "¿Para cuándo?",
+  "@demoLaburitoWhenTitle": {
+    "description": "Laburito demo: step 3 title (real step \"vigencia\"). Example copy."
+  },
+  "demoLaburitoUrgencies": "Puede esperar,Esta semana,Es urgente",
+  "@demoLaburitoUrgencies": {
+    "description": "Laburito demo: comma-separated urgencies, the labels of PedidoUrgencia in the real app."
   }
 }

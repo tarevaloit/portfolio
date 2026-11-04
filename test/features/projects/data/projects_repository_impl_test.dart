@@ -75,6 +75,49 @@ void main() {
       expect(project.snippet?.code, 'class GetNearbySpots {}');
     });
 
+    test('maps the logo and the images with their captions', () async {
+      final reader = InMemoryContentReader({
+        '$_root/projects/fishar.json': projectSharedJson(
+          extra: {
+            'logo': 'assets/projects/fishar-logo.webp',
+            'media': [
+              {'id': 'map', 'asset': 'assets/projects/fishar-map.webp'},
+            ],
+          },
+        ),
+        '$_root/es/projects/fishar.json': {
+          ...projectTextsJson(),
+          'mediaCaptions': {'map': 'El mapa de spots'},
+        },
+      });
+
+      final project = (await _repository(
+        reader,
+      ).getProjects(ContentLanguage.es)).single;
+
+      expect(project.logo, 'assets/projects/fishar-logo.webp');
+      expect(project.media.single.asset, 'assets/projects/fishar-map.webp');
+      expect(project.media.single.caption, 'El mapa de spots');
+    });
+
+    test('an image without a caption is InvalidContent', () async {
+      final reader = InMemoryContentReader({
+        '$_root/projects/fishar.json': projectSharedJson(
+          extra: {
+            'media': [
+              {'id': 'map', 'asset': 'assets/projects/fishar-map.webp'},
+            ],
+          },
+        ),
+        '$_root/es/projects/fishar.json': projectTextsJson(),
+      });
+
+      await expectLater(
+        _repository(reader).getProjects(ContentLanguage.es),
+        throwsA(isA<InvalidContent>()),
+      );
+    });
+
     test('ignores files that are not shared project JSON', () async {
       final reader = InMemoryContentReader({
         '$_root/projects/fishar.json': projectSharedJson(),
