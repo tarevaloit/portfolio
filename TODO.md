@@ -6,32 +6,53 @@ complete.
 
 ## Contenido (Fase 0 — Tobias)
 
-### Experiencia
-- [ ] Año de inicio en ueno bank / itti (`[AÑO]` en el mockup).
-- [ ] Año de inicio en Byto Apps (`[AÑO]` en el mockup).
+### Experiencia (`assets/content/experience.json`)
+- [ ] `startYear` de ueno bank / itti (hoy `null`).
+- [ ] `startYear` de Byto Apps (hoy `null`).
+- [ ] **Confidencialidad:** saqué el nombre `uacd` del bullet de dependencias
+      cross ("Mantenimiento y versionado (tags) de las dependencias cross…")
+      porque el PLAN prohíbe nombres de repos privados del banco y no sé si
+      `uacd` es uno. Si es público, se puede volver a agregar.
 
-### Contacto
-- [ ] Email de contacto (`[TU EMAIL]` en el mockup).
-- [ ] URL de GitHub.
-- [ ] URL de LinkedIn.
-- [ ] CV en PDF, ES y EN → `assets/cv/`.
+### Contacto (`assets/content/contact.json`, hoy todo en `null`)
+- [ ] `email` (`[TU EMAIL]` en el mockup).
+- [ ] `github` (URL).
+- [ ] `linkedin` (URL).
+- [ ] CV en PDF, ES y EN → `assets/cv/`, declarar la carpeta en `pubspec.yaml`
+      y completar `cv.es` / `cv.en` con la ruta.
 
-### Proyectos
-- [ ] Textos ES/EN de Fishar, Fundido y Laburito.
-- [ ] Capturas y videos cortos de cada app (WebP, tamaños fijos).
-- [ ] Links a store, TestFlight o GitHub de cada proyecto, si existen.
-- [ ] 2 o 3 decisiones técnicas por proyecto para la página de detalle.
-- [ ] Fundido: proveedor de IA, backend/almacenamiento y estado del proyecto.
+### Proyectos (`assets/content/projects/` y `{es,en}/projects/`)
+Los textos de cards y descripciones salen de PLAN.md y del mockup. Faltan:
+
+- [ ] `role` de Laburito, Fundido y Este portfolio (hoy `[Rol]`).
+- [ ] `platforms` de Laburito y Fundido (hoy `[Plataformas]`).
+- [ ] Fundido: proveedor de IA y backend/almacenamiento en `stack`, y `status`.
+- [ ] `links` de cada proyecto (store, TestFlight, GitHub, web): hoy `null`.
+      El de GitHub de Este portfolio va cuando exista el repo público.
+- [ ] `decisions`: 2 o 3 decisiones técnicas por proyecto. Fishar, Laburito y
+      Fundido tienen placeholders `[Decisión técnica N]`.
 - [ ] Nombres reales de clases para el modo arquitectura:
-  - [ ] Fishar, feature spots (el mockup usa `SpotsMapPage`, `SpotsCubit`,
-        `GetNearbySpots`, `SpotsRepositoryImpl`, etc.: confirmar si son los reales).
-  - [ ] Fundido, chat.
-  - [ ] Laburito, flujo de contratación.
-- [ ] Fishar: snippet real para "Cómo está hecho" (el del mockup es ilustrativo).
+  - [ ] Fishar, feature spots: hoy son los del mockup (`SpotsMapPage`,
+        `SpotsCubit`, `GetNearbySpots`, `SpotsRepositoryImpl`…). Confirmar.
+  - [ ] Fundido, feature chat: placeholders.
+  - [ ] Laburito, flujo de contratación: placeholders, incluido el nombre del
+        feature.
+  - [ ] Descripciones por capa de Laburito y Fundido: placeholders.
+- [ ] Snippets reales para "Cómo está hecho" (`projects/<slug>.snippet` +
+      `snippet` en el JSON). Fishar no tiene: el del mockup era ilustrativo.
+- [ ] Cuerpo largo opcional en Markdown (`{es,en}/projects/<slug>.md`).
+- [ ] Capturas y videos cortos de cada app (WebP, tamaños fijos).
 
 ## Copy a revisar
 - [ ] Traducción al inglés del hero: "Flutter apps with architecture that holds
       up." (`lib/l10n/app_en.arb`). La propuse yo; validarla.
+- [ ] Todas las traducciones al inglés de `assets/content/en/` (las hice yo a
+      partir del español).
+- [ ] Este portfolio: descripciones por capa y las 3 decisiones técnicas
+      (`es/projects/portfolio.json`). Las escribí yo a partir de lo que tiene
+      el repo; revisar el tono.
+- [ ] Este portfolio: `description` es "Caso de estudio del propio sitio." (del
+      PLAN); quizás quieras algo más largo para el detalle.
 - [ ] Meta description de `web/index.html` y `web/manifest.json`.
 
 ## Infraestructura
