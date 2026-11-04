@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/features/home/presentation/pages/home_page.dart';
+import 'package:portfolio/features/projects/presentation/widgets/project_heroes.dart';
 
 /// The live home, scaled into a phone screen: the demo of "Este portfolio".
 /// Rendered at 390 px wide, so it uses the compact layout, and scrollable.
@@ -24,8 +25,11 @@ class HomePreview extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 viewPadding: EdgeInsets.zero,
               ),
-              // Its project cards share Hero tags with the real home.
-              child: const HeroMode(enabled: false, child: HomePage()),
+              // It sits inside the phone Hero, and Heroes cannot nest.
+              child: const ProjectHeroesScope(
+                enabled: false,
+                child: HomePage(),
+              ),
             ),
           ),
         );

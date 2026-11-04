@@ -8,6 +8,30 @@ abstract final class ProjectHeroTags {
   static String cover(String slug) => 'project-cover-$slug';
 }
 
+/// Turns the project Heroes below it into plain widgets.
+///
+/// Used by previews that render project cards inside another Hero (the
+/// home inside the "Este portfolio" phone), where Heroes cannot nest.
+class ProjectHeroesScope extends InheritedWidget {
+  const ProjectHeroesScope({
+    required super.child,
+    this.enabled = true,
+    super.key,
+  });
+
+  final bool enabled;
+
+  static bool enabledOf(BuildContext context) =>
+      context
+          .dependOnInheritedWidgetOfExactType<ProjectHeroesScope>()
+          ?.enabled ??
+      true;
+
+  @override
+  bool updateShouldNotify(ProjectHeroesScope oldWidget) =>
+      enabled != oldWidget.enabled;
+}
+
 /// Project name that flies from the card title to the giant detail title.
 ///
 /// The flight shows the big title scaled with a [FittedBox], so the text
@@ -20,6 +44,7 @@ class ProjectNameHero extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (!ProjectHeroesScope.enabledOf(context)) return child;
     return Hero(
       tag: ProjectHeroTags.name(slug),
       flightShuttleBuilder: _nameShuttle,
@@ -65,6 +90,7 @@ class ProjectCoverHero extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (!ProjectHeroesScope.enabledOf(context)) return child;
     return Hero(
       tag: ProjectHeroTags.cover(slug),
       flightShuttleBuilder: (context, animation, direction, from, to) {
