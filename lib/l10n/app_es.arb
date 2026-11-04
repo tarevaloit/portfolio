@@ -187,5 +187,224 @@
   "footerNote": "Hecho con Flutter Web · activá el modo arquitectura para ver cómo está construido.",
   "@footerNote": {
     "description": "Footer line."
+  },
+  "detailBack": "← volver a proyectos",
+  "@detailBack": {
+    "description": "Link from a project detail back to the projects."
+  },
+  "detailCounter": "{index} / {total}",
+  "@detailCounter": {
+    "description": "Position of the project among all of them, zero-padded.",
+    "placeholders": {
+      "index": {
+        "type": "String",
+        "example": "01"
+      },
+      "total": {
+        "type": "String",
+        "example": "04"
+      }
+    }
+  },
+  "detailRole": "ROL",
+  "@detailRole": {
+    "description": "Label of the role metadata."
+  },
+  "detailPlatforms": "PLATAFORMAS",
+  "@detailPlatforms": {
+    "description": "Label of the platforms metadata."
+  },
+  "detailStatus": "ESTADO",
+  "@detailStatus": {
+    "description": "Label of the status metadata."
+  },
+  "detailHowItsBuiltCta": "Ver cómo está hecho ↓",
+  "@detailHowItsBuiltCta": {
+    "description": "Button that scrolls to the \"how it is built\" section."
+  },
+  "detailCode": "Código ↗",
+  "@detailCode": {
+    "description": "Button that opens the project source code."
+  },
+  "detailHowItsBuilt": "Cómo está hecho",
+  "@detailHowItsBuilt": {
+    "description": "Title of the architecture section of a project."
+  },
+  "detailFeature": "feature: {name}",
+  "@detailFeature": {
+    "description": "Feature shown in the architecture section.",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "spots"
+      }
+    }
+  },
+  "detailDecisions": "Decisiones técnicas",
+  "@detailDecisions": {
+    "description": "Title of the technical decisions section."
+  },
+  "detailError": "No se pudo cargar el proyecto.",
+  "@detailError": {
+    "description": "Shown when the project content fails to load."
+  },
+  "detailDemoLabel": "Demo interactiva de {name}",
+  "@detailDemoLabel": {
+    "description": "Accessible label of the phone with the mini app.",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Fishar"
+      }
+    }
+  },
+  "projectPageTitle": "{name} · tobias.dev",
+  "@projectPageTitle": {
+    "description": "Browser tab title of a project detail.",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Fishar"
+      }
+    }
+  },
+  "demoFisharSearch": "Buscar spots, especies…",
+  "@demoFisharSearch": {
+    "description": "Fishar demo: search field placeholder (from the mockup)."
+  },
+  "demoFisharSpotName": "[Nombre del spot]",
+  "@demoFisharSpotName": {
+    "description": "Fishar demo: placeholder spot name (from the mockup)."
+  },
+  "demoFisharSpotMeta": "[Especie] · [distancia] · [cantidad] capturas",
+  "@demoFisharSpotMeta": {
+    "description": "Fishar demo: placeholder spot details (from the mockup)."
+  },
+  "demoFisharSpot": "Spot {number}",
+  "@demoFisharSpot": {
+    "description": "Fishar demo: accessible label of a map pin.",
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "demoFisharHint": "Tocá un spot del mapa",
+  "@demoFisharHint": {
+    "description": "Fishar demo: hint while no spot is selected. Example copy."
+  },
+  "demoFundidoName": "Cerdito",
+  "@demoFundidoName": {
+    "description": "Fundido demo: name of the chatbot. Example copy."
+  },
+  "demoFundidoStatus": "en línea",
+  "@demoFundidoStatus": {
+    "description": "Fundido demo: status under the name. Example copy."
+  },
+  "demoFundidoGreeting": "¡Hola! Contame qué gastaste o cobraste y lo anoto por vos.",
+  "@demoFundidoGreeting": {
+    "description": "Fundido demo: first message of the piggy. Example copy."
+  },
+  "demoFundidoAsk1": "Gasté $3.500 en el súper",
+  "@demoFundidoAsk1": {
+    "description": "Fundido demo: suggested user message. Example copy."
+  },
+  "demoFundidoReply1": "Anotado: $3.500 en Supermercado. Llevás el 40 % del presupuesto de comida del mes.",
+  "@demoFundidoReply1": {
+    "description": "Fundido demo: piggy reply. Example copy."
+  },
+  "demoFundidoAsk2": "Cobré el sueldo",
+  "@demoFundidoAsk2": {
+    "description": "Fundido demo: suggested user message. Example copy."
+  },
+  "demoFundidoReply2": "¡Bien ahí! Separé el 20 % para ahorro, como quedamos.",
+  "@demoFundidoReply2": {
+    "description": "Fundido demo: piggy reply. Example copy."
+  },
+  "demoFundidoAsk3": "¿Cuánto me queda para salidas?",
+  "@demoFundidoAsk3": {
+    "description": "Fundido demo: suggested user message. Example copy."
+  },
+  "demoFundidoReply3": "Te quedan $12.000 para salidas hasta fin de mes.",
+  "@demoFundidoReply3": {
+    "description": "Fundido demo: piggy reply. Example copy."
+  },
+  "demoFundidoTyping": "escribiendo…",
+  "@demoFundidoTyping": {
+    "description": "Fundido demo: typing indicator."
+  },
+  "demoFundidoInput": "Escribile al cerdito…",
+  "@demoFundidoInput": {
+    "description": "Fundido demo: disabled input placeholder. Example copy."
+  },
+  "demoLaburitoTradesTitle": "¿Qué necesitás?",
+  "@demoLaburitoTradesTitle": {
+    "description": "Laburito demo: step 1 title. Example copy."
+  },
+  "demoLaburitoTrades": "Plomería,Electricidad,Gas,Pintura",
+  "@demoLaburitoTrades": {
+    "description": "Laburito demo: comma-separated trades. Example copy."
+  },
+  "demoLaburitoWorkersTitle": "Elegí un profesional",
+  "@demoLaburitoWorkersTitle": {
+    "description": "Laburito demo: step 2 title. Example copy."
+  },
+  "demoLaburitoWorkers": "Carlos M.,Lucía R.,Jorge P.",
+  "@demoLaburitoWorkers": {
+    "description": "Laburito demo: comma-separated example worker names (fictional)."
+  },
+  "demoLaburitoWorkerMeta": "{rating} ★ · {distance} km",
+  "@demoLaburitoWorkerMeta": {
+    "description": "Laburito demo: rating and distance of a worker.",
+    "placeholders": {
+      "rating": {
+        "type": "String",
+        "example": "4,9"
+      },
+      "distance": {
+        "type": "String",
+        "example": "1,2"
+      }
+    }
+  },
+  "demoLaburitoConfirmTitle": "Confirmá el pedido",
+  "@demoLaburitoConfirmTitle": {
+    "description": "Laburito demo: step 3 title. Example copy."
+  },
+  "demoLaburitoSummary": "{trade} con {worker}",
+  "@demoLaburitoSummary": {
+    "description": "Laburito demo: summary of the request.",
+    "placeholders": {
+      "trade": {
+        "type": "String",
+        "example": "Plomería"
+      },
+      "worker": {
+        "type": "String",
+        "example": "Carlos M."
+      }
+    }
+  },
+  "demoLaburitoPay": "Pagar con Mercado Pago",
+  "@demoLaburitoPay": {
+    "description": "Laburito demo: pay button. Example copy."
+  },
+  "demoLaburitoDone": "¡Listo! {worker} va en camino.",
+  "@demoLaburitoDone": {
+    "description": "Laburito demo: success message. Example copy.",
+    "placeholders": {
+      "worker": {
+        "type": "String",
+        "example": "Carlos M."
+      }
+    }
+  },
+  "demoLaburitoRestart": "Empezar de nuevo",
+  "@demoLaburitoRestart": {
+    "description": "Laburito demo: restart button."
+  },
+  "demoBack": "Atrás",
+  "@demoBack": {
+    "description": "Back button inside a demo."
   }
 }
