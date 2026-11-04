@@ -1,66 +1,86 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:portfolio/core/design_system/design_system.dart';
 import 'package:portfolio/core/l10n/l10n.dart';
+import 'package:portfolio/features/contact/presentation/widgets/contact_section.dart';
+import 'package:portfolio/features/experience/presentation/widgets/experience_section.dart';
+import 'package:portfolio/features/home/presentation/widgets/hero_section.dart';
+import 'package:portfolio/features/home/presentation/widgets/home_footer.dart';
+import 'package:portfolio/features/home/presentation/widgets/home_nav_bar.dart';
+import 'package:portfolio/features/home/presentation/widgets/metrics_row.dart';
+import 'package:portfolio/features/projects/presentation/widgets/projects_section.dart';
 
-/// Home page. In Phase 1 it is an empty shell that proves theme, fonts,
-/// l10n and routing work end to end; the real sections arrive in Phase 3.
-class HomePage extends StatelessWidget {
+/// Home page. Composes sections owned by each feature; it holds no data
+/// itself.
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
-  static const double _maxContentWidth = 1120;
-  static const double _compactBreakpoint = 600;
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final Map<HomeSection, GlobalKey> _sectionKeys = {
+    for (final section in HomeSection.values) section: GlobalKey(),
+  };
+
+  Future<void> _scrollTo(HomeSection section) async {
+    final target = _sectionKeys[section]!.currentContext;
+    if (target == null) return;
+    await Scrollable.ensureVisible(
+      target,
+      duration: context.reduceMotion ? Duration.zero : AppMotion.slow,
+      curve: AppMotion.emphasized,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
-    final locale = AppLocale.of(context);
-    final textTheme = Theme.of(context).textTheme;
+    final size = ScreenSize.of(context);
+    final gap = SizedBox(height: size.sectionSpacing);
 
     return Scaffold(
       body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            final compact = constraints.maxWidth < _compactBreakpoint;
-            return Center(
-              child: SingleChildScrollView(
-                padding: EdgeInsets.all(
-                  compact ? AppSpacing.lg : AppSpacing.xxl,
-                ),
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(
-                    maxWidth: _maxContentWidth,
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      BrandLogo(text: l10n.brandName),
-                      const SizedBox(height: AppSpacing.xxl),
-                      Text(
-                        '${l10n.heroTitleLead} ${l10n.heroTitleHighlight}',
-                        style: compact
-                            ? textTheme.displaySmall
-                            : textTheme.displayLarge,
-                      ),
-                      const SizedBox(height: AppSpacing.lg),
-                      Text(
-                        l10n.heroBody,
-                        style: textTheme.bodyLarge,
-                      ),
-                      const SizedBox(height: AppSpacing.xl),
-                      OutlinedButton(
-                        onPressed: () => context.go(locale.other.homePath),
-                        child: Text(l10n.switchLanguage),
-                      ),
-                    ],
-                  ),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              PageContainer(child: HomeNavBar(onSectionSelected: _scrollTo)),
+              SizedBox(height: size.isCompact ? AppSpacing.xxl : 96),
+              PageContainer(
+                child: HeroSection(
+                  onSeeProjects: () => _scrollTo(HomeSection.projects),
                 ),
               ),
-            );
-          },
+              SizedBox(height: size.isCompact ? AppSpacing.xxl : 72),
+              const PageContainer(child: RevealOnScroll(child: MetricsRow())),
+              const SizedBox(height: AppSpacing.xxl),
+              Marquee(items: _stackItems(context)),
+              gap,
+              PageContainer(
+                child: ProjectsSection(
+                  key: _sectionKeys[HomeSection.projects],
+                ),
+              ),
+              gap,
+              PageContainer(
+                child: ExperienceSection(
+                  key: _sectionKeys[HomeSection.experience],
+                ),
+              ),
+              gap,
+              PageContainer(
+                child: ContactSection(key: _sectionKeys[HomeSection.contact]),
+              ),
+              const PageContainer(child: HomeFooter()),
+            ],
+          ),
         ),
       ),
     );
   }
 }
+
+List<String> _stackItems(BuildContext context) => [
+  for (final item in context.l10n.stackItems.split(','))
+    if (item.trim().isNotEmpty) item.trim(),
+];

@@ -12,7 +12,7 @@ void main() {
         find.text('Apps Flutter con arquitectura que aguanta.'),
         findsOneWidget,
       );
-      expect(find.widgetWithText(OutlinedButton, 'English'), findsOneWidget);
+      expect(find.widgetWithText(TextButton, 'EN'), findsOneWidget);
     });
 
     testWidgets('/en renders the home in English', (tester) async {
@@ -22,7 +22,7 @@ void main() {
         find.text('Flutter apps with architecture that holds up.'),
         findsOneWidget,
       );
-      expect(find.widgetWithText(OutlinedButton, 'Español'), findsOneWidget);
+      expect(find.widgetWithText(TextButton, 'ES'), findsOneWidget);
     });
 
     testWidgets('the language switch changes the URL and the language', (
@@ -30,7 +30,7 @@ void main() {
     ) async {
       final router = await tester.pumpPortfolio();
 
-      await tester.tapVisible(find.widgetWithText(OutlinedButton, 'English'));
+      await tester.tapVisible(find.widgetWithText(TextButton, 'EN'));
       await tester.pumpNavigation();
 
       expect(router.routeInformationProvider.value.uri.path, '/en');
@@ -39,7 +39,7 @@ void main() {
         findsOneWidget,
       );
 
-      await tester.tapVisible(find.widgetWithText(OutlinedButton, 'Español'));
+      await tester.tapVisible(find.widgetWithText(TextButton, 'ES'));
       await tester.pumpNavigation();
 
       expect(router.routeInformationProvider.value.uri.path, '/');
