@@ -212,7 +212,7 @@ transición puede animar entre las dos.
   tests incluidos; los archivos con extracto se abren desde el árbol. El
   resaltador de Dart es propio (`core/design_system/code/`), sin
   dependencias y determinista para los goldens.
-- **Repos privados:** Fishar, Laburito y Fundido no se linkean; el botón
+- **Repos privados:** Fishar y Fundido no se linkean (Laburito sí); el botón
   arma un mail para pedir acceso (`privateSource` en el contenido).
 - **Fuentes:** todos los símbolos salen de las fuentes incluidas. Lo que
   Bricolage no tiene cae en JetBrains Mono; lo que ninguna tiene se dibuja.

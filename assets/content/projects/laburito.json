@@ -22,7 +22,7 @@
     "appStore": null,
     "playStore": null,
     "testFlight": null,
-    "github": null,
+    "github": "https://github.com/tarevaloit/laburito-app",
     "website": null
   },
   "architecture": {
@@ -42,7 +42,6 @@
       "CategoriasRepository"
     ]
   },
-  "privateSource": true,
   "snippets": [
     {
       "id": "controller",

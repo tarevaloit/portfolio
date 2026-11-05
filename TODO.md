@@ -57,7 +57,7 @@ Sacado de `~/Documents/mediomundo-app`, `~/Documents/laburito` y
 - [ ] CI deploy: a la service account le falta el rol "Service Usage
       Consumer" (y "Firebase Hosting Admin" si no lo tiene) en IAM.
 - [ ] Íconos de las apps y el burndown del Sprint 3 de Laburito (`assets/projects/`).
-- [ ] Estado de Laburito ("Sprint 6 · release v0.5.0") y de Fundido
+- [ ] Estado de Laburito ("Sprint 6 · release v1.0.0", el último tag) y de Fundido
       ("Prototipo · 2025", último commit en julio de 2025).
 - [ ] `contact.github` = https://github.com/tarevaloit (dueño de los tres repos):
       confirmar que es el perfil público que querés mostrar.
@@ -70,6 +70,10 @@ Sacado de `~/Documents/mediomundo-app`, `~/Documents/laburito` y
       accesos. Revisá los epígrafes (`mediaCaptions`).
 - [ ] Fundido: el chat sale vacío ("¡Empezá a chatear!"). Una captura con una
       conversación con Fundi lo mostraría mucho mejor.
+- [x] Laburito es público en https://github.com/tarevaloit/laburito-app: copia
+      del repo privado con el historial limpio (sin DNI ni emails personales,
+      autor con el noreply de GitHub). Lo que se haga en el privado no llega
+      solo: hay que empujarlo también ahí, o pasar a trabajar sobre el público.
 - [ ] Laburito: `links.website` está vacío. Si laburito.web.app es público,
       sumarlo.
 
