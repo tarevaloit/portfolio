@@ -80,8 +80,13 @@ Sacado de `~/Documents/mediomundo-app`, `~/Documents/laburito` y
       partir del español).
 - [ ] Textos en inglés de la home en `lib/l10n/app_en.arb` (hero, métricas,
       contacto, footer, tip): traducciones mías del mockup.
-- [ ] Métricas de la home: son las del PLAN/mockup ("40+", "~1 s",
-      "iOS + Android"). Confirmar que se pueden mostrar así.
+- [ ] Home nueva (hero, métricas y Byto Apps) con datos del CV: 6+ años con
+      Flutter, deploys a las stores (ueno bank, OneInfo, apps propias) e IA
+      (What's New con IA en ueno, Fundido). Revisar el tono de los textos
+      (`hero*`, `metric*`, `byto*` en los ARB).
+- [ ] Byto Apps: "Hechas por Toby" lista Fishar, Laburito y Fundido.
+      Confirmar si Laburito (proyecto final USAL) va bajo Byto Apps, y sumar
+      el año de inicio si querés mostrarlo.
 - [ ] Este portfolio: descripciones por capa y las 3 decisiones técnicas
       (`es/projects/portfolio.json`). Las escribí yo a partir de lo que tiene
       el repo; revisar el tono.

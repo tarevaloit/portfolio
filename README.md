@@ -140,7 +140,7 @@ lib/
     architecture_mode/ # LayerBadge, ArchitectureMap, grilla de plano, switch
     shaders/           # BlueprintBackground (carga shaders/blueprint.frag)
   features/
-    home/presentation/ # HomePage + nav, hero, métricas (compone secciones de los features)
+    home/presentation/ # HomePage + nav, hero, métricas, Byto Apps (compone secciones de los features)
     projects/{data,domain,presentation}/
     experience/{data,domain,presentation}/
     contact/{data,domain,presentation}/
@@ -181,7 +181,8 @@ cada sección vive en el feature dueño de sus datos (`ProjectsSection`,
   la home con el contenido real en ambos idiomas a 360, 768, 1280 y 1440 px y
   falla ante cualquier overflow o scroll horizontal.
 - **Animaciones:** entrada escalonada del hero, reveal de cada sección al
-  entrar al viewport, planchas flotantes, marquee infinito y hover en las cards.
+  entrar al viewport, el teléfono del hero que rota entre las apps reales,
+  marquee infinito y hover en las cards.
   Todas leen `MediaQuery.disableAnimations` y muestran el estado final con
   reduced motion.
 - **Textos:** los textos fijos están en los ARB; los datos salen de
@@ -277,7 +278,7 @@ los goldens no dependan del GPU.
 - **Teclado:** el primer Tab muestra "Saltar a los proyectos"; las cards se
   activan con Enter/Espacio; todos los botones tienen un anillo de foco visible.
 - **Reduced motion:** ninguna animación corre (entradas, reveal, marquee,
-  planchas, shader, cerdito, Hero).
+  teléfono del hero, shader, Hero).
 - [`accessibility_test.dart`](test/accessibility/accessibility_test.dart) corre
   las guías de Flutter (contraste de texto, botones etiquetados y objetivos de
   24×24 de WCAG 2.2) en la home y en tres detalles.
