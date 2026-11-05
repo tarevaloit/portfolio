@@ -13,6 +13,27 @@
       "company": "Byto Apps",
       "startYear": null,
       "endYear": null
+    },
+    {
+      "id": "oneinfo",
+      "order": 3,
+      "company": "OneInfo Consulting",
+      "startYear": 2024,
+      "endYear": 2025
+    },
+    {
+      "id": "freelance",
+      "order": 4,
+      "company": "Freelance",
+      "startYear": 2024,
+      "endYear": 2024
+    },
+    {
+      "id": "miiii",
+      "order": 5,
+      "company": "Miiii",
+      "startYear": 2019,
+      "endYear": 2024
     }
   ]
 }

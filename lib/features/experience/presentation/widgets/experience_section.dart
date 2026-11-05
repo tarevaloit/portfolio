@@ -58,14 +58,13 @@ class ExperienceRow extends StatelessWidget {
     final end = experience.isCurrent
         ? l10n.experiencePresent
         : experience.endYear.toString();
+    // A position that starts and ends the same year shows the year once.
+    final period = start == end ? start : l10n.experiencePeriod(start, end);
 
     final meta = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          l10n.experiencePeriod(start, end),
-          style: theme.textTheme.labelSmall,
-        ),
+        Text(period, style: theme.textTheme.labelSmall),
         const SizedBox(height: AppSpacing.xs),
         Text(experience.company, style: theme.textTheme.titleLarge),
         const SizedBox(height: AppSpacing.xxs),

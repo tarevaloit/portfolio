@@ -17,6 +17,27 @@
         "Desarrollo de apps mobile para clientes internacionales.",
         "Productos propios de punta a punta: idea, diseño, desarrollo y publicación."
       ]
+    },
+    "oneinfo": {
+      "role": "Flutter Developer Ssr",
+      "highlights": [
+        "Desarrollo y mantenimiento de una de las billeteras virtuales más usadas de Argentina y de una app interna del mismo cliente.",
+        "Publicación de versiones en App Store y Google Play."
+      ]
+    },
+    "freelance": {
+      "role": "Flutter Developer · clientes internacionales",
+      "highlights": [
+        "Mantenimiento, bug fixing y nuevas features para Billetero (wallet crypto, Europa) y proyectos de EE.UU. vía 52six.",
+        "Integración de Firebase Analytics."
+      ]
+    },
+    "miiii": {
+      "role": "Mobile Developer · líder del equipo mobile desde 2022",
+      "highlights": [
+        "Arranqué como IT Trainee y crecí a líder del equipo mobile, a cargo de 2 pasantes.",
+        "Desarrollo de apps propias y para clientes, de punta a punta en Flutter."
+      ]
     }
   }
 }

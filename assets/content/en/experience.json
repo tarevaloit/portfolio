@@ -17,6 +17,27 @@
         "Mobile app development for international clients.",
         "In-house products end to end: idea, design, development and release."
       ]
+    },
+    "oneinfo": {
+      "role": "Semi-Senior Flutter Developer",
+      "highlights": [
+        "Developed and maintained one of Argentina's most widely used digital wallets, plus an internal app for the same client.",
+        "Shipped releases to the App Store and Google Play."
+      ]
+    },
+    "freelance": {
+      "role": "Flutter Developer · international clients",
+      "highlights": [
+        "Maintenance, bug fixing and new features for Billetero (European crypto wallet) and US projects through 52six.",
+        "Integrated Firebase Analytics."
+      ]
+    },
+    "miiii": {
+      "role": "Mobile Developer · mobile team lead since 2022",
+      "highlights": [
+        "Grew from IT Trainee to mobile team lead, mentoring 2 interns.",
+        "Built in-house and client apps end to end in Flutter."
+      ]
     }
   }
 }
