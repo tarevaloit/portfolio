@@ -101,10 +101,11 @@ Sacado de `~/Documents/mediomundo-app`, `~/Documents/laburito` y
       activa los links "↗" de cada clase en el modo arquitectura.
 - [ ] Renderizar el cuerpo en Markdown del detalle (`{es,en}/projects/<slug>.md`)
       cuando haya contenido; hoy ningún proyecto tiene.
-- [ ] Deferred import de la página de detalle (Fase 6).
-- [ ] Títulos de pestaña y `lang` del `<html>` según la ruta: hoy los pone cada
-      página con `Title`; revisarlo junto con los meta tags (Fase 6).
 - [ ] Nav en mobile: hoy oculta los links de sección; evaluar un menú.
-- [ ] Favicon e íconos de la PWA: siguen siendo los default de Flutter (Fase 6).
-- [ ] `lang` del `<html>` y título de la pestaña según el idioma de la ruta (Fase 6).
-- [ ] Loader HTML y OG tags (Fase 6).
+- [ ] Cuando haya dominio: `og:url` y URLs absolutas de `og:image` /
+      `twitter:image` en `web/index.html` (hoy son relativas, y varias redes
+      las necesitan absolutas).
+- [ ] Ícono del sitio: generé una marca `t_` en lima (`tool/brand_assets.py`).
+      Reemplazala si tenés un ícono propio.
+- [ ] Deferred loading en WASM: revisar cuando dart2wasm soporte dividir
+      módulos (hoy solo divide el build JS).

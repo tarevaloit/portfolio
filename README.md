@@ -5,10 +5,29 @@ El código también es parte del portfolio: muestra clean architecture, tests y
 CI/CD, y tiene un "modo arquitectura" que superpone las capas de cada feature
 sobre la UI.
 
-> Estado: **Fase 5 — diferenciales**. Ver [PLAN.md](PLAN.md) para el roadmap
-> completo y [TODO.md](TODO.md) para el contenido pendiente.
+> Estado: **las 6 fases del [PLAN](PLAN.md) están implementadas**. Lo que falta es
+> contenido y configuración (dominio, deploy, algunos textos): ver
+> [TODO.md](TODO.md).
 >
 > Sitio: `[dominio]` (pendiente)
+
+![Modo arquitectura: grilla de plano y la cadena real de clases de cada sección](docs/screenshots/architecture-mode.gif)
+
+| Home | Detalle de proyecto | Mobile |
+| --- | --- | --- |
+| ![Home en desktop](docs/screenshots/home-desktop.png) | ![Detalle de Fishar](docs/screenshots/detail-desktop.png) | ![Home a 390 px](docs/screenshots/home-mobile.png) |
+
+**Qué muestra:**
+
+- **Modo arquitectura:** un toggle superpone sobre la UI la capa de cada
+  widget y la cadena real de clases detrás (widget → provider → caso de uso →
+  repositorio). Un test garantiza que cada nombre exista en el código.
+- **Clean architecture verificada:** un test falla si `domain` importa Flutter
+  o si `presentation` importa `data`.
+- **Contenido sin tocar código:** proyectos, experiencia y contacto en
+  JSON/Markdown por idioma, validados en CI.
+- **Detalle con demos navegables**, Hero transitions, fondo con fragment shader
+  y reduced motion respetado en todas las animaciones.
 
 ## Stack
 
@@ -220,6 +239,36 @@ motion queda estático; si la plataforma no puede cargar el shader, se ve el
 fondo liso. Los tests lo apagan con `backgroundEffectsEnabledProvider` para que
 los goldens no dependan del GPU.
 
+## Rendimiento
+
+- **Loader instantáneo** en [`web/index.html`](web/index.html): HTML y CSS
+  puros, visibles antes de que cargue el engine. Se va con el evento
+  `flutter-first-frame`, que además deja el tiempo en `window.__firstFrameMs`.
+- **Deferred imports:** la página de detalle (demos, resaltador, home en
+  miniatura) es una librería aparte que se precarga después del primer frame,
+  así el click en una card la encuentra lista y la Hero transition funciona.
+  - Build JS (fallback para navegadores sin WasmGC): el detalle sale en un
+    archivo aparte de ~125 KB.
+  - Build WASM: dart2wasm (Flutter 3.44) todavía no divide el módulo;
+    `main.dart.wasm` es uno solo de ~2,6 MB y `loadLibrary()` no hace nada.
+- **Imágenes en WebP** con tamaño fijo (`assets/projects/`): los íconos y el
+  burndown pasaron de 1,4 MB a 58 KB.
+- **Shader** cargado de forma asíncrona: no bloquea el primer frame.
+
+## Accesibilidad
+
+- El árbol de semántica se construye desde el inicio
+  (`SemanticsBinding.ensureSemantics()`), sin el botón oculto "Enable
+  accessibility" de Flutter Web.
+- `<html lang>` sigue al idioma de la ruta.
+- **Teclado:** el primer Tab muestra "Saltar a los proyectos"; las cards se
+  activan con Enter/Espacio; todos los botones tienen un anillo de foco visible.
+- **Reduced motion:** ninguna animación corre (entradas, reveal, marquee,
+  planchas, shader, cerdito, Hero).
+- [`accessibility_test.dart`](test/accessibility/accessibility_test.dart) corre
+  las guías de Flutter (contraste de texto, botones etiquetados y objetivos de
+  24×24 de WCAG 2.2) en la home y en tres detalles.
+
 ## Desarrollo
 
 Requiere Flutter 3.44.0 (stable).
@@ -249,6 +298,16 @@ un cambio visual:
 ```bash
 flutter test --tags golden --update-goldens
 ```
+
+Las imágenes de este README se generan con el contenido y las fuentes reales:
+
+```bash
+flutter test --run-skipped --tags screenshots
+python3 tool/make_gif.py
+```
+
+Los íconos, el favicon y la imagen para previews de links salen de
+[`tool/brand_assets.py`](tool/brand_assets.py) (necesita Pillow).
 
 Las traducciones se generan desde `lib/l10n/*.arb` con `flutter gen-l10n`
 (también corre solo con `flutter pub get`).
