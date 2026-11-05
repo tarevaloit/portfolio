@@ -66,7 +66,9 @@ void main() {
     ('Fishar detail', '/en/projects/fishar'),
   ]) {
     group('guidelines on the $name', () {
-      testWidgets('text contrast', (tester) async {
+      // Measures rendered pixels, so anti-aliasing changes the result
+      // between macOS and Linux: it runs with the goldens, on macOS.
+      testWidgets('text contrast', tags: ['rendering'], (tester) async {
         final semantics = tester.ensureSemantics();
         await tester.pumpPortfolio(location: location);
         await expectLater(tester, meetsGuideline(textContrastGuideline));

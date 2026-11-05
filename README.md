@@ -316,8 +316,8 @@ Las traducciones se generan desde `lib/l10n/*.arb` con `flutter gen-l10n`
 
 [`.github/workflows/ci.yml`](.github/workflows/ci.yml) corre en cada PR y push:
 generación de código, formato, `flutter analyze --fatal-infos`, `flutter test`
-(sin goldens) y `flutter build web --wasm` en Linux, y los golden tests en un
-job de macOS. En push a `main` despliega `build/web` a Firebase
+(sin los tests de píxeles) y `flutter build web --wasm` en Linux, y los golden
+y de contraste en un job de macOS. En push a `main` despliega `build/web` a Firebase
 Hosting, siempre que estén configurados la variable `FIREBASE_PROJECT_ID` y el
 secret `FIREBASE_SERVICE_ACCOUNT`.
 
