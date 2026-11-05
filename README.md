@@ -107,7 +107,7 @@ Todo el contenido vive en `assets/content/`. Lo que no depende del idioma
 ```text
 assets/content/
   projects/<slug>.json          datos compartidos
-  projects/<slug>.snippet       snippet de "Cómo está hecho" (opcional)
+  projects/<slug>.<id>.snippet  código de "Cómo está hecho", uno por entrada de `snippets`
   es/projects/<slug>.json       textos en español
   es/projects/<slug>.md         cuerpo largo en Markdown (opcional)
   en/projects/<slug>.json       textos en inglés
@@ -206,9 +206,13 @@ transición puede animar entre las dos.
   imagen (`phone`, `web`, `figure`) viene del contenido. "Este portfolio"
   muestra la propia home en miniatura dentro del teléfono.
 - **Cómo está hecho:** las tres capas con los nombres reales de clases que
-  vienen del contenido, y el snippet con un resaltador de Dart propio
-  (`core/design_system/code/`), sin dependencias y determinista para los
-  goldens.
+  vienen del contenido, el código real del feature en pestañas (un archivo
+  por pestaña, en el color de su capa) y el árbol de archivos del feature,
+  tests incluidos; los archivos con extracto se abren desde el árbol. El
+  resaltador de Dart es propio (`core/design_system/code/`), sin
+  dependencias y determinista para los goldens.
+- **Repos privados:** Fishar, Laburito y Fundido no se linkean; el botón
+  arma un mail para pedir acceso (`privateSource` en el contenido).
 - **Fuentes:** todos los símbolos salen de las fuentes incluidas. Lo que
   Bricolage no tiene cae en JetBrains Mono; lo que ninguna tiene se dibuja.
 

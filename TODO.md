@@ -40,8 +40,8 @@ Los textos de cards y descripciones salen de PLAN.md y del mockup. Faltan:
   - [ ] Laburito, flujo de contratación: placeholders, incluido el nombre del
         feature.
   - [ ] Descripciones por capa de Laburito y Fundido: placeholders.
-- [ ] Snippets reales para "Cómo está hecho" (`projects/<slug>.snippet` +
-      `snippet` en el JSON). Fishar no tiene: el del mockup era ilustrativo.
+- [x] Código real por capa para "Cómo está hecho" (`snippets` en el JSON +
+      `projects/<slug>.<id>.snippet`) y árbol del feature (`files`).
 - [ ] Cuerpo largo opcional en Markdown (`{es,en}/projects/<slug>.md`).
 - [x] Capturas de cada app (WebP, en `assets/projects/`).
 - [ ] Videos cortos de cada app (opcional).
@@ -51,7 +51,11 @@ Sacado de `~/Documents/mediomundo-app`, `~/Documents/laburito` y
 `~/Desktop/fundido_app` (sin leer `.env`):
 - [ ] Clases, stack, descripciones y decisiones técnicas de Fishar, Laburito y
       Fundido: las decisiones las redacté yo a partir de README, docs y código.
-- [ ] Snippets copiados de cada repo (`assets/content/projects/*.snippet`).
+- [ ] Extractos copiados de cada repo (`assets/content/projects/*.snippet`):
+      si cambia el archivo original, hay que volver a copiarlos (los de este
+      portfolio los verifica un test).
+- [ ] CI deploy: a la service account le falta el rol "Service Usage
+      Consumer" (y "Firebase Hosting Admin" si no lo tiene) en IAM.
 - [ ] Íconos de las apps y el burndown del Sprint 3 de Laburito (`assets/projects/`).
 - [ ] Estado de Laburito ("Sprint 6 · release v0.5.0") y de Fundido
       ("Prototipo · 2025", último commit en julio de 2025).
