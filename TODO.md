@@ -28,7 +28,6 @@ Los textos de cards y descripciones salen de PLAN.md y del mockup. Faltan:
 - [ ] `platforms` de Laburito y Fundido (hoy `[Plataformas]`).
 - [ ] Fundido: proveedor de IA y backend/almacenamiento en `stack`, y `status`.
 - [ ] `links` de cada proyecto (store, TestFlight, GitHub, web): hoy `null`.
-      El de GitHub de Este portfolio va cuando exista el repo público.
 - [ ] `decisions`: 2 o 3 decisiones técnicas por proyecto. Fishar, Laburito y
       Fundido tienen placeholders `[Decisión técnica N]`.
 - [ ] Nombres reales de clases para el modo arquitectura:
@@ -81,7 +80,7 @@ Sacado de `~/Documents/mediomundo-app`, `~/Documents/laburito` y
 - [ ] Meta description de `web/index.html` y `web/manifest.json`.
 
 ## Infraestructura
-- [ ] Crear el repo público en GitHub y hacer push de `main`.
+- [x] Repo público: https://github.com/tarevaloit/portfolio
 - [ ] Crear el proyecto de Firebase y habilitar Hosting.
 - [ ] En GitHub → Settings → Secrets and variables → Actions:
   - [ ] Variable `FIREBASE_PROJECT_ID`.
@@ -97,8 +96,8 @@ Sacado de `~/Documents/mediomundo-app`, `~/Documents/laburito` y
       exportados de rive.app, reemplazarlos. Inputs sugeridos de las state
       machines: toggle → `isOn` (bool); cerdito → `talking` (bool) y
       `happy` (trigger).
-- [ ] `links.github` de "Este portfolio" en `assets/content/projects/portfolio.json`:
-      activa los links "↗" de cada clase en el modo arquitectura.
+- [x] `links.github` de "Este portfolio": activa "Código ↗" y los links "↗" de
+      cada clase en el modo arquitectura.
 - [ ] Renderizar el cuerpo en Markdown del detalle (`{es,en}/projects/<slug>.md`)
       cuando haya contenido; hoy ningún proyecto tiene.
 - [ ] Nav en mobile: hoy oculta los links de sección; evaluar un menú.

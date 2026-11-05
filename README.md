@@ -9,7 +9,7 @@ sobre la UI.
 > contenido y configuración (dominio, deploy, algunos textos): ver
 > [TODO.md](TODO.md).
 >
-> Sitio: `[dominio]` (pendiente)
+> Sitio: `[dominio]` (pendiente) · Código: https://github.com/tarevaloit/portfolio
 
 ![Modo arquitectura: grilla de plano y la cadena real de clases de cada sección](docs/screenshots/architecture-mode.gif)
 
