@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:portfolio/core/design_system/tokens/tokens.dart';
 import 'package:portfolio/core/l10n/l10n.dart';
+import 'package:portfolio/core/platform/document/document_language.dart';
 import 'package:portfolio/core/router/not_found_page.dart';
 import 'package:portfolio/features/home/presentation/pages/home_page.dart';
 import 'package:portfolio/features/home/presentation/widgets/home_preview.dart';
@@ -92,9 +93,12 @@ Page<void> _fadePage(BuildContext context, GoRouterState state, Widget child) {
 }
 
 Widget _withLocale(BuildContext context, AppLocale locale, Widget child) {
-  return Localizations.override(
-    context: context,
-    locale: locale.locale,
-    child: child,
+  return DocumentLanguage(
+    languageCode: locale.locale.languageCode,
+    child: Localizations.override(
+      context: context,
+      locale: locale.locale,
+      child: child,
+    ),
   );
 }
