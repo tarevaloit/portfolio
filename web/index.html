@@ -1,51 +1,120 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
+  <!-- Replaced by `flutter build --base-href`. Must start and end with "/". -->
   <base href="$FLUTTER_BASE_HREF">
 
   <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="Portfolio de Tobias Arevalo, Flutter developer: proyectos, experiencia y cómo están construidos.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tobias Arevalo · Flutter Developer</title>
+  <meta name="description" content="Portfolio de Tobias Arevalo, Flutter developer: proyectos, experiencia y cómo están construidos, con clean architecture a la vista.">
+  <meta name="theme-color" content="#0E0F12">
+  <meta name="color-scheme" content="dark">
 
-  <!-- iOS meta tags & icons -->
+  <!-- Link previews (static: the site is a single-page app).
+       og:url and absolute image URLs need the final domain; see TODO.md. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="tobias.dev">
+  <meta property="og:title" content="Tobias Arevalo · Flutter Developer">
+  <meta property="og:description" content="Apps Flutter con arquitectura que aguanta. Proyectos, experiencia y cómo están construidos.">
+  <meta property="og:image" content="og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="tobias.dev — Apps Flutter con arquitectura que aguanta.">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tobias Arevalo · Flutter Developer">
+  <meta name="twitter:description" content="Apps Flutter con arquitectura que aguanta.">
+  <meta name="twitter:image" content="og-image.png">
+
+  <!-- Icons and PWA -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="tobias.dev">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
-
-  <title>Tobias Arevalo · Flutter Developer</title>
-  <meta name="theme-color" content="#0E0F12">
-  <!-- Full loader, OG tags and favicon: Phase 6. -->
-  <style>
-    html, body { margin: 0; background: #0E0F12; }
-  </style>
   <link rel="manifest" href="manifest.json">
+
+  <!-- Engine and app code start downloading right away. -->
+  <link rel="preload" href="flutter_bootstrap.js" as="script">
+
+  <style>
+    html, body { margin: 0; height: 100%; background: #0E0F12; }
+
+    /* Loader shown until Flutter paints its first frame. Pure HTML/CSS so
+       it appears instantly, before any JavaScript or WASM is loaded. */
+    #loader {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      background:
+        linear-gradient(rgba(198, 244, 50, 0.04) 1px, transparent 1px) 0 0 / 24px 24px,
+        linear-gradient(90deg, rgba(198, 244, 50, 0.04) 1px, transparent 1px) 0 0 / 24px 24px,
+        #0E0F12;
+      font: 500 16px/1 "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      color: #ECEAE4;
+      transition: opacity 300ms ease;
+      z-index: 10;
+    }
+    #loader.done { opacity: 0; pointer-events: none; }
+    #loader .logo .accent, #loader .cursor { color: #C6F432; }
+    #loader .cursor { animation: blink 1.1s steps(1) infinite; }
+    #loader .bar {
+      width: 160px;
+      height: 2px;
+      overflow: hidden;
+      background: #22252B;
+      border-radius: 2px;
+    }
+    #loader .bar::after {
+      content: "";
+      display: block;
+      width: 40%;
+      height: 100%;
+      background: #C6F432;
+      animation: slide 1.2s ease-in-out infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+    @keyframes slide {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(250%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #loader { transition: none; }
+      #loader .cursor, #loader .bar::after { animation: none; }
+      #loader .bar::after { width: 100%; opacity: 0.4; }
+    }
+    noscript p {
+      margin: 0;
+      padding: 32px;
+      font: 16px/1.5 system-ui, sans-serif;
+      color: #ECEAE4;
+    }
+  </style>
 </head>
 <body>
-  <!--
-    You can customize the "flutter_bootstrap.js" script.
-    This is useful to provide a custom configuration to the Flutter loader
-    or to give the user feedback during the initialization process.
+  <div id="loader" role="progressbar" aria-label="Cargando tobias.dev" aria-busy="true">
+    <div class="logo" aria-hidden="true">tobias.<span class="accent">dev</span><span class="cursor">_</span></div>
+    <div class="bar" aria-hidden="true"></div>
+  </div>
+  <noscript><p>Este sitio necesita JavaScript. · This site needs JavaScript.</p></noscript>
 
-    For more details:
-    * https://docs.flutter.dev/platform-integration/web/initialization
-  -->
+  <script>
+    // The engine fires this event after painting the first frame.
+    window.addEventListener('flutter-first-frame', function () {
+      window.__firstFrameMs = Math.round(performance.now());
+      var loader = document.getElementById('loader');
+      if (!loader) return;
+      loader.classList.add('done');
+      loader.setAttribute('aria-busy', 'false');
+      setTimeout(function () { loader.remove(); }, 350);
+    }, { once: true });
+  </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
