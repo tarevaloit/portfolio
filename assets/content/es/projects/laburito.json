@@ -30,6 +30,16 @@
     }
   ],
   "mediaCaptions": {
+    "app-zona": "App del Profesional: zona de cobertura. Le llegan los pedidos publicados dentro del círculo.",
+    "app-horarios": "Disponibilidad y horarios de atención por día.",
+    "app-billetera": "Billetera de tokens: packs, cupones y movimientos.",
+    "app-estadisticas": "Estadísticas: vistas al perfil, contactos abiertos y efectividad.",
+    "app-login": "Ingreso a la app del Profesional.",
+    "web-publicar-pedido": "Web del Buscador: publicar un pedido, paso 1 de 4.",
+    "web-ubicacion": "Web del Buscador: la ubicación del pedido, sobre el mapa.",
+    "web-admin-dashboard": "Panel de administración: métricas de la plataforma (los accesos están difuminados).",
+    "web-admin-categorias": "Panel de administración: los oficios disponibles, activables uno por uno.",
+    "web-admin-parametros": "Panel de administración: parámetros globales, como el radio máximo de cobertura.",
     "burndown-sprint-03": "Burndown del proyecto al cierre del Sprint 3: ideal, planificada y real."
   }
 }

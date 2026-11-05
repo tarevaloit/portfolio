@@ -24,5 +24,10 @@
       "title": "Fechas relativas resueltas antes",
       "body": "\"Hoy\", \"ayer\" o \"anteayer\" se convierten a YYYY-MM-DD con la fecha del dispositivo dentro del prompt, así el modelo no adivina el día."
     }
-  ]
+  ],
+  "mediaCaptions": {
+    "chat": "El chat con Fundi, donde se cargan los gastos escribiendo.",
+    "analisis": "Análisis: gastos por categoría y la lista de movimientos.",
+    "login": "Ingreso con email o con Google."
+  }
 }

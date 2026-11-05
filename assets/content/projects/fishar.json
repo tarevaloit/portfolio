@@ -21,5 +21,32 @@
   "snippet": {
     "path": "lib/features/capture/domain/usecases/get_spots_usecase.dart",
     "language": "dart"
-  }
+  },
+  "media": [
+    {
+      "id": "feed",
+      "asset": "assets/projects/fishar-feed.webp",
+      "kind": "phone"
+    },
+    {
+      "id": "mapa",
+      "asset": "assets/projects/fishar-mapa.webp",
+      "kind": "phone"
+    },
+    {
+      "id": "clima",
+      "asset": "assets/projects/fishar-clima.webp",
+      "kind": "phone"
+    },
+    {
+      "id": "nueva-captura",
+      "asset": "assets/projects/fishar-nueva-captura.webp",
+      "kind": "phone"
+    },
+    {
+      "id": "perfil",
+      "asset": "assets/projects/fishar-perfil.webp",
+      "kind": "phone"
+    }
+  ]
 }

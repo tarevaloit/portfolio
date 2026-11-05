@@ -48,6 +48,56 @@
   },
   "media": [
     {
+      "id": "app-zona",
+      "asset": "assets/projects/laburito-app-zona.webp",
+      "kind": "phone"
+    },
+    {
+      "id": "app-horarios",
+      "asset": "assets/projects/laburito-app-horarios.webp",
+      "kind": "phone"
+    },
+    {
+      "id": "app-billetera",
+      "asset": "assets/projects/laburito-app-billetera.webp",
+      "kind": "phone"
+    },
+    {
+      "id": "app-estadisticas",
+      "asset": "assets/projects/laburito-app-estadisticas.webp",
+      "kind": "phone"
+    },
+    {
+      "id": "app-login",
+      "asset": "assets/projects/laburito-app-login.webp",
+      "kind": "phone"
+    },
+    {
+      "id": "web-publicar-pedido",
+      "asset": "assets/projects/laburito-web-publicar-pedido.webp",
+      "kind": "web"
+    },
+    {
+      "id": "web-ubicacion",
+      "asset": "assets/projects/laburito-web-ubicacion.webp",
+      "kind": "web"
+    },
+    {
+      "id": "web-admin-dashboard",
+      "asset": "assets/projects/laburito-web-admin-dashboard.webp",
+      "kind": "web"
+    },
+    {
+      "id": "web-admin-categorias",
+      "asset": "assets/projects/laburito-web-admin-categorias.webp",
+      "kind": "web"
+    },
+    {
+      "id": "web-admin-parametros",
+      "asset": "assets/projects/laburito-web-admin-parametros.webp",
+      "kind": "web"
+    },
+    {
       "id": "burndown-sprint-03",
       "asset": "assets/projects/laburito-burndown-sprint-03.webp"
     }

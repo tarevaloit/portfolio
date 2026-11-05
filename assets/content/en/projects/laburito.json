@@ -30,6 +30,16 @@
     }
   ],
   "mediaCaptions": {
+    "app-zona": "Professional app: coverage area. Requests posted inside the circle reach them.",
+    "app-horarios": "Availability and opening hours by day.",
+    "app-billetera": "Token wallet: packs, coupons and transactions.",
+    "app-estadisticas": "Stats: profile views, contacts opened and success rate.",
+    "app-login": "Sign in to the Professional app.",
+    "web-publicar-pedido": "Seeker's web app: posting a request, step 1 of 4.",
+    "web-ubicacion": "Seeker's web app: the request's location, on the map.",
+    "web-admin-dashboard": "Admin panel: platform metrics (the access log is blurred).",
+    "web-admin-categorias": "Admin panel: the available trades, each one can be turned on or off.",
+    "web-admin-parametros": "Admin panel: global settings, such as the maximum coverage radius.",
     "burndown-sprint-03": "Project burndown at the end of Sprint 3: ideal, planned and actual."
   }
 }

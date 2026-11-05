@@ -24,5 +24,12 @@
       "title": "Clima sin backend propio",
       "body": "El pronóstico por hora y por día sale de Open-Meteo, que es de uso no comercial; la ficha de la tienda lo aclara y no promete precisión."
     }
-  ]
+  ],
+  "mediaCaptions": {
+    "feed": "Feed: las capturas de la gente que seguís, con especie, peso, talla y carnada.",
+    "mapa": "Mapa de spots, con las capturas agrupadas por lugar.",
+    "clima": "Clima por hora y por día del lugar donde vas a pescar.",
+    "nueva-captura": "Nueva publicación: la foto y, si querés, especie, peso, talla, carnada y ubicación.",
+    "perfil": "Perfil con publicaciones, seguidores y la grilla de capturas."
+  }
 }

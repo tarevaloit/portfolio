@@ -24,5 +24,10 @@
       "title": "Relative dates resolved first",
       "body": "\"Today\", \"yesterday\" or \"the day before\" are turned into YYYY-MM-DD with the device date inside the prompt, so the model does not guess the day."
     }
-  ]
+  ],
+  "mediaCaptions": {
+    "chat": "The chat with Fundi, where expenses are added by typing.",
+    "analisis": "Analysis: spending by category and the list of expenses.",
+    "login": "Sign in with email or Google."
+  }
 }

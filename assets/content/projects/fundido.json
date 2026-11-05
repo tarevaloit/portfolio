@@ -21,5 +21,22 @@
   "snippet": {
     "path": "lib/domain/usecases/interpretar_gasto_usecase.dart",
     "language": "dart"
-  }
+  },
+  "media": [
+    {
+      "id": "analisis",
+      "asset": "assets/projects/fundido-analisis.webp",
+      "kind": "phone"
+    },
+    {
+      "id": "chat",
+      "asset": "assets/projects/fundido-chat.webp",
+      "kind": "phone"
+    },
+    {
+      "id": "login",
+      "asset": "assets/projects/fundido-login.webp",
+      "kind": "phone"
+    }
+  ]
 }

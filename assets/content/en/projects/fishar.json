@@ -24,5 +24,12 @@
       "title": "Weather without a backend of its own",
       "body": "Hourly and daily forecasts come from Open-Meteo, which is for non-commercial use; the store listing says so and promises no accuracy."
     }
-  ]
+  ],
+  "mediaCaptions": {
+    "feed": "Feed: catches from the people you follow, with species, weight, length and bait.",
+    "mapa": "Spots map, with catches grouped by place.",
+    "clima": "Hourly and daily weather for the place you are going to fish.",
+    "nueva-captura": "New post: the photo and, optionally, species, weight, length, bait and location.",
+    "perfil": "Profile with posts, followers and the grid of catches."
+  }
 }
