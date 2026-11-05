@@ -46,7 +46,7 @@ void main() {
           // The hero title never breaks a word: the phone moves under the
           // copy when the column would get too narrow.
           final titleFinder = find.textContaining(
-            locale == AppLocale.es ? 'Apps mobile' : 'Mobile apps',
+            locale == AppLocale.es ? 'Apps mobile y web' : 'Mobile and web',
           );
           final title = tester.getRect(titleFinder);
           final phone = tester.getRect(find.byType(ProjectsShowcase));

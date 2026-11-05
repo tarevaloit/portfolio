@@ -56,6 +56,14 @@ abstract final class ArchitectureMap {
     _projectsRepository,
   ];
 
+  static const List<LayerRef> ai = [
+    LayerRef.presentation('AiSection', '$_home/widgets/ai_section.dart'),
+    LayerRef.presentation(
+      'sourceRepositoryUrlProvider',
+      'lib/core/architecture_mode/source_repository.dart',
+    ),
+  ];
+
   static const List<LayerRef> byto = [
     LayerRef.presentation('BytoSection', '$_home/widgets/byto_section.dart'),
     _projectsProvider,
@@ -216,6 +224,7 @@ abstract final class ArchitectureMap {
   static List<List<LayerRef>> get all => [
     navBar,
     hero,
+    ai,
     byto,
     metrics,
     marquee,

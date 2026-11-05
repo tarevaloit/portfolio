@@ -1,11 +1,11 @@
 {
-  "name": "Tobias Arevalo · Flutter Developer",
+  "name": "Tobias Arevalo · Mobile & AI Engineer",
   "short_name": "tobias.dev",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#0E0F12",
   "theme_color": "#0E0F12",
-  "description": "Portfolio de Tobias Arevalo, Flutter developer: proyectos, experiencia y cómo están construidos.",
+  "description": "Portfolio de Tobias Arevalo, Mobile & AI Engineer: apps mobile y web con IA, de la idea a producción.",
   "orientation": "any",
   "prefer_related_applications": false,
   "icons": [

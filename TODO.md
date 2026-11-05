@@ -78,6 +78,13 @@ Sacado de `~/Documents/mediomundo-app`, `~/Documents/laburito` y
       sumarlo.
 
 ## Copy a revisar
+- [ ] Posicionamiento Mobile & AI Engineer (hero, métricas, "IA que llega a
+      producción", Sobre mí, meta tags). Falta detalle para hacerlo más
+      concreto: qué integraciones con LLMs hiciste en el trabajo (dónde y para
+      qué) y en qué trabajos o proyectos usaste React Native, Swift, Kotlin y
+      React. Con eso se puede sumar a Experiencia sin exagerar nada.
+- [ ] Los CV en PDF (`assets/cv/`) siguen diciendo "Senior Flutter Developer":
+      actualizarlos con el mismo posicionamiento.
 - [ ] Traducción al inglés del hero: "Flutter apps with architecture that holds
       up." (`lib/l10n/app_en.arb`). La propuse yo; validarla.
 - [ ] Todas las traducciones al inglés de `assets/content/en/` (las hice yo a

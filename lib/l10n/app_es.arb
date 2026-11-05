@@ -1,6 +1,6 @@
 {
   "@@locale": "es",
-  "appTitle": "Tobias Arevalo · Flutter Developer",
+  "appTitle": "Tobias Arevalo · Mobile & AI Engineer",
   "@appTitle": {
     "description": "Browser tab title."
   },
@@ -40,19 +40,19 @@
   "@architectureMode": {
     "description": "Label of the toggle that overlays the clean-architecture layers on the UI."
   },
-  "heroEyebrow": "// senior flutter developer · buenos aires, argentina",
+  "heroEyebrow": "// mobile & ai engineer · buenos aires, argentina",
   "@heroEyebrow": {
     "description": "Small monospace line above the hero title."
   },
-  "heroTitleLead": "Apps mobile, de la idea",
+  "heroTitleLead": "Apps mobile y web con IA,",
   "@heroTitleLead": {
     "description": "First part of the hero title, before the highlighted word."
   },
-  "heroTitleHighlight": "a las stores.",
+  "heroTitleHighlight": "de la idea a producción.",
   "@heroTitleHighlight": {
     "description": "Last part of the hero title, drawn in the accent color."
   },
-  "heroBody": "Soy Tobias, desarrollador Flutter hace más de 6 años. En ueno bank trabajo en el core mobile y me encargo del deploy a App Store y Google Play. Las ideas propias las llevo a producto con Byto Apps, cada vez más con IA adentro.",
+  "heroBody": "Soy Tobias, Mobile & AI Engineer con más de 6 años construyendo apps. Integro LLMs en el producto, como el What's New generado con IA en ueno bank, y trabajo con agentes de código en el día a día. Mi base es Flutter, y también trabajo con React Native, Swift, Kotlin y React. Mis propias ideas las llevo a producto con Byto Apps.",
   "@heroBody": {
     "description": "Hero paragraph under the title."
   },
@@ -76,15 +76,15 @@
   "@layerData": {
     "description": "Name of the data layer."
   },
-  "metricStoresValue": "iOS + Android",
+  "metricStoresValue": "iOS · Android · Web",
   "@metricStoresValue": {
     "description": "Metric value."
   },
-  "metricStoresLabel": "deploys a App Store y Google Play: banca, billeteras y apps propias",
+  "metricStoresLabel": "deploys de punta a punta: App Store, Google Play y hosting web",
   "@metricStoresLabel": {
     "description": "Metric label."
   },
-  "stackItems": "Flutter,Dart,Clean Architecture,Riverpod,Bloc,Firebase,Supabase,OpenAI,App Store Connect,Google Play Console,Google Maps,Mercado Pago,CI/CD",
+  "stackItems": "LLMs,OpenAI,Claude Code,Flutter,React Native,React,Swift,Kotlin,Dart,Clean Architecture,Riverpod,Bloc,Firebase,Supabase,App Store Connect,Google Play Console,CI/CD",
   "@stackItems": {
     "description": "Comma-separated items of the stack marquee."
   },
@@ -354,7 +354,7 @@
   "@metricYearsValue": {
     "description": "Metric value."
   },
-  "metricYearsLabel": "años con Flutter, de trainee a Senior en fintech",
+  "metricYearsLabel": "años construyendo apps mobile y web, de trainee a Senior en fintech",
   "@metricYearsLabel": {
     "description": "Metric label."
   },
@@ -362,7 +362,7 @@
   "@metricAiValue": {
     "description": "Metric value."
   },
-  "metricAiLabel": "aplicada a producto: el What's New generado con IA en ueno bank y los gastos por chat de Fundido",
+  "metricAiLabel": "LLMs en el producto y desarrollo con agentes de código",
   "@metricAiLabel": {
     "description": "Metric label."
   },
@@ -398,7 +398,7 @@
   "@bytoStepBuildTitle": {
     "description": "Step 2 title."
   },
-  "bytoStepBuildBody": "Flutter con clean architecture, Supabase o Firebase atrás, e IA donde suma.",
+  "bytoStepBuildBody": "El stack que pida la idea: Flutter, nativo o web, con clean architecture e IA donde suma.",
   "@bytoStepBuildBody": {
     "description": "Step 2 detail."
   },
@@ -427,5 +427,61 @@
         "type": "String"
       }
     }
+  },
+  "aiEyebrow": "// ia en producto",
+  "@aiEyebrow": {
+    "description": "Copy of the AI section of the home."
+  },
+  "aiTitle": "IA que llega a producción",
+  "@aiTitle": {
+    "description": "Copy of the AI section of the home."
+  },
+  "aiLead": "No demos sueltas: features con LLMs dentro de productos reales, y una forma de trabajar con agentes que se nota en el código.",
+  "@aiLead": {
+    "description": "Copy of the AI section of the home."
+  },
+  "aiWhatsNewTag": "ueno bank",
+  "@aiWhatsNewTag": {
+    "description": "Copy of the AI section of the home."
+  },
+  "aiWhatsNewTitle": "What's New generado con IA",
+  "@aiWhatsNewTitle": {
+    "description": "Copy of the AI section of the home."
+  },
+  "aiWhatsNewBody": "Recorre los proyectos de las más de 40 microapps, analiza sus cambios y redacta las novedades de cada sección de la app.",
+  "@aiWhatsNewBody": {
+    "description": "Copy of the AI section of the home."
+  },
+  "aiFundidoTag": "Fundido",
+  "@aiFundidoTag": {
+    "description": "Copy of the AI section of the home."
+  },
+  "aiFundidoTitle": "Gastos por chat",
+  "@aiFundidoTitle": {
+    "description": "Copy of the AI section of the home."
+  },
+  "aiFundidoBody": "Le escribís a Fundi en lenguaje natural y OpenAI lo convierte en un gasto con descripción, monto, fecha y categoría: el modelo devuelve datos, no solo texto.",
+  "@aiFundidoBody": {
+    "description": "Copy of the AI section of the home."
+  },
+  "aiAgentsTag": "Este portfolio",
+  "@aiAgentsTag": {
+    "description": "Copy of the AI section of the home."
+  },
+  "aiAgentsTitle": "Desarrollo con agentes",
+  "@aiAgentsTitle": {
+    "description": "Copy of the AI section of the home."
+  },
+  "aiAgentsBody": "Lo construí con Claude Code, fase por fase: el plan y las decisiones son míos, y cada cambio pasa por tests y revisión. El historial está en el repo.",
+  "@aiAgentsBody": {
+    "description": "Copy of the AI section of the home."
+  },
+  "aiSeeProject": "Ver proyecto →",
+  "@aiSeeProject": {
+    "description": "Copy of the AI section of the home."
+  },
+  "aiSeeRepo": "Ver el repo ↗",
+  "@aiSeeRepo": {
+    "description": "Copy of the AI section of the home."
   }
 }

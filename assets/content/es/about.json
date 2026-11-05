@@ -1,12 +1,12 @@
 {
   "paragraphs": [
-    "Desarrollador mobile con más de 6 años de experiencia en Flutter, especializado en fintech y banca digital.",
+    "Mobile & AI Engineer con más de 6 años construyendo apps, especializado en fintech y banca digital. Mi base es Flutter, y también trabajo con React Native, Swift, Kotlin y React.",
     "Hoy trabajo en el equipo Mobile Core de ueno bank, construyendo la base técnica que usan más de 40 microapps. Mi foco está en la arquitectura modular, la escalabilidad y los releases en producción.",
     "Arranqué en 2019 como IT Trainee y en 2022 pasé a liderar un equipo mobile. Estudio Ingeniería en Informática en la USAL y en paralelo construyo productos propios bajo Byto Apps."
   ],
   "facts": [
     { "label": "Ubicación", "value": "Pilar, Buenos Aires, Argentina" },
-    { "label": "Experiencia", "value": "6+ años con Flutter" },
+    { "label": "Experiencia", "value": "6+ años en mobile y web" },
     { "label": "Educación", "value": "Ingeniería en Informática · USAL (en curso)" },
     { "label": "Idiomas", "value": "Español nativo · Inglés B2 (First Certificate)" }
   ]
