@@ -3,8 +3,21 @@
   "monogram": "La",
   "color": "#FDBA74",
   "logo": "assets/projects/laburito-logo.webp",
-  "platforms": ["Web", "Android", "iOS"],
-  "stack": ["Flutter", "Riverpod", "Supabase", "PostGIS", "Google Maps", "Mercado Pago"],
+  "platforms": [
+    "Web",
+    "Android",
+    "iOS",
+    "Desktop"
+  ],
+  "stack": [
+    "Flutter",
+    "Riverpod",
+    "Supabase",
+    "PostGIS",
+    "Google Maps",
+    "Mercado Pago",
+    "FCM"
+  ],
   "links": {
     "appStore": null,
     "playStore": null,
@@ -14,9 +27,20 @@
   },
   "architecture": {
     "feature": "pedidos",
-    "presentation": ["CrearPedidoScreen", "CrearPedidoController", "MiniMapaPedido"],
-    "domain": ["Pedido", "PedidoEstado", "PedidoUrgencia"],
-    "data": ["PedidosRepository", "CategoriasRepository"]
+    "presentation": [
+      "CrearPedidoScreen",
+      "CrearPedidoController",
+      "MiniMapaPedido"
+    ],
+    "domain": [
+      "Pedido",
+      "PedidoEstado",
+      "PedidoUrgencia"
+    ],
+    "data": [
+      "PedidosRepository",
+      "CategoriasRepository"
+    ]
   },
   "snippet": {
     "path": "lib/features/pedidos/domain/pedido_estado.dart",

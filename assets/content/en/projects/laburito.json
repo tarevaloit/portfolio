@@ -2,8 +2,8 @@
   "name": "Laburito",
   "category": "Final project · USAL",
   "badge": "Final project",
-  "summary": "A geolocated platform that connects people looking for a service with tradespeople. Planned with IEEE 1058, risk management and burndown.",
-  "description": "A geolocated platform that connects Seekers with tradespeople. Final degree project at USAL (Professional Integration Seminar 2026), planned with IEEE 1058, a risk matrix and burndown.",
+  "summary": "A geolocated platform that connects people looking for a service with tradespeople: a web app for Seekers, a mobile app for professionals and an admin panel.",
+  "description": "A geolocated platform that connects Seekers with tradespeople. One Flutter codebase with three surfaces: the Seeker web app, the native app for professionals and a desktop panel to run the platform. Final degree project at USAL (Professional Integration Seminar 2026), planned with IEEE 1058, a risk matrix and burndown.",
   "role": "[Role]",
   "status": "Sprint 6 · release v0.5.0",
   "architecture": {
@@ -12,6 +12,10 @@
     "data": "PedidosRepository queries Supabase: PostgreSQL with RLS and PostGIS for geolocation."
   },
   "decisions": [
+    {
+      "title": "One codebase, three surfaces",
+      "body": "The Seeker web app, the native app for professionals and the admin panel come from the same Flutter project. The panel moderates users, verifies identities, handles reports and reviews, and manages categories, prices and coupons."
+    },
     {
       "title": "The database validates, the app follows",
       "body": "Request states and their transitions live in PostgreSQL. PedidoEstado mirrors them in Dart only to avoid offering buttons the server would reject, and a test checks both tables match."

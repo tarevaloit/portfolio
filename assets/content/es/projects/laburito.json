@@ -2,8 +2,8 @@
   "name": "Laburito",
   "category": "Proyecto final · USAL",
   "badge": "Proyecto final",
-  "summary": "Plataforma geolocalizada que conecta a quien busca un servicio con profesionales de oficios. Planificada con IEEE 1058, riesgos y burndown.",
-  "description": "Plataforma geolocalizada que conecta Buscadores con Profesionales de oficios. Proyecto final de la USAL (Seminario de Integración Profesional 2026), planificado con IEEE 1058, matriz de riesgos y burndown.",
+  "summary": "Plataforma geolocalizada que conecta a quien busca un servicio con profesionales de oficios: web para el Buscador, app para el Profesional y panel de administración.",
+  "description": "Plataforma geolocalizada que conecta Buscadores con Profesionales de oficios. Un solo código Flutter con tres superficies: la web del Buscador, la app nativa del Profesional y un panel de escritorio para administrar la plataforma. Proyecto final de la USAL (Seminario de Integración Profesional 2026), planificado con IEEE 1058, matriz de riesgos y burndown.",
   "role": "[Rol]",
   "status": "Sprint 6 · release v0.5.0",
   "architecture": {
@@ -12,6 +12,10 @@
     "data": "PedidosRepository consulta Supabase: PostgreSQL con RLS y PostGIS para la geolocalización."
   },
   "decisions": [
+    {
+      "title": "Un código, tres superficies",
+      "body": "La web del Buscador, la app nativa del Profesional y el panel de administración salen del mismo proyecto Flutter. El panel modera usuarios, valida identidades, atiende denuncias y reseñas, y gestiona categorías, precios y cupones."
+    },
     {
       "title": "La base valida, la app acompaña",
       "body": "Los estados del pedido y sus transiciones viven en PostgreSQL. PedidoEstado los refleja en Dart solo para no ofrecer botones que el servidor va a rechazar, y un test verifica que las dos tablas coincidan."
