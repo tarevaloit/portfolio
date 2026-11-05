@@ -9,7 +9,7 @@ sobre la UI.
 > contenido y configuración (dominio, deploy, algunos textos): ver
 > [TODO.md](TODO.md).
 >
-> Sitio: `[dominio]` (pendiente) · Código: https://github.com/tarevaloit/portfolio
+> Sitio: https://tobias-arevalo.web.app · Código: https://github.com/tarevaloit/portfolio
 
 ![Modo arquitectura: grilla de plano y la cadena real de clases de cada sección](docs/screenshots/architecture-mode.gif)
 
@@ -254,6 +254,11 @@ los goldens no dependan del GPU.
 - **Imágenes en WebP** con tamaño fijo (`assets/projects/`): los íconos y el
   burndown pasaron de 1,4 MB a 58 KB.
 - **Shader** cargado de forma asíncrona: no bloquea el primer frame.
+- **Sin service worker:** [`web/flutter_bootstrap.js`](web/flutter_bootstrap.js)
+  reemplaza al de Flutter, que esperaba hasta 4 s a que se activara su service
+  worker (ya deprecado) antes de cargar el engine.
+- Lighthouse desktop sobre https://tobias-arevalo.web.app: Performance 95,
+  interactivo en 1,7 s.
 
 ## Accesibilidad
 
@@ -317,9 +322,15 @@ Las traducciones se generan desde `lib/l10n/*.arb` con `flutter gen-l10n`
 [`.github/workflows/ci.yml`](.github/workflows/ci.yml) corre en cada PR y push:
 generación de código, formato, `flutter analyze --fatal-infos`, `flutter test`
 (sin los tests de píxeles) y `flutter build web --wasm` en Linux, y los golden
-y de contraste en un job de macOS. En push a `main` despliega `build/web` a Firebase
-Hosting, siempre que estén configurados la variable `FIREBASE_PROJECT_ID` y el
-secret `FIREBASE_SERVICE_ACCOUNT`.
+y de contraste en un job de macOS. En push a `main` despliega `build/web` al sitio
+`tobias-arevalo` del proyecto de Firebase `portfolio-byto`, siempre que estén
+configurados la variable `FIREBASE_PROJECT_ID` y el secret
+`FIREBASE_SERVICE_ACCOUNT`. Para desplegar a mano:
+
+```bash
+flutter build web --wasm --release
+firebase deploy --only hosting
+```
 
 ## Licencias
 

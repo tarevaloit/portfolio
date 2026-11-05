@@ -19,7 +19,7 @@ complete.
       `uacd` es uno. Si es público, se puede volver a agregar.
 
 ### Contacto (`assets/content/contact.json`, hoy todo en `null`)
-- [ ] `email` (`[TU EMAIL]` en el mockup).
+- [x] `email`: bytoapps@gmail.com.
 - [ ] `github` (URL).
 - [x] `linkedin`.
 - [x] CV en PDF, ES y EN, en `assets/cv/` (incluyen teléfono, email y foto).
@@ -84,12 +84,16 @@ Sacado de `~/Documents/mediomundo-app`, `~/Documents/laburito` y
 
 ## Infraestructura
 - [x] Repo público: https://github.com/tarevaloit/portfolio
-- [ ] Crear el proyecto de Firebase y habilitar Hosting.
+- [x] Proyecto de Firebase `portfolio-byto`, sitio `tobias-arevalo` → https://tobias-arevalo.web.app
 - [ ] En GitHub → Settings → Secrets and variables → Actions:
   - [ ] Variable `FIREBASE_PROJECT_ID`.
   - [ ] Secret `FIREBASE_SERVICE_ACCOUNT` (JSON de la service account).
   Hasta que existan, el job `deploy` de CI se saltea.
-- [ ] Dominio propio (`[dominio]`) apuntando a Firebase Hosting.
+- [ ] Opcional: dominio propio (por ejemplo tobiasarevalo.dev) apuntando al
+      sitio `tobias-arevalo`; hoy la URL es https://tobias-arevalo.web.app.
+- [ ] Flutter Web bloquea el zoom en mobile (`user-scalable=no` lo inyecta el
+      engine); Lighthouse lo marca en accesibilidad. Revisar en próximas
+      versiones de Flutter.
 - [ ] Opcional: fijar la versión de Flutter con fvm (`fvm use 3.44.0`, crea
       `.fvmrc`). CI ya usa 3.44.0.
 
@@ -104,9 +108,8 @@ Sacado de `~/Documents/mediomundo-app`, `~/Documents/laburito` y
 - [ ] Renderizar el cuerpo en Markdown del detalle (`{es,en}/projects/<slug>.md`)
       cuando haya contenido; hoy ningún proyecto tiene.
 - [ ] Nav en mobile: hoy oculta los links de sección; evaluar un menú.
-- [ ] Cuando haya dominio: `og:url` y URLs absolutas de `og:image` /
-      `twitter:image` en `web/index.html` (hoy son relativas, y varias redes
-      las necesitan absolutas).
+- [x] `og:url` y URLs absolutas de las imágenes de preview (apuntan a
+      tobias-arevalo.web.app; cambiarlas si se suma un dominio propio).
 - [ ] Ícono del sitio: generé una marca `t_` en lima (`tool/brand_assets.py`).
       Reemplazala si tenés un ícono propio.
 - [ ] Deferred loading en WASM: revisar cuando dart2wasm soporte dividir

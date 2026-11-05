@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://tobias-arevalo.web.app/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tobias-arevalo.web.app/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tobias-arevalo.web.app/en"/>
+  </url>
+  <url>
+    <loc>https://tobias-arevalo.web.app/en</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tobias-arevalo.web.app/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tobias-arevalo.web.app/en"/>
+  </url>
+  <url>
+    <loc>https://tobias-arevalo.web.app/projects/fishar</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tobias-arevalo.web.app/projects/fishar"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tobias-arevalo.web.app/en/projects/fishar"/>
+  </url>
+  <url>
+    <loc>https://tobias-arevalo.web.app/projects/laburito</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tobias-arevalo.web.app/projects/laburito"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tobias-arevalo.web.app/en/projects/laburito"/>
+  </url>
+  <url>
+    <loc>https://tobias-arevalo.web.app/projects/fundido</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tobias-arevalo.web.app/projects/fundido"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tobias-arevalo.web.app/en/projects/fundido"/>
+  </url>
+  <url>
+    <loc>https://tobias-arevalo.web.app/projects/portfolio</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tobias-arevalo.web.app/projects/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tobias-arevalo.web.app/en/projects/portfolio"/>
+  </url>
+  <url>
+    <loc>https://tobias-arevalo.web.app/en/projects/fishar</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tobias-arevalo.web.app/projects/fishar"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tobias-arevalo.web.app/en/projects/fishar"/>
+  </url>
+  <url>
+    <loc>https://tobias-arevalo.web.app/en/projects/laburito</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tobias-arevalo.web.app/projects/laburito"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tobias-arevalo.web.app/en/projects/laburito"/>
+  </url>
+  <url>
+    <loc>https://tobias-arevalo.web.app/en/projects/fundido</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tobias-arevalo.web.app/projects/fundido"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tobias-arevalo.web.app/en/projects/fundido"/>
+  </url>
+  <url>
+    <loc>https://tobias-arevalo.web.app/en/projects/portfolio</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tobias-arevalo.web.app/projects/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tobias-arevalo.web.app/en/projects/portfolio"/>
+  </url>
+</urlset>
