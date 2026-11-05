@@ -6,6 +6,7 @@ export 'components/brand_logo.dart';
 export 'components/marquee.dart';
 export 'components/section_header.dart';
 export 'components/skeleton_box.dart';
+export 'components/skip_link.dart';
 export 'components/tag_chip.dart';
 export 'layout/page_container.dart';
 export 'layout/responsive_grid.dart';

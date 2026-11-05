@@ -26,6 +26,23 @@ class _HomePageState extends State<HomePage> {
     for (final section in HomeSection.values) section: GlobalKey(),
   };
 
+  /// Target of the skip link: from here the next Tab reaches the first card.
+  final FocusNode _projectsFocus = FocusNode(
+    debugLabel: 'projects',
+    skipTraversal: true,
+  );
+
+  @override
+  void dispose() {
+    _projectsFocus.dispose();
+    super.dispose();
+  }
+
+  Future<void> _skipToProjects() async {
+    _projectsFocus.requestFocus();
+    await _scrollTo(HomeSection.projects);
+  }
+
   Future<void> _scrollTo(HomeSection section) async {
     final target = _sectionKeys[section]!.currentContext;
     if (target == null) return;
@@ -52,7 +69,10 @@ class _HomePageState extends State<HomePage> {
                   child: LayerBadge(
                     chain: ArchitectureMap.navBar,
                     labelAlignment: Alignment.bottomLeft,
-                    child: HomeNavBar(onSectionSelected: _scrollTo),
+                    child: HomeNavBar(
+                      onSectionSelected: _scrollTo,
+                      onSkipToProjects: _skipToProjects,
+                    ),
                   ),
                 ),
                 SizedBox(height: size.isCompact ? AppSpacing.xxl : 96),
@@ -82,8 +102,11 @@ class _HomePageState extends State<HomePage> {
                 PageContainer(
                   child: LayerBadge(
                     chain: ArchitectureMap.projects,
-                    child: ProjectsSection(
-                      key: _sectionKeys[HomeSection.projects],
+                    child: Focus(
+                      focusNode: _projectsFocus,
+                      child: ProjectsSection(
+                        key: _sectionKeys[HomeSection.projects],
+                      ),
                     ),
                   ),
                 ),

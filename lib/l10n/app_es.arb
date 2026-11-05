@@ -414,5 +414,13 @@
   "demoLaburitoUrgencies": "Puede esperar,Esta semana,Es urgente",
   "@demoLaburitoUrgencies": {
     "description": "Laburito demo: comma-separated urgencies, the labels of PedidoUrgencia in the real app."
+  },
+  "skipToProjects": "Saltar a los proyectos",
+  "@skipToProjects": {
+    "description": "Keyboard skip link, first in the Tab order of the home."
+  },
+  "demoFisharCloseSpot": "Cerrar el spot",
+  "@demoFisharCloseSpot": {
+    "description": "Fishar demo: accessible label of the map, which closes the open spot when tapped."
   }
 }

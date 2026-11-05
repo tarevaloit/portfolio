@@ -39,9 +39,13 @@ class _FisharDemoState extends State<FisharDemo> {
         return Stack(
           children: [
             Positioned.fill(
-              child: GestureDetector(
-                onTap: () => setState(() => _selected = null),
-                child: const CustomPaint(painter: _MapPainter()),
+              child: Semantics(
+                button: true,
+                label: l10n.demoFisharCloseSpot,
+                child: GestureDetector(
+                  onTap: () => setState(() => _selected = null),
+                  child: const CustomPaint(painter: _MapPainter()),
+                ),
               ),
             ),
             for (final (index, spot) in FisharDemo.spots.indexed)

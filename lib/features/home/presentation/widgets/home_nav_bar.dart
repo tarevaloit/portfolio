@@ -10,9 +10,16 @@ enum HomeSection { projects, experience, contact }
 /// Top bar: logo, section links, `ES / EN` switch and the architecture mode
 /// toggle. Section links are hidden on compact screens.
 class HomeNavBar extends StatelessWidget {
-  const HomeNavBar({required this.onSectionSelected, super.key});
+  const HomeNavBar({
+    required this.onSectionSelected,
+    required this.onSkipToProjects,
+    super.key,
+  });
 
   final ValueChanged<HomeSection> onSectionSelected;
+
+  /// Called by the keyboard skip link, which sits over the logo.
+  final VoidCallback onSkipToProjects;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +30,20 @@ class HomeNavBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: AppSpacing.lg),
       child: Row(
         children: [
-          BrandLogo(text: l10n.brandName),
+          Stack(
+            clipBehavior: Clip.none,
+            children: [
+              BrandLogo(text: l10n.brandName),
+              Positioned(
+                left: -AppSpacing.xs,
+                top: -AppSpacing.sm,
+                child: SkipLink(
+                  label: l10n.skipToProjects,
+                  onActivate: onSkipToProjects,
+                ),
+              ),
+            ],
+          ),
           const Spacer(),
           if (!size.isCompact) ...[
             _NavLink(
