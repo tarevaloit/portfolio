@@ -91,7 +91,9 @@ class _ProjectDetailPageState extends ConsumerState<ProjectDetailPage> {
     return projects.when(
       data: (projects) {
         final index = projects.indexWhere((p) => p.slug == widget.slug);
-        if (index == -1) return const NotFoundPage();
+        if (index == -1) {
+          return NotFoundPage(path: GoRouterState.of(context).uri.path);
+        }
         return _content(context, projects[index], index, projects.length);
       },
       loading: () => const Scaffold(
