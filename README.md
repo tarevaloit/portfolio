@@ -26,7 +26,7 @@ sobre la UI.
   o si `presentation` importa `data`.
 - **Contenido sin tocar código:** proyectos, experiencia y contacto en
   JSON/Markdown por idioma, validados en CI.
-- **Detalle con demos navegables**, Hero transitions, fondo con fragment shader
+- **Detalle con capturas reales** en un carrusel, Hero transitions, fondo con fragment shader
   y reduced motion respetado en todas las animaciones.
 
 ## Stack
@@ -198,9 +198,12 @@ transición puede animar entre las dos.
   la portada de color se convierte en el teléfono (`project_heroes.dart`). El
   vuelo dibuja un texto escalado y un bloque de color, así nada se re-layoutea
   a mitad de animación. Con reduced motion no hay vuelo ni transición.
-- **Demos navegables** (`projects/presentation/demos/`): maquetas hechas en
-  Flutter de cada app, no su código. Fishar (mapa con spots y sheet), Fundido
-  (chat con el cerdito) y Laburito (flujo de contratación). "Este portfolio"
+- **Capturas reales** (`widgets/detail/media_carousel.dart`): las pantallas
+  de cada app dentro del teléfono, de a una, con flechas, swipe (también con
+  mouse o trackpad), flechas del teclado y el epígrafe anunciado a lectores
+  de pantalla. Las de la versión web (Laburito: web del Buscador y panel de
+  administración) van en una ventana de navegador aparte. El tipo de cada
+  imagen (`phone`, `web`, `figure`) viene del contenido. "Este portfolio"
   muestra la propia home en miniatura dentro del teléfono.
 - **Cómo está hecho:** las tres capas con los nombres reales de clases que
   vienen del contenido, y el snippet con un resaltador de Dart propio
@@ -219,7 +222,8 @@ está construida:
 - **`LayerBadge`** en cada sección: borde en el color de su capa y la cadena
   real de clases, por ejemplo `ProjectsSection → projectsProvider →
   GetProjects → ProjectsRepositoryImpl`. El overlay no cambia el tamaño ni la
-  posición del widget. Las demos del teléfono se marcan como "maqueta".
+  posición del widget. La home en miniatura de "Este portfolio" se marca
+  como "maqueta".
 - **Cards de proyecto:** la portada muestra las clases de cada capa de ese
   proyecto, desde el contenido.
 - **Links a GitHub:** cada clase abre su archivo cuando el proyecto "Este
@@ -244,7 +248,7 @@ los goldens no dependan del GPU.
 - **Loader instantáneo** en [`web/index.html`](web/index.html): HTML y CSS
   puros, visibles antes de que cargue el engine. Se va con el evento
   `flutter-first-frame`, que además deja el tiempo en `window.__firstFrameMs`.
-- **Deferred imports:** la página de detalle (demos, resaltador, home en
+- **Deferred imports:** la página de detalle (carrusel, resaltador, home en
   miniatura) es una librería aparte que se precarga después del primer frame,
   así el click en una card la encuentra lista y la Hero transition funciona.
   - Build JS (fallback para navegadores sin WasmGC): el detalle sale en un

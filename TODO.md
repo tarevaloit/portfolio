@@ -43,7 +43,8 @@ Los textos de cards y descripciones salen de PLAN.md y del mockup. Faltan:
 - [ ] Snippets reales para "Cómo está hecho" (`projects/<slug>.snippet` +
       `snippet` en el JSON). Fishar no tiene: el del mockup era ilustrativo.
 - [ ] Cuerpo largo opcional en Markdown (`{es,en}/projects/<slug>.md`).
-- [ ] Capturas y videos cortos de cada app (WebP, tamaños fijos).
+- [x] Capturas de cada app (WebP, en `assets/projects/`).
+- [ ] Videos cortos de cada app (opcional).
 
 ## Contenido real importado (revisar)
 Sacado de `~/Documents/mediomundo-app`, `~/Documents/laburito` y
@@ -58,7 +59,15 @@ Sacado de `~/Documents/mediomundo-app`, `~/Documents/laburito` y
       confirmar que es el perfil público que querés mostrar.
 - [ ] Rive real de Fundi en `fundido_app/assets/rive/pig_run_cycle.riv`:
       confirmar licencia antes de usarlo.
-- [ ] Capturas de pantalla: no hay en ningún repo.
+- [ ] Capturas reales (las pasaste vos; las recorté y convertí a WebP):
+      Fishar sale de las de la tienda; Laburito y Fundido de tus carpetas.
+      Dejé afuera las que mostraban emails, teléfono, DNI, IPs, la dirección
+      del pedido o tarjetas, y en el dashboard del panel difuminé los
+      accesos. Revisá los epígrafes (`mediaCaptions`).
+- [ ] Fundido: el chat sale vacío ("¡Empezá a chatear!"). Una captura con una
+      conversación con Fundi lo mostraría mucho mejor.
+- [ ] Laburito: `links.website` está vacío. Si laburito.web.app es público,
+      sumarlo.
 
 ## Copy a revisar
 - [ ] Traducción al inglés del hero: "Flutter apps with architecture that holds
@@ -67,12 +76,6 @@ Sacado de `~/Documents/mediomundo-app`, `~/Documents/laburito` y
       partir del español).
 - [ ] Textos en inglés de la home en `lib/l10n/app_en.arb` (hero, métricas,
       contacto, footer, tip): traducciones mías del mockup.
-- [ ] Textos de ejemplo de las demos (`demoFundido*`, `demoLaburito*` en los
-      ARB): conversación del cerdito, oficios y nombres ficticios de
-      trabajadores. Los escribí yo para que las demos se entiendan; cambialos
-      por los de las apps reales si querés.
-- [ ] Demo de Fishar: usa los placeholders del mockup (`[Nombre del spot]`,
-      `[Especie] · [distancia] · [cantidad] capturas`).
 - [ ] Métricas de la home: son las del PLAN/mockup ("40+", "~1 s",
       "iOS + Android"). Confirmar que se pueden mostrar así.
 - [ ] Este portfolio: descripciones por capa y las 3 decisiones técnicas
