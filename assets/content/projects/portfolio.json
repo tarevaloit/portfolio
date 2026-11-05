@@ -40,5 +40,6 @@
   "snippet": {
     "path": "lib/features/projects/domain/usecases/get_project_by_slug.dart",
     "language": "dart"
-  }
+  },
+  "logo": "assets/projects/portfolio-logo.webp"
 }

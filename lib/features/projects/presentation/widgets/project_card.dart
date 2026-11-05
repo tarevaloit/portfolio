@@ -117,18 +117,20 @@ class _Cover extends ConsumerWidget {
           ),
           Positioned(
             left: AppSpacing.lg,
-            bottom: AppSpacing.sm,
+            bottom: project.logo == null ? AppSpacing.sm : AppSpacing.lg,
             child: ExcludeSemantics(
-              child: Text(
-                project.monogram,
-                style: AppTypography.sans(
-                  size: compact ? 96 : 120,
-                  weight: FontWeight.w800,
-                  height: 1,
-                  letterSpacing: -6,
-                  color: AppColors.background,
-                ),
-              ),
+              child: project.logo == null
+                  ? Text(
+                      project.monogram,
+                      style: AppTypography.sans(
+                        size: compact ? 96 : 120,
+                        weight: FontWeight.w800,
+                        height: 1,
+                        letterSpacing: -6,
+                        color: AppColors.background,
+                      ),
+                    )
+                  : _Logo(asset: project.logo!, size: compact ? 88 : 104),
             ),
           ),
           Positioned(
@@ -165,6 +167,29 @@ class _Cover extends ConsumerWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// App icon on the cover. No shadow: some icons are transparent, and a
+/// box shadow would show as a dark square behind them.
+class _Logo extends StatelessWidget {
+  const _Logo({required this.asset, required this.size});
+
+  final String asset;
+  final double size;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(size * 0.24),
+      child: Image.asset(
+        asset,
+        width: size,
+        height: size,
+        errorBuilder: (context, error, stackTrace) =>
+            SizedBox.square(dimension: size),
       ),
     );
   }
