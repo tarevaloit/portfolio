@@ -2,3 +2,7 @@ tags:
   # Golden tests compare pixels; text rendering differs between macOS and
   # Linux, so CI runs them only on macOS.
   golden:
+  # Writes the README images to docs/screenshots. Opt-in:
+  #   flutter test --run-skipped --tags screenshots
+  screenshots:
+    skip: "Generates docs/screenshots; run with --run-skipped --tags screenshots"
