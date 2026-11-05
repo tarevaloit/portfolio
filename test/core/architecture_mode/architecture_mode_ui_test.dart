@@ -12,6 +12,10 @@ import 'package:portfolio/features/projects/presentation/widgets/project_card.da
 import '../../helpers/pump_app.dart';
 import '../../helpers/pump_localized.dart';
 
+/// A class name in a badge. With the repo URL in the content it reads
+/// "Name ↗" (a link); before it loads, just "Name".
+Finder badge(String name) => find.textContaining(RegExp('^$name( ↗)?\$'));
+
 void main() {
   ProviderContainer containerOf(WidgetTester tester, Type page) =>
       ProviderScope.containerOf(tester.element(find.byType(page)));
@@ -50,11 +54,11 @@ void main() {
     ).read(architectureModeProvider.notifier).toggle();
     await tester.pump();
 
-    expect(find.text('HeroSection'), findsOneWidget);
-    expect(find.text('ProjectsSection'), findsOneWidget);
-    expect(find.text('ExperienceSection'), findsOneWidget);
-    expect(find.text('ContactSection'), findsOneWidget);
-    expect(find.text('ProjectCard'), findsNWidgets(4));
+    expect(badge('HeroSection'), findsOneWidget);
+    expect(badge('ProjectsSection'), findsOneWidget);
+    expect(badge('ExperienceSection'), findsOneWidget);
+    expect(badge('ContactSection'), findsOneWidget);
+    expect(badge('ProjectCard'), findsNWidgets(4));
     // The portfolio card lists the real classes from the content.
     expect(
       find.descendant(
@@ -75,8 +79,8 @@ void main() {
     await tester.pumpNavigation();
 
     expect(find.byType(ProjectDetailPage), findsOneWidget);
-    expect(find.text('ProjectDetailPage'), findsOneWidget);
-    expect(find.text('FundidoDemo'), findsOneWidget);
+    expect(badge('ProjectDetailPage'), findsOneWidget);
+    expect(badge('FundidoDemo'), findsOneWidget);
     expect(find.text('maqueta'), findsOneWidget);
   });
 
