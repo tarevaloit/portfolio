@@ -422,5 +422,17 @@
   "demoFisharCloseSpot": "Cerrar el spot",
   "@demoFisharCloseSpot": {
     "description": "Fishar demo: accessible label of the map, which closes the open spot when tapped."
+  },
+  "aboutTitle": "Sobre mí",
+  "@aboutTitle": {
+    "description": "Title of the \"about me\" section."
+  },
+  "aboutError": "No se pudo cargar esta sección.",
+  "@aboutError": {
+    "description": "Shown when the about content fails to load."
+  },
+  "aboutPhotoLabel": "Foto de Tobias Arevalo",
+  "@aboutPhotoLabel": {
+    "description": "Accessible label of the portrait."
   }
 }

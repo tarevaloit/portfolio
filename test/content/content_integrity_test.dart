@@ -8,6 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:portfolio/app/di/repository_overrides.dart';
 import 'package:portfolio/core/content/content.dart';
 import 'package:portfolio/core/domain/domain.dart';
+import 'package:portfolio/features/about/presentation/providers/about_providers.dart';
 import 'package:portfolio/features/contact/presentation/providers/contact_providers.dart';
 import 'package:portfolio/features/experience/presentation/providers/experience_providers.dart';
 import 'package:portfolio/features/projects/domain/entities/project.dart';
@@ -73,6 +74,16 @@ void main() {
         expect(entries, isNotEmpty);
         for (final entry in entries) {
           expect(entry.highlights, isNotEmpty, reason: entry.id);
+        }
+      });
+
+      test('about loads and its photo is bundled', () async {
+        final about = await container.read(aboutInfoProvider(language).future);
+
+        expect(about.paragraphs, isNotEmpty);
+        final photo = about.photo;
+        if (photo != null) {
+          expect(await reader.list('assets/about/'), contains(photo));
         }
       });
 

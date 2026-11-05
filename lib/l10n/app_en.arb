@@ -88,5 +88,8 @@
   "demoLaburitoWhenTitle": "When do you need it?",
   "demoLaburitoUrgencies": "It can wait,This week,It is urgent",
   "skipToProjects": "Skip to projects",
-  "demoFisharCloseSpot": "Close the spot"
+  "demoFisharCloseSpot": "Close the spot",
+  "aboutTitle": "About me",
+  "aboutError": "This section could not be loaded.",
+  "aboutPhotoLabel": "Photo of Tobias Arevalo"
 }

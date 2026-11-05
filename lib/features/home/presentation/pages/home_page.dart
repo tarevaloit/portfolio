@@ -4,6 +4,7 @@ import 'package:portfolio/core/architecture_mode/layer_badge.dart';
 import 'package:portfolio/core/design_system/design_system.dart';
 import 'package:portfolio/core/l10n/l10n.dart';
 import 'package:portfolio/core/shaders/blueprint_background.dart';
+import 'package:portfolio/features/about/presentation/widgets/about_section.dart';
 import 'package:portfolio/features/contact/presentation/widgets/contact_section.dart';
 import 'package:portfolio/features/experience/presentation/widgets/experience_section.dart';
 import 'package:portfolio/features/home/presentation/widgets/hero_section.dart';
@@ -108,6 +109,13 @@ class _HomePageState extends State<HomePage> {
                         key: _sectionKeys[HomeSection.projects],
                       ),
                     ),
+                  ),
+                ),
+                gap,
+                const PageContainer(
+                  child: LayerBadge(
+                    chain: ArchitectureMap.about,
+                    child: AboutSection(),
                   ),
                 ),
                 gap,

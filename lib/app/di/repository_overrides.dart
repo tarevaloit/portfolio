@@ -3,6 +3,10 @@ import 'package:flutter_riverpod/misc.dart';
 import 'package:portfolio/core/architecture_mode/source_repository.dart';
 import 'package:portfolio/core/content/content.dart';
 import 'package:portfolio/core/domain/domain.dart';
+import 'package:portfolio/features/about/data/datasources/about_local_data_source.dart';
+import 'package:portfolio/features/about/data/repositories/about_repository_impl.dart';
+import 'package:portfolio/features/about/domain/repositories/about_repository.dart';
+import 'package:portfolio/features/about/presentation/providers/about_providers.dart';
 import 'package:portfolio/features/contact/data/datasources/contact_local_data_source.dart';
 import 'package:portfolio/features/contact/data/repositories/contact_repository_impl.dart';
 import 'package:portfolio/features/contact/domain/repositories/contact_repository.dart';
@@ -26,6 +30,7 @@ List<Override> repositoryOverrides({
   ProjectsRepository? projects,
   ExperienceRepository? experience,
   ContactRepository? contact,
+  AboutRepository? about,
 }) {
   final content = reader ?? BundleContentAssetReader(rootBundle);
   return [
@@ -38,6 +43,9 @@ List<Override> repositoryOverrides({
     ),
     contactRepositoryProvider.overrideWithValue(
       contact ?? ContactRepositoryImpl(ContactLocalDataSource(content)),
+    ),
+    aboutRepositoryProvider.overrideWithValue(
+      about ?? AboutRepositoryImpl(AboutLocalDataSource(content)),
     ),
     // The repo URL for the architecture badges is the GitHub link of the
     // "Este portfolio" project in the content.

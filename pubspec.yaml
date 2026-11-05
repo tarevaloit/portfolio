@@ -47,6 +47,8 @@ flutter:
     - assets/projects/
     # Downloadable CV, one PDF per language.
     - assets/cv/
+    # Photo of the "Sobre mí" section.
+    - assets/about/
 
   shaders:
     - shaders/blueprint.frag

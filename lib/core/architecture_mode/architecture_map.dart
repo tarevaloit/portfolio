@@ -85,6 +85,25 @@ abstract final class ArchitectureMap {
     LayerRef.domain('Project', '$_projects/domain/entities/project.dart'),
   ];
 
+  static const List<LayerRef> about = [
+    LayerRef.presentation(
+      'AboutSection',
+      'lib/features/about/presentation/widgets/about_section.dart',
+    ),
+    LayerRef.presentation(
+      'aboutInfoProvider',
+      'lib/features/about/presentation/providers/about_providers.dart',
+    ),
+    LayerRef.domain(
+      'GetAboutInfo',
+      'lib/features/about/domain/usecases/get_about_info.dart',
+    ),
+    LayerRef.data(
+      'AboutRepositoryImpl',
+      'lib/features/about/data/repositories/about_repository_impl.dart',
+    ),
+  ];
+
   static const List<LayerRef> experience = [
     LayerRef.presentation(
       'ExperienceSection',
@@ -181,6 +200,7 @@ abstract final class ArchitectureMap {
     marquee,
     projects,
     projectCard,
+    about,
     experience,
     contact,
     projectDetail,
