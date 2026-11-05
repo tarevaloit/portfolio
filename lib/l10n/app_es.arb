@@ -268,101 +268,6 @@
       }
     }
   },
-  "demoFisharSearch": "Buscar spots, especies…",
-  "@demoFisharSearch": {
-    "description": "Fishar demo: search field placeholder (from the mockup)."
-  },
-  "demoFisharSpotName": "[Nombre del spot]",
-  "@demoFisharSpotName": {
-    "description": "Fishar demo: placeholder spot name (from the mockup)."
-  },
-  "demoFisharSpotMeta": "[Especie] · [distancia] · [cantidad] capturas",
-  "@demoFisharSpotMeta": {
-    "description": "Fishar demo: placeholder spot details (from the mockup)."
-  },
-  "demoFisharSpot": "Spot {number}",
-  "@demoFisharSpot": {
-    "description": "Fishar demo: accessible label of a map pin.",
-    "placeholders": {
-      "number": {
-        "type": "int"
-      }
-    }
-  },
-  "demoFisharHint": "Tocá un spot del mapa",
-  "@demoFisharHint": {
-    "description": "Fishar demo: hint while no spot is selected. Example copy."
-  },
-  "demoFundidoName": "Fundi",
-  "@demoFundidoName": {
-    "description": "Fundido demo: name of the assistant, as in the real app (Fundi)."
-  },
-  "demoFundidoStatus": "en línea",
-  "@demoFundidoStatus": {
-    "description": "Fundido demo: status under the name. Example copy."
-  },
-  "demoFundidoGreeting": "¡Hola! Soy Fundi. Contame en qué gastaste y lo anoto.",
-  "@demoFundidoGreeting": {
-    "description": "Fundido demo: first message. Example copy."
-  },
-  "demoFundidoAsk1": "Ayer pizza y birra con los pibes, $4.500",
-  "@demoFundidoAsk1": {
-    "description": "Fundido demo: suggested message with every required field. Example copy."
-  },
-  "demoFundidoReply1": "Listo, gasto anotado: $4.500 en comida, de ayer.",
-  "@demoFundidoReply1": {
-    "description": "Fundido demo: reply when the expense is complete. Mirrors the real prompt."
-  },
-  "demoFundidoAsk2": "Cargué nafta",
-  "@demoFundidoAsk2": {
-    "description": "Fundido demo: suggested message missing the amount. Example copy."
-  },
-  "demoFundidoReply2": "Dale, pero no me dijiste cuánto fue ni cuándo.",
-  "@demoFundidoReply2": {
-    "description": "Fundido demo: reply asking for missing fields; the real prompt never says \"logged\" here."
-  },
-  "demoFundidoAsk3": "Hoy pagué la luz, $18.000",
-  "@demoFundidoAsk3": {
-    "description": "Fundido demo: suggested message. Example copy."
-  },
-  "demoFundidoReply3": "Anotado: $18.000 en servicios, de hoy.",
-  "@demoFundidoReply3": {
-    "description": "Fundido demo: reply. Category names come from the real prompt."
-  },
-  "demoFundidoTyping": "escribiendo…",
-  "@demoFundidoTyping": {
-    "description": "Fundido demo: typing indicator."
-  },
-  "demoFundidoInput": "Escribile a Fundi…",
-  "@demoFundidoInput": {
-    "description": "Fundido demo: disabled input placeholder."
-  },
-  "demoLaburitoTradesTitle": "¿Qué necesitás?",
-  "@demoLaburitoTradesTitle": {
-    "description": "Laburito demo: step 1 title. Example copy."
-  },
-  "demoLaburitoTrades": "Plomería,Electricidad,Gas,Pintura",
-  "@demoLaburitoTrades": {
-    "description": "Laburito demo: comma-separated trades, from the real app categories."
-  },
-  "demoLaburitoDone": "¡Pedido publicado! Los profesionales de {trade} cerca tuyo ya lo pueden ver.",
-  "@demoLaburitoDone": {
-    "description": "Laburito demo: success message. Example copy.",
-    "placeholders": {
-      "trade": {
-        "type": "String",
-        "example": "Plomería"
-      }
-    }
-  },
-  "demoLaburitoRestart": "Empezar de nuevo",
-  "@demoLaburitoRestart": {
-    "description": "Laburito demo: restart button."
-  },
-  "demoBack": "Atrás",
-  "@demoBack": {
-    "description": "Back button inside a demo."
-  },
   "architectureMock": "maqueta",
   "@architectureMock": {
     "description": "Architecture mode: marks the phone demos, which are hand-made mocks, not the real app."
@@ -395,33 +300,9 @@
   "@detailMedia": {
     "description": "Title of the section with real images of a project."
   },
-  "demoLaburitoWhereTitle": "¿Dónde?",
-  "@demoLaburitoWhereTitle": {
-    "description": "Laburito demo: step 2 title (real step \"donde\")."
-  },
-  "demoLaburitoAddress": "[Dirección del pedido]",
-  "@demoLaburitoAddress": {
-    "description": "Laburito demo: placeholder address next to the map pin."
-  },
-  "demoLaburitoUseLocation": "Usar esta ubicación",
-  "@demoLaburitoUseLocation": {
-    "description": "Laburito demo: confirms the location. Example copy."
-  },
-  "demoLaburitoWhenTitle": "¿Para cuándo?",
-  "@demoLaburitoWhenTitle": {
-    "description": "Laburito demo: step 3 title (real step \"vigencia\"). Example copy."
-  },
-  "demoLaburitoUrgencies": "Puede esperar,Esta semana,Es urgente",
-  "@demoLaburitoUrgencies": {
-    "description": "Laburito demo: comma-separated urgencies, the labels of PedidoUrgencia in the real app."
-  },
   "skipToProjects": "Saltar a los proyectos",
   "@skipToProjects": {
     "description": "Keyboard skip link, first in the Tab order of the home."
-  },
-  "demoFisharCloseSpot": "Cerrar el spot",
-  "@demoFisharCloseSpot": {
-    "description": "Fishar demo: accessible label of the map, which closes the open spot when tapped."
   },
   "aboutTitle": "Sobre mí",
   "@aboutTitle": {
@@ -434,5 +315,41 @@
   "aboutPhotoLabel": "Foto de Tobias Arevalo",
   "@aboutPhotoLabel": {
     "description": "Accessible label of the portrait."
+  },
+  "detailScreensLabel": "Capturas de {name}",
+  "@detailScreensLabel": {
+    "description": "Accessible label of the phone with the screenshots carousel.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "detailWeb": "Versión web",
+  "@detailWeb": {
+    "description": "Title of the section with screenshots of the web version of a project."
+  },
+  "carouselPrevious": "Imagen anterior",
+  "@carouselPrevious": {
+    "description": "Tooltip of the previous button of a screenshots carousel."
+  },
+  "carouselNext": "Imagen siguiente",
+  "@carouselNext": {
+    "description": "Tooltip of the next button of a screenshots carousel."
+  },
+  "carouselCaption": "Imagen {index} de {total}: {caption}",
+  "@carouselCaption": {
+    "description": "What screen readers announce for the current image of a carousel.",
+    "placeholders": {
+      "index": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "caption": {
+        "type": "String"
+      }
+    }
   }
 }

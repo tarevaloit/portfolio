@@ -5,12 +5,10 @@ import 'package:portfolio/core/architecture_mode/architecture_mode_controller.da
 import 'package:portfolio/core/architecture_mode/architecture_mode_toggle.dart';
 import 'package:portfolio/core/architecture_mode/layer_badge.dart';
 import 'package:portfolio/features/home/presentation/pages/home_page.dart';
-import 'package:portfolio/features/projects/presentation/demos/piggy_avatar.dart';
 import 'package:portfolio/features/projects/presentation/pages/project_detail_page.dart';
 import 'package:portfolio/features/projects/presentation/widgets/project_card.dart';
 
 import '../../helpers/pump_app.dart';
-import '../../helpers/pump_localized.dart';
 
 /// A class name in a badge. With the repo URL in the content it reads
 /// "Name ↗" (a link); before it loads, just "Name".
@@ -80,8 +78,9 @@ void main() {
 
     expect(find.byType(ProjectDetailPage), findsOneWidget);
     expect(badge('ProjectDetailPage'), findsOneWidget);
-    expect(badge('FundidoDemo'), findsOneWidget);
-    expect(find.text('maqueta'), findsOneWidget);
+    // Real screenshots, so not marked as a mock.
+    expect(badge('MediaCarousel'), findsOneWidget);
+    expect(find.text('maqueta'), findsNothing);
   });
 
   for (final size in const [Size(360, 800), Size(1440, 900)]) {
@@ -102,47 +101,4 @@ void main() {
       expect(tester.takeException(), isNull);
     });
   }
-
-  group('PiggyAvatar', () {
-    testWidgets('hops when a reply arrives and wiggles while talking', (
-      tester,
-    ) async {
-      Widget piggy({bool talking = false, int celebrations = 0}) => Center(
-        child: PiggyAvatar(talking: talking, celebrations: celebrations),
-      );
-      await tester.pumpLocalized(
-        piggy(),
-        scrollable: false,
-        reduceMotion: false,
-      );
-      final rest = tester.getRect(find.byType(CustomPaint).last);
-
-      await tester.pumpLocalized(
-        piggy(celebrations: 1),
-        scrollable: false,
-        reduceMotion: false,
-      );
-      await tester.pump(const Duration(milliseconds: 260));
-      final hopping = tester.getRect(find.byType(CustomPaint).last);
-      expect(hopping.top, lessThan(rest.top));
-
-      await tester.pumpLocalized(
-        piggy(talking: true, celebrations: 1),
-        scrollable: false,
-        reduceMotion: false,
-      );
-      await tester.pump(const Duration(seconds: 1));
-      expect(tester.takeException(), isNull);
-    });
-
-    testWidgets('stays still with reduced motion', (tester) async {
-      await tester.pumpLocalized(
-        const Center(child: PiggyAvatar(talking: true)),
-        scrollable: false,
-      );
-      await tester.pump();
-
-      expect(tester.binding.hasScheduledFrame, isFalse);
-    });
-  });
 }

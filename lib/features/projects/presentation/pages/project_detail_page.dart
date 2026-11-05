@@ -17,12 +17,15 @@ import 'package:portfolio/features/projects/domain/entities/project.dart';
 import 'package:portfolio/features/projects/presentation/demos/project_demo.dart';
 import 'package:portfolio/features/projects/presentation/providers/projects_providers.dart';
 import 'package:portfolio/features/projects/presentation/widgets/detail/how_its_built_section.dart';
+import 'package:portfolio/features/projects/presentation/widgets/detail/media_carousel.dart';
 import 'package:portfolio/features/projects/presentation/widgets/detail/media_section.dart';
 import 'package:portfolio/features/projects/presentation/widgets/detail/phone_frame.dart';
+import 'package:portfolio/features/projects/presentation/widgets/detail/web_media_section.dart';
 import 'package:portfolio/features/projects/presentation/widgets/project_heroes.dart';
 
-/// `/projects/:slug`: hero with metadata and the phone demo, then
-/// "Cómo está hecho" and the technical decisions.
+/// `/projects/:slug`: hero with metadata and the app's screenshots in a
+/// phone, the web version if there is one, then "Cómo está hecho", the
+/// technical decisions and other images.
 ///
 /// Reads the same sorted list as the home grid, so when coming from a card
 /// the project is already there on the first frame and the Heroes fly.
@@ -114,6 +117,12 @@ class _ProjectDetailPageState extends ConsumerState<ProjectDetailPage> {
 
   Widget _content(BuildContext context, Project project, int index, int total) {
     final size = ScreenSize.of(context);
+    List<ProjectMedia> mediaOf(ProjectMediaKind kind) => [
+      for (final item in project.media)
+        if (item.kind == kind) item,
+    ];
+    final web = mediaOf(ProjectMediaKind.web);
+    final figures = mediaOf(ProjectMediaKind.figure);
     return Title(
       title: context.l10n.projectPageTitle(project.name),
       color: Color(project.color),
@@ -134,6 +143,7 @@ class _ProjectDetailPageState extends ConsumerState<ProjectDetailPage> {
                       labelAlignment: Alignment.topLeft,
                       child: _DetailHero(
                         project: project,
+                        screens: mediaOf(ProjectMediaKind.phone),
                         demo: ProjectDemo(
                           project: project,
                           extraDemos: widget.extraDemos,
@@ -142,6 +152,18 @@ class _ProjectDetailPageState extends ConsumerState<ProjectDetailPage> {
                       ),
                     ),
                   ),
+                  if (web.isNotEmpty) ...[
+                    SizedBox(height: size.sectionSpacing),
+                    PageContainer(
+                      child: LayerBadge(
+                        chain: ArchitectureMap.webMedia,
+                        child: WebMediaSection(
+                          media: web,
+                          accent: Color(project.color),
+                        ),
+                      ),
+                    ),
+                  ],
                   SizedBox(height: size.sectionSpacing),
                   const PageContainer(child: Divider()),
                   SizedBox(height: size.sectionSpacing * 0.75),
@@ -160,9 +182,9 @@ class _ProjectDetailPageState extends ConsumerState<ProjectDetailPage> {
                       child: DecisionsSection(decisions: project.decisions),
                     ),
                   ],
-                  if (project.media.isNotEmpty) ...[
+                  if (figures.isNotEmpty) ...[
                     SizedBox(height: size.sectionSpacing * 0.75),
-                    PageContainer(child: MediaSection(media: project.media)),
+                    PageContainer(child: MediaSection(media: figures)),
                   ],
                   SizedBox(height: size.sectionSpacing),
                 ],
@@ -235,6 +257,7 @@ class _TopBar extends StatelessWidget {
 class _DetailHero extends ConsumerWidget {
   const _DetailHero({
     required this.project,
+    required this.screens,
     required this.demo,
     required this.onHowItsBuilt,
   });
@@ -243,6 +266,9 @@ class _DetailHero extends ConsumerWidget {
   static const double sideBySideMinWidth = 900;
 
   final Project project;
+
+  /// Screens of the app, shown in the phone. Without them it shows [demo].
+  final List<ProjectMedia> screens;
   final Widget demo;
   final VoidCallback onHowItsBuilt;
 
@@ -373,20 +399,43 @@ class _DetailHero extends ConsumerWidget {
       ],
     );
 
-    final phone = LayerBadge(
-      chain: ArchitectureMap.demo(project.slug),
-      isMock: true,
-      labelAlignment: Alignment.bottomCenter,
-      child: Semantics(
-        container: true,
-        label: l10n.detailDemoLabel(project.name),
-        child: ProjectCoverHero(
-          slug: project.slug,
-          color: accent,
-          child: PhoneFrame(child: demo),
+    final Widget phone;
+    if (screens.isEmpty) {
+      phone = LayerBadge(
+        chain: ArchitectureMap.demo(project.slug),
+        isMock: true,
+        labelAlignment: Alignment.bottomCenter,
+        child: Semantics(
+          container: true,
+          label: l10n.detailDemoLabel(project.name),
+          child: ProjectCoverHero(
+            slug: project.slug,
+            color: accent,
+            child: PhoneFrame(child: demo),
+          ),
         ),
-      ),
-    );
+      );
+    } else {
+      phone = LayerBadge(
+        chain: ArchitectureMap.screenshots,
+        labelAlignment: Alignment.topCenter,
+        child: Semantics(
+          container: true,
+          label: l10n.detailScreensLabel(project.name),
+          child: MediaCarousel(
+            media: screens,
+            accent: accent,
+            captionWidth: PhoneFrame.defaultWidth,
+            // Only the phone flies from the card; the controls fade in.
+            frameBuilder: (context, images) => ProjectCoverHero(
+              slug: project.slug,
+              color: accent,
+              child: PhoneFrame(child: images),
+            ),
+          ),
+        ),
+      );
+    }
 
     return LayoutBuilder(
       builder: (context, constraints) {

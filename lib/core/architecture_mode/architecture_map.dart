@@ -166,26 +166,31 @@ abstract final class ArchitectureMap {
     LayerRef.domain('CodeSnippet', '$_projects/domain/entities/project.dart'),
   ];
 
-  /// The phone demo of a project (a hand-made mock, not the app's code).
+  /// Real screenshots of the app, in the phone of the detail page.
+  static const List<LayerRef> screenshots = [
+    LayerRef.presentation(
+      'MediaCarousel',
+      '$_projects/presentation/widgets/detail/media_carousel.dart',
+    ),
+    LayerRef.domain('ProjectMedia', '$_projects/domain/entities/project.dart'),
+  ];
+
+  /// Screenshots of the web version, in a browser window.
+  static const List<LayerRef> webMedia = [
+    LayerRef.presentation(
+      'WebMediaSection',
+      '$_projects/presentation/widgets/detail/web_media_section.dart',
+    ),
+    LayerRef.presentation(
+      'BrowserFrame',
+      '$_projects/presentation/widgets/detail/browser_frame.dart',
+    ),
+    LayerRef.domain('ProjectMedia', '$_projects/domain/entities/project.dart'),
+  ];
+
+  /// The phone demo of a project without screenshots (a hand-made mock,
+  /// not the app's code).
   static List<LayerRef> demo(String slug) => switch (slug) {
-    'fishar' => const [
-      LayerRef.presentation(
-        'FisharDemo',
-        '$_projects/presentation/demos/fishar_demo.dart',
-      ),
-    ],
-    'fundido' => const [
-      LayerRef.presentation(
-        'FundidoDemo',
-        '$_projects/presentation/demos/fundido_demo.dart',
-      ),
-    ],
-    'laburito' => const [
-      LayerRef.presentation(
-        'LaburitoDemo',
-        '$_projects/presentation/demos/laburito_demo.dart',
-      ),
-    ],
     'portfolio' => const [
       LayerRef.presentation('HomePreview', '$_home/widgets/home_preview.dart'),
     ],
@@ -206,7 +211,8 @@ abstract final class ArchitectureMap {
     projectDetail,
     howItsBuilt,
     codeBlock,
-    for (final slug in ['fishar', 'fundido', 'laburito', 'portfolio'])
-      demo(slug),
+    screenshots,
+    webMedia,
+    demo('portfolio'),
   ];
 }

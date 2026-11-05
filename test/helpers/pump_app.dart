@@ -66,6 +66,17 @@ extension PumpPortfolio on WidgetTester {
   /// Lets a navigation and its page transition finish, including content
   /// that a new route loads from the asset bundle. `pumpAndSettle` cannot
   /// be used because the logo cursor blinks forever.
+  /// Lets asset images (logos, screenshots) decode, which happens outside
+  /// the fake clock, so goldens and captures show them.
+  Future<void> settleImages() async {
+    for (var i = 0; i < 3; i++) {
+      await runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 100)),
+      );
+      await pump();
+    }
+  }
+
   Future<void> pumpNavigation() async {
     await pump();
     await runAsync(

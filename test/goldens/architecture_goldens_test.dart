@@ -45,6 +45,7 @@ void main() {
 
   testWidgets('detail with architecture mode', (tester) async {
     await tester.pumpPortfolio(location: '/projects/fundido');
+    await tester.settleImages();
     await turnOn(tester, ProjectDetailPage);
 
     await expectLater(

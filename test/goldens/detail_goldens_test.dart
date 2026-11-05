@@ -16,6 +16,7 @@ void main() {
   ]) {
     testWidgets('Fishar detail, $name', (tester) async {
       await tester.pumpPortfolio(location: '/projects/fishar', size: size);
+      await tester.settleImages();
 
       await expectLater(
         find.byType(ProjectDetailPage),

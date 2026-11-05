@@ -5,7 +5,11 @@ import 'package:portfolio/core/design_system/design_system.dart';
 import 'package:portfolio/core/platform/link_opener.dart';
 import 'package:portfolio/features/home/presentation/pages/home_page.dart';
 import 'package:portfolio/features/projects/presentation/pages/project_detail_page.dart';
+import 'package:portfolio/features/projects/presentation/widgets/detail/browser_frame.dart';
 import 'package:portfolio/features/projects/presentation/widgets/detail/how_its_built_section.dart';
+import 'package:portfolio/features/projects/presentation/widgets/detail/media_carousel.dart';
+import 'package:portfolio/features/projects/presentation/widgets/detail/phone_frame.dart';
+import 'package:portfolio/features/projects/presentation/widgets/detail/web_media_section.dart';
 import 'package:portfolio/features/projects/presentation/widgets/project_card.dart';
 
 import '../../../helpers/fakes.dart';
@@ -76,6 +80,34 @@ void main() {
         findsOneWidget,
       );
       semantics.dispose();
+    });
+
+    testWidgets('the phone shows the real screens; the web its own section', (
+      tester,
+    ) async {
+      await tester.pumpPortfolio(location: '/projects/laburito');
+
+      final phone = find.ancestor(
+        of: find.byType(PhoneFrame),
+        matching: find.byType(MediaCarousel),
+      );
+      expect(phone, findsOneWidget);
+      expect(
+        find.textContaining('zona de cobertura', findRichText: true),
+        findsOneWidget,
+      );
+      expect(find.byType(WebMediaSection), findsOneWidget);
+      expect(find.text('Versión web'), findsOneWidget);
+      expect(find.byType(BrowserFrame), findsOneWidget);
+    });
+
+    testWidgets('a project without a web version has no web section', (
+      tester,
+    ) async {
+      await tester.pumpPortfolio(location: '/projects/fishar');
+
+      expect(find.byType(MediaCarousel), findsOneWidget);
+      expect(find.byType(WebMediaSection), findsNothing);
     });
 
     testWidgets('"Código" is disabled while there is no GitHub link', (

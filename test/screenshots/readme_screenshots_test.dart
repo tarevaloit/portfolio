@@ -29,39 +29,29 @@ Future<void> _save(WidgetTester tester, String name) async {
   });
 }
 
-/// Lets asset images (icons, burndown) decode before capturing.
-Future<void> _settleImages(WidgetTester tester) async {
-  for (var i = 0; i < 3; i++) {
-    await tester.runAsync(
-      () => Future<void>.delayed(const Duration(milliseconds: 100)),
-    );
-    await tester.pump();
-  }
-}
-
 void main() {
   testWidgets('home, desktop', (tester) async {
     await tester.pumpPortfolio();
-    await _settleImages(tester);
+    await tester.settleImages();
     await _save(tester, 'home-desktop');
   });
 
   testWidgets('home, mobile', (tester) async {
     await tester.pumpPortfolio(size: const Size(390, 844));
-    await _settleImages(tester);
+    await tester.settleImages();
     await _save(tester, 'home-mobile');
   });
 
   testWidgets('project detail, desktop', (tester) async {
     await tester.pumpPortfolio(location: '/projects/fishar');
-    await _settleImages(tester);
+    await tester.settleImages();
     await _save(tester, 'detail-desktop');
   });
 
   testWidgets('architecture mode, frames for the GIF', (tester) async {
     await tester.pumpPortfolio(reduceMotion: false);
     await tester.pump(const Duration(seconds: 2));
-    await _settleImages(tester);
+    await tester.settleImages();
     final frames = Directory('$_out/frames');
     if (frames.existsSync()) frames.deleteSync(recursive: true);
 
