@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:portfolio/core/architecture_mode/architecture_map.dart';
 import 'package:portfolio/core/architecture_mode/architecture_mode_toggle.dart';
 import 'package:portfolio/core/architecture_mode/layer_badge.dart';
+import 'package:portfolio/core/contact/contact_email.dart';
 import 'package:portfolio/core/design_system/design_system.dart';
 import 'package:portfolio/core/l10n/l10n.dart';
 import 'package:portfolio/core/l10n/language_switch.dart';
@@ -279,6 +280,10 @@ class _DetailHero extends ConsumerWidget {
     final size = ScreenSize.of(context);
     final accent = Color(project.color);
     final github = project.links.github;
+    // A private repo cannot be linked: the button asks for access by mail.
+    final email = project.privateSource
+        ? ref.watch(contactEmailProvider).value
+        : null;
 
     final nameSize = switch (size) {
       ScreenSize.compact => 72.0,
@@ -386,12 +391,27 @@ class _DetailHero extends ConsumerWidget {
                   onPressed: onHowItsBuilt,
                   child: Text(l10n.detailHowItsBuiltCta),
                 ),
-                OutlinedButton(
-                  onPressed: github == null
-                      ? null
-                      : () => ref.read(linkOpenerProvider).open(github),
-                  child: Text(l10n.detailCode),
-                ),
+                if (github == null && project.privateSource)
+                  OutlinedButton(
+                    onPressed: email == null
+                        ? null
+                        : () => ref
+                              .read(linkOpenerProvider)
+                              .open(
+                                mailtoWithSubject(
+                                  email,
+                                  l10n.detailAccessSubject(project.name),
+                                ),
+                              ),
+                    child: Text(l10n.detailRequestAccess),
+                  )
+                else
+                  OutlinedButton(
+                    onPressed: github == null
+                        ? null
+                        : () => ref.read(linkOpenerProvider).open(github),
+                    child: Text(l10n.detailCode),
+                  ),
               ],
             ),
           ),

@@ -69,5 +69,9 @@
   "detailWeb": "Web version",
   "carouselPrevious": "Previous image",
   "carouselNext": "Next image",
-  "carouselCaption": "Image {index} of {total}: {caption}"
+  "carouselCaption": "Image {index} of {total}: {caption}",
+  "detailFiles": "Feature files",
+  "detailOpenFile": "Show {name}",
+  "detailRequestAccess": "Private repo · request access",
+  "detailAccessSubject": "Access to the {name} code"
 }

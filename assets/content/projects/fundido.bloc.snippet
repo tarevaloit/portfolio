@@ -1,0 +1,37 @@
+  Future<void> _onSendMessage(
+      SendMessageEvent event, Emitter<ChatState> emit) async {
+    final userMessage = ChatMessage(role: 'user', content: event.message);
+    _messages.add(userMessage);
+    emit(ChatLoading());
+
+    try {
+      final historialParaIA = getMensajesDelGastoActual();
+      final response = await interpretarGastoUseCase(historialParaIA);
+
+      _messages.add(response);
+
+      if (response.gasto != null) {
+        _gastoParcial.actualizarDesde(response.gasto!);
+        print(_gastoParcial);
+      }
+
+      if (_gastoParcial.estaCompleto) {
+        final gastoEntity = _gastoParcial.toEntity(
+          categoria: response.gasto?['categoria'] ?? 'otros',
+        );
+
+        final uid = FirebaseAuth.instance.currentUser?.uid;
+        if (uid == null) throw Exception('Usuario no autenticado');
+
+        final gastoGuardado = await guardarGastoUseCase(uid, gastoEntity);
+        print('📝 Gasto guardado en Firestore: ${gastoGuardado.id}');
+
+        _gastoParcial.reset();
+      }
+
+      emit(ChatLoaded(List.from(_messages)));
+    } catch (e) {
+      emit(ChatError('Error al procesar el mensaje: $e'));
+      emit(ChatLoaded(List.from(_messages)));
+    }
+  }

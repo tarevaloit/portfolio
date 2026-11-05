@@ -6,6 +6,7 @@ import 'package:portfolio/core/platform/link_opener.dart';
 import 'package:portfolio/features/home/presentation/pages/home_page.dart';
 import 'package:portfolio/features/projects/presentation/pages/project_detail_page.dart';
 import 'package:portfolio/features/projects/presentation/widgets/detail/browser_frame.dart';
+import 'package:portfolio/features/projects/presentation/widgets/detail/feature_code.dart';
 import 'package:portfolio/features/projects/presentation/widgets/detail/how_its_built_section.dart';
 import 'package:portfolio/features/projects/presentation/widgets/detail/media_carousel.dart';
 import 'package:portfolio/features/projects/presentation/widgets/detail/phone_frame.dart';
@@ -110,15 +111,62 @@ void main() {
       expect(find.byType(WebMediaSection), findsNothing);
     });
 
-    testWidgets('"Código" is disabled while there is no GitHub link', (
+    testWidgets('a private repo asks for access by mail', (tester) async {
+      final opener = RecordingLinkOpener();
+      await tester.pumpPortfolio(
+        location: '/projects/fishar',
+        overrides: [linkOpenerProvider.overrideWithValue(opener)],
+      );
+
+      expect(find.widgetWithText(OutlinedButton, 'Código ↗'), findsNothing);
+      await tester.tap(
+        find.widgetWithText(OutlinedButton, 'Repo privado · pedir acceso'),
+      );
+
+      expect(
+        opener.opened.single.toString(),
+        'mailto:bytoapps@gmail.com'
+        '?subject=Acceso%20al%20c%C3%B3digo%20de%20Fishar',
+      );
+    });
+
+    testWidgets('the code shows one file at a time, from tabs or the tree', (
       tester,
     ) async {
-      await tester.pumpPortfolio(location: '/projects/fishar');
+      await tester.pumpPortfolio(location: '/projects/laburito');
+      final code = find.byType(FeatureCode);
+      await tester.ensureVisible(code);
+      await tester.pump();
 
-      final button = tester.widget<OutlinedButton>(
-        find.widgetWithText(OutlinedButton, 'Código ↗'),
+      // Opens on the first excerpt (presentation).
+      expect(
+        find.textContaining('Future<bool> confirmar()', findRichText: true),
+        findsOneWidget,
       );
-      expect(button.onPressed, isNull);
+
+      await tester.tap(
+        find
+            .descendant(
+              of: code,
+              matching: find.text('pedidos_repository.dart'),
+            )
+            .first,
+      );
+      await tester.pump();
+      expect(
+        find.textContaining('Future<Pedido> crearPedido(', findRichText: true),
+        findsOneWidget,
+      );
+
+      // The tree opens the files that have an excerpt.
+      await tester.tap(find.bySemanticsLabel('Ver pedido_estado.dart'));
+      await tester.pump();
+      expect(
+        find.textContaining('enum PedidoEstado', findRichText: true),
+        findsOneWidget,
+      );
+      expect(find.text('Archivos del feature'), findsOneWidget);
+      expect(find.text('test/'), findsOneWidget);
     });
 
     testWidgets('"Ver cómo está hecho" scrolls to the layers', (tester) async {

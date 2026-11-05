@@ -156,6 +156,10 @@ abstract final class ArchitectureMap {
 
   static const List<LayerRef> codeBlock = [
     LayerRef.presentation(
+      'FeatureCode',
+      '$_projects/presentation/widgets/detail/feature_code.dart',
+    ),
+    LayerRef.presentation(
       'CodeBlock',
       'lib/core/design_system/code/code_block.dart',
     ),

@@ -42,10 +42,46 @@
       "CategoriasRepository"
     ]
   },
-  "snippet": {
-    "path": "lib/features/pedidos/domain/pedido_estado.dart",
-    "language": "dart"
-  },
+  "privateSource": true,
+  "snippets": [
+    {
+      "id": "controller",
+      "layer": "presentation",
+      "path": "lib/features/pedidos/presentation/controllers/crear_pedido_controller.dart"
+    },
+    {
+      "id": "estado",
+      "layer": "domain",
+      "path": "lib/features/pedidos/domain/pedido_estado.dart"
+    },
+    {
+      "id": "repository",
+      "layer": "data",
+      "path": "lib/features/pedidos/data/pedidos_repository.dart"
+    }
+  ],
+  "files": [
+    "lib/features/pedidos/presentation/screens/crear_pedido_screen.dart",
+    "lib/features/pedidos/presentation/screens/detalle_pedido_screen.dart",
+    "lib/features/pedidos/presentation/screens/editar_pedido_screen.dart",
+    "lib/features/pedidos/presentation/screens/historial_pedidos_screen.dart",
+    "lib/features/pedidos/presentation/controllers/crear_pedido_controller.dart",
+    "lib/features/pedidos/presentation/controllers/acciones_pedido_controller.dart",
+    "lib/features/pedidos/presentation/controllers/selector_ubicacion_controller.dart",
+    "lib/features/pedidos/presentation/widgets/selector_ubicacion.dart",
+    "lib/features/pedidos/presentation/widgets/fotos_pedido.dart",
+    "lib/features/pedidos/domain/pedido.dart",
+    "lib/features/pedidos/domain/pedido_estado.dart",
+    "lib/features/pedidos/domain/pedido_evento.dart",
+    "lib/features/pedidos/domain/ubicacion.dart",
+    "lib/features/pedidos/data/pedidos_repository.dart",
+    "lib/features/pedidos/data/pedido_exception.dart",
+    "lib/features/pedidos/data/urls_firmadas.dart",
+    "test/crear_pedido_screen_test.dart",
+    "test/pedidos_ciclo_vida_test.dart",
+    "test/pedidos_geografia_test.dart",
+    "test/pedidos_validadores_test.dart"
+  ],
   "media": [
     {
       "id": "app-zona",

@@ -39,7 +39,9 @@ void main() {
       expect(project.architecture.domain.description, 'Dart puro');
       expect(project.decisions.single.title, 'Decisión');
       expect(project.body, isNull);
-      expect(project.snippet, isNull);
+      expect(project.snippets, isEmpty);
+      expect(project.files, isEmpty);
+      expect(project.privateSource, isFalse);
     });
 
     test('falls back to Spanish texts and body when a translation is '
@@ -58,12 +60,25 @@ void main() {
       expect(project.body, '# Cuerpo');
     });
 
-    test('loads the snippet code when the shared JSON declares it', () async {
+    test('loads each declared snippet with its layer, plus files and '
+        'privateSource', () async {
       final reader = InMemoryContentReader({
         '$_root/projects/fishar.json': projectSharedJson(
-          snippet: {'path': 'domain/get_nearby_spots.dart'},
+          snippets: [
+            {
+              'id': 'usecase',
+              'layer': 'domain',
+              'path': 'domain/get_nearby_spots.dart',
+            },
+            {'id': 'repo', 'layer': 'data', 'path': 'data/spots_repo.dart'},
+          ],
+          extra: {
+            'files': ['domain/get_nearby_spots.dart', 'data/spots_repo.dart'],
+            'privateSource': true,
+          },
         ),
-        '$_root/projects/fishar.snippet': 'class GetNearbySpots {}',
+        '$_root/projects/fishar.usecase.snippet': 'class GetNearbySpots {}',
+        '$_root/projects/fishar.repo.snippet': 'class SpotsRepo {}',
         '$_root/es/projects/fishar.json': projectTextsJson(),
       });
 
@@ -71,9 +86,38 @@ void main() {
         reader,
       ).getProjects(ContentLanguage.es)).single;
 
-      expect(project.snippet?.path, 'domain/get_nearby_spots.dart');
-      expect(project.snippet?.language, 'dart');
-      expect(project.snippet?.code, 'class GetNearbySpots {}');
+      expect(project.snippets, const [
+        CodeSnippet(
+          path: 'domain/get_nearby_spots.dart',
+          language: 'dart',
+          code: 'class GetNearbySpots {}',
+          layer: CodeLayer.domain,
+        ),
+        CodeSnippet(
+          path: 'data/spots_repo.dart',
+          language: 'dart',
+          code: 'class SpotsRepo {}',
+          layer: CodeLayer.data,
+        ),
+      ]);
+      expect(project.files, hasLength(2));
+      expect(project.privateSource, isTrue);
+    });
+
+    test('a declared snippet without its file is InvalidContent', () async {
+      final reader = InMemoryContentReader({
+        '$_root/projects/fishar.json': projectSharedJson(
+          snippets: [
+            {'id': 'missing', 'layer': 'domain', 'path': 'domain/x.dart'},
+          ],
+        ),
+        '$_root/es/projects/fishar.json': projectTextsJson(),
+      });
+
+      await expectLater(
+        _repository(reader).getProjects(ContentLanguage.es),
+        throwsA(isA<InvalidContent>()),
+      );
     });
 
     test('maps the logo and the images with their captions', () async {

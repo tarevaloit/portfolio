@@ -1,0 +1,55 @@
+  /// Publica el pedido y después sube las fotos, en ese orden: la política de
+  /// Storage exige que el pedido ya exista.
+  ///
+  /// Una foto que falla no deshace el alta — el pedido ya está publicado —,
+  /// así que los fallos se juntan en `erroresFotos` en vez de propagarse como
+  /// excepción.
+  Future<bool> confirmar() async {
+    if (!state.puedeEnviar) return false;
+
+    state = state.copyWith(enviando: true, error: null, erroresFotos: const []);
+
+    final repo = ref.read(pedidosRepositoryProvider);
+
+    try {
+      final pedido = await repo.crearPedido(
+        categoriaId: state.categoriaId!,
+        titulo: state.titulo,
+        descripcion: state.descripcion,
+        ubicacion: state.ubicacion!,
+        fechaVencimiento: DateTime.now().add(Duration(days: state.diasVigencia)),
+        urgencia: state.urgencia,
+        presupuestoEstimado: state.presupuestoEstimado,
+      );
+
+      final errores = <String>[];
+      for (final foto in state.fotos) {
+        try {
+          await repo.subirFoto(
+            pedidoId: pedido.id,
+            bytes: foto.bytes,
+            filename: foto.nombre,
+          );
+        } on PedidoException catch (e) {
+          errores.add(e.message);
+        }
+      }
+
+      // Si hubo fotos, releer el pedido para que el resultado las incluya.
+      final resultado =
+          errores.length == state.fotos.length || state.fotos.isEmpty
+              ? pedido
+              : await repo.obtenerPedido(pedido.id) ?? pedido;
+
+      state = state.copyWith(
+        enviando: false,
+        pedidoCreado: resultado,
+        erroresFotos: errores,
+      );
+      return true;
+    } on PedidoException catch (e) {
+      state = state.copyWith(enviando: false, error: e);
+      return false;
+    }
+  }
+}

@@ -15,7 +15,9 @@ class ProjectDto {
     required this.stack,
     required this.architecture,
     this.links = const ProjectLinksDto(),
-    this.snippet,
+    this.snippets = const [],
+    this.files = const [],
+    this.privateSource = false,
     this.logo,
     this.media = const [],
   });
@@ -31,7 +33,13 @@ class ProjectDto {
   final List<String> stack;
   final ProjectLinksDto links;
   final ProjectArchitectureDto architecture;
-  final CodeSnippetDto? snippet;
+  final List<CodeSnippetDto> snippets;
+
+  /// Paths of the feature's files, tests included.
+  final List<String> files;
+
+  /// Whether the repository is private (then `links.github` is null).
+  final bool privateSource;
 
   /// Asset path of the app icon.
   final String? logo;
@@ -96,15 +104,22 @@ class ProjectArchitectureDto {
   final List<String> data;
 }
 
-/// Where the code sample comes from. The code itself lives next to the
-/// JSON in `<slug>.snippet`.
+/// Where a code excerpt comes from. The code itself lives next to the
+/// JSON in `<slug>.<id>.snippet`.
 @JsonSerializable()
 class CodeSnippetDto {
-  const CodeSnippetDto({required this.path, this.language = 'dart'});
+  const CodeSnippetDto({
+    required this.id,
+    required this.layer,
+    required this.path,
+    this.language = 'dart',
+  });
 
   factory CodeSnippetDto.fromJson(Map<String, dynamic> json) =>
       _$CodeSnippetDtoFromJson(json);
 
+  final String id;
+  final CodeLayer layer;
   final String path;
   final String language;
 }

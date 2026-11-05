@@ -1,0 +1,13 @@
+  @override
+  Future<Either<Failure, List<FishingSpot>>> getSpots() async {
+    try {
+      final models = await _dataSource.getSpots();
+      return right(models.map((m) => m.toEntity()).toList());
+    } on PostgrestException catch (e) {
+      debugPrint('⚠️ [PostRepository.getSpots] PostgrestException: ${e.message}');
+      return left(ServerFailure('Error al cargar el mapa: ${e.message}'));
+    } catch (e, st) {
+      debugPrint('❌ [PostRepository.getSpots] Unexpected: $e\n$st');
+      return left(UnknownFailure(e.toString()));
+    }
+  }

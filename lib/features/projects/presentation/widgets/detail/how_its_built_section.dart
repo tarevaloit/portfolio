@@ -4,9 +4,10 @@ import 'package:portfolio/core/architecture_mode/layer_badge.dart';
 import 'package:portfolio/core/design_system/design_system.dart';
 import 'package:portfolio/core/l10n/l10n.dart';
 import 'package:portfolio/features/projects/domain/entities/project.dart';
+import 'package:portfolio/features/projects/presentation/widgets/detail/feature_code.dart';
 
 /// "Cómo está hecho": the three layers of one feature, with their real
-/// class names, and the code sample when there is one.
+/// class names, then its code by file and the tree of its files.
 class HowItsBuiltSection extends StatelessWidget {
   const HowItsBuiltSection({required this.project, super.key});
 
@@ -19,7 +20,7 @@ class HowItsBuiltSection extends StatelessWidget {
     final size = ScreenSize.of(context);
     final layerColors = AppLayerColors.of(context);
     final architecture = project.architecture;
-    final snippet = project.snippet;
+    final snippets = project.snippets;
 
     final title = Semantics(
       header: true,
@@ -100,12 +101,12 @@ class HowItsBuiltSection extends StatelessWidget {
                   ),
                 ),
         ),
-        if (snippet != null) ...[
+        if (snippets.isNotEmpty) ...[
           const SizedBox(height: AppSpacing.lg),
           RevealOnScroll(
             child: LayerBadge(
               chain: ArchitectureMap.codeBlock,
-              child: CodeBlock(path: snippet.path, code: snippet.code),
+              child: FeatureCode(snippets: snippets, files: project.files),
             ),
           ),
         ],

@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/misc.dart';
 import 'package:portfolio/core/architecture_mode/source_repository.dart';
+import 'package:portfolio/core/contact/contact_email.dart';
 import 'package:portfolio/core/content/content.dart';
 import 'package:portfolio/core/domain/domain.dart';
 import 'package:portfolio/features/about/data/datasources/about_local_data_source.dart';
@@ -57,6 +58,12 @@ List<Override> repositoryOverrides({
         if (project.slug == 'portfolio') return project.links.github;
       }
       return null;
+    }),
+    contactEmailProvider.overrideWith((ref) async {
+      final contact = await ref.watch(
+        contactInfoProvider(ContentLanguage.fallback).future,
+      );
+      return contact.email;
     }),
   ];
 }

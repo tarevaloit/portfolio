@@ -1,0 +1,11 @@
+/// Arguments of [projectBySlugProvider].
+typedef ProjectBySlugArgs = ({String slug, ContentLanguage language});
+
+/// A single project for its detail page.
+final FutureProviderFamily<Project, ProjectBySlugArgs> projectBySlugProvider =
+    FutureProvider.family<Project, ProjectBySlugArgs>(
+      (ref, args) =>
+          ref.watch(getProjectBySlugProvider)(args.slug, args.language),
+      retry: contentRetry,
+      name: 'projectBySlugProvider',
+    );

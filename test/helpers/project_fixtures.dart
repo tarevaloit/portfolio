@@ -33,7 +33,7 @@ Project buildProject({
 /// Shared JSON (`projects/<slug>.json`) with test values.
 Map<String, Object?> projectSharedJson({
   int order = 1,
-  Map<String, Object?>? snippet,
+  List<Map<String, Object?>>? snippets,
   Map<String, Object?>? extra,
 }) {
   return {
@@ -49,7 +49,7 @@ Map<String, Object?> projectSharedJson({
       'domain': ['Spot', 'GetNearbySpots'],
       'data': ['SpotsRepositoryImpl'],
     },
-    'snippet': ?snippet,
+    'snippets': ?snippets,
     ...?extra,
   };
 }

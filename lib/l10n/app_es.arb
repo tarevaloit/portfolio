@@ -351,5 +351,31 @@
         "type": "String"
       }
     }
+  },
+  "detailFiles": "Archivos del feature",
+  "@detailFiles": {
+    "description": "Title of the file tree of a feature."
+  },
+  "detailOpenFile": "Ver {name}",
+  "@detailOpenFile": {
+    "description": "Accessible label of a file of the tree that opens its code.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "detailRequestAccess": "Repo privado · pedir acceso",
+  "@detailRequestAccess": {
+    "description": "Button of a project whose repository is private: opens an email to ask for access."
+  },
+  "detailAccessSubject": "Acceso al código de {name}",
+  "@detailAccessSubject": {
+    "description": "Subject of the email that asks for access to a private repository.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
   }
 }

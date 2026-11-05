@@ -1,0 +1,28 @@
+// Spots del mapa — entidad real de la base (una query liviana, no todos los
+// posts). Los spots no dependen del usuario ni de bloqueos: son comunitarios;
+// el contenido de usuarios bloqueados se filtra por RLS al abrir cada spot.
+// ---------------------------------------------------------------------------
+
+class MapSpotsNotifier extends AsyncNotifier<List<FishingSpot>> {
+  @override
+  Future<List<FishingSpot>> build() => _fetch();
+
+  Future<List<FishingSpot>> _fetch() async {
+    final result = await ref.read(_getSpotsUseCaseProvider).call();
+    return result.fold(
+      (failure) => throw Exception(failure.message),
+      (spots) => spots,
+    );
+  }
+
+  Future<void> refresh() async {
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(_fetch);
+  }
+}
+
+final mapSpotsProvider =
+    AsyncNotifierProvider<MapSpotsNotifier, List<FishingSpot>>(
+      MapSpotsNotifier.new,
+    );
+

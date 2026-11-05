@@ -42,8 +42,16 @@ abstract class Project with _$Project {
     /// Optional long-form body in Markdown.
     String? body,
 
-    /// Optional code sample for "Cómo está hecho".
-    CodeSnippet? snippet,
+    /// Real code of the feature for "Cómo está hecho", usually one excerpt
+    /// per layer.
+    @Default(<CodeSnippet>[]) List<CodeSnippet> snippets,
+
+    /// Files of that feature (tests included), as paths from the repo root.
+    @Default(<String>[]) List<String> files,
+
+    /// The repository exists but is private: the code is shown here and
+    /// access is asked for instead of linked.
+    @Default(false) bool privateSource,
 
     /// App icon, as an asset path.
     String? logo,
@@ -125,12 +133,16 @@ abstract class TechDecision with _$TechDecision {
       _TechDecision;
 }
 
-/// A code excerpt with the path it comes from.
+/// A code excerpt with the path it comes from and its layer.
 @freezed
 abstract class CodeSnippet with _$CodeSnippet {
   const factory CodeSnippet({
     required String path,
     required String language,
     required String code,
+    required CodeLayer layer,
   }) = _CodeSnippet;
 }
+
+/// Clean architecture layer of a piece of code.
+enum CodeLayer { presentation, domain, data }

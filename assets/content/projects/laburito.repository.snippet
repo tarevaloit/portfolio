@@ -1,0 +1,62 @@
+  /// CU-13 — Publicar un pedido. Nace en `publicado`, que es el default de la
+  /// tabla y lo custodia el trigger `pedidos_guard_alta` de la 0009.
+  ///
+  /// Va por la RPC `crear_pedido` y no por un INSERT de PostgREST. El INSERT
+  /// también funcionaba —la ubicación viajaba como EWKT, que la función de
+  /// entrada de `geography` acepta— pero dejaba tres cosas del lado del
+  /// cliente que no le corresponden: el orden `(lng, lat)` de PostGIS, la
+  /// validación del rango de la coordenada y la posibilidad de elegir el estado
+  /// inicial. Ahora el punto lo arma `public.punto(lat, lng)` en la base, que
+  /// es el único lugar donde ese orden está escrito.
+  ///
+  /// La RPC devuelve `setof pedidos`, así que admite `.select()` con los
+  /// computed fields y los embeds: sigue siendo un solo viaje.
+  Future<Pedido> crearPedido({
+    required String categoriaId,
+    required String titulo,
+    required String descripcion,
+    required Ubicacion ubicacion,
+    required DateTime fechaVencimiento,
+    PedidoUrgencia urgencia = PedidoUrgencia.media,
+    double? presupuestoEstimado,
+  }) {
+    // El `buscador_id` lo pone la RPC con `auth.uid()`; acá solo se evita el
+    // viaje cuando ya se sabe que no hay sesión.
+    _exigirSesion();
+
+    if (!ubicacion.esValida) {
+      throw const PedidoException(
+        CasoPedido.desconocido,
+        'La ubicación del pedido no es válida. Marcala de nuevo en el mapa.',
+      );
+    }
+    if (!fechaVencimiento.isAfter(DateTime.now())) {
+      throw const PedidoException(
+        CasoPedido.desconocido,
+        'La fecha de vencimiento tiene que ser posterior a hoy.',
+      );
+    }
+
+    return _guardar(() async {
+      final fila = await _client
+          .rpc('crear_pedido', params: {
+            'p_categoria_id': categoriaId,
+            'p_titulo': titulo.trim(),
+            'p_descripcion': descripcion.trim(),
+            // Van los dos números sueltos: el orden lo pone `public.punto()`.
+            'p_lat': ubicacion.lat,
+            'p_lng': ubicacion.lng,
+            'p_direccion_texto': ubicacion.direccionTexto.trim(),
+            'p_fecha_vencimiento': fechaVencimiento.toUtc().toIso8601String(),
+            'p_referencia': _oNulo(ubicacion.referencia),
+            'p_urgencia': urgencia.clave,
+            'p_presupuesto': presupuestoEstimado,
+          })
+          .select(_columnas)
+          .single();
+
+      final pedido = Pedido.desdeFila(fila);
+      await _avisarAProfesionales(pedido.id);
+      return pedido;
+    });
+  }

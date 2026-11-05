@@ -18,10 +18,45 @@
     "domain": ["FishingSpot", "GetSpotsUseCase", "IPostRepository"],
     "data": ["PostRepositoryImpl", "PostRemoteDataSource", "FishingSpotModel"]
   },
-  "snippet": {
-    "path": "lib/features/capture/domain/usecases/get_spots_usecase.dart",
-    "language": "dart"
-  },
+  "privateSource": true,
+  "snippets": [
+    {
+      "id": "provider",
+      "layer": "presentation",
+      "path": "lib/features/home/presentation/providers/map_provider.dart"
+    },
+    {
+      "id": "usecase",
+      "layer": "domain",
+      "path": "lib/features/capture/domain/usecases/get_spots_usecase.dart"
+    },
+    {
+      "id": "repository",
+      "layer": "data",
+      "path": "lib/features/capture/data/repositories/post_repository_impl.dart"
+    },
+    {
+      "id": "datasource",
+      "layer": "data",
+      "path": "lib/features/capture/data/datasources/post_remote_datasource.dart"
+    }
+  ],
+  "files": [
+    "lib/features/home/presentation/screens/map_screen.dart",
+    "lib/features/home/presentation/providers/map_provider.dart",
+    "lib/features/home/presentation/widgets/spot_marker.dart",
+    "lib/features/home/presentation/widgets/spot_sheet.dart",
+    "lib/features/capture/domain/entities/fishing_spot.dart",
+    "lib/features/capture/domain/repositories/i_post_repository.dart",
+    "lib/features/capture/domain/usecases/get_spots_usecase.dart",
+    "lib/features/capture/domain/usecases/get_spot_posts_usecase.dart",
+    "lib/features/capture/domain/usecases/rename_spot_usecase.dart",
+    "lib/features/capture/data/models/fishing_spot_model.dart",
+    "lib/features/capture/data/datasources/post_remote_datasource.dart",
+    "lib/features/capture/data/repositories/post_repository_impl.dart",
+    "test/features/capture/fishing_spot_model_test.dart",
+    "test/features/capture/post_repository_spots_test.dart"
+  ],
   "media": [
     {
       "id": "feed",

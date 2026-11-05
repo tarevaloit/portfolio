@@ -7,7 +7,7 @@ import 'package:portfolio/features/projects/data/dtos/project_texts_dto.dart';
 ///
 /// ```text
 /// projects/<slug>.json          ProjectDto (shared)
-/// projects/<slug>.snippet       code sample (optional)
+/// projects/<slug>.<id>.snippet  code excerpts listed in `snippets`
 /// <lang>/projects/<slug>.json   ProjectTextsDto
 /// <lang>/projects/<slug>.md     long body (optional)
 /// ```
@@ -55,8 +55,10 @@ class ProjectsLocalDataSource {
     );
   }
 
-  /// Code sample of [slug], or `null`.
-  Future<String?> snippet(String slug) {
-    return _reader.read('${paths.sharedDirectory(collection)}$slug.snippet');
+  /// Code excerpt [id] of [slug], or `null`.
+  Future<String?> snippet(String slug, String id) {
+    return _reader.read(
+      '${paths.sharedDirectory(collection)}$slug.$id.snippet',
+    );
   }
 }

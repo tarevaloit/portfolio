@@ -1,0 +1,13 @@
+  @override
+  Future<List<FishingSpotModel>> getSpots() async {
+    final data = await _client
+        .from('fishing_spots')
+        .select('id, name, lat, lng, post_count, created_by')
+        .gt('post_count', 0); // un spot que quedó vacío no se muestra
+
+    return (data as List)
+        .cast<Map<String, dynamic>>()
+        .map(FishingSpotModel.fromJson)
+        .toList();
+  }
+

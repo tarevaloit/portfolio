@@ -18,10 +18,38 @@
     "domain": ["ChatMessage", "InterpretarGastoUseCase", "GastoAiRepository"],
     "data": ["GastoAiRepositoryImpl", "OpenAiGastoService"]
   },
-  "snippet": {
-    "path": "lib/domain/usecases/interpretar_gasto_usecase.dart",
-    "language": "dart"
-  },
+  "privateSource": true,
+  "snippets": [
+    {
+      "id": "bloc",
+      "layer": "presentation",
+      "path": "lib/presentation/bloc/chat/chat_bloc.dart"
+    },
+    {
+      "id": "usecase",
+      "layer": "domain",
+      "path": "lib/domain/usecases/interpretar_gasto_usecase.dart"
+    },
+    {
+      "id": "service",
+      "layer": "data",
+      "path": "lib/data/services/openai_gasto_service.dart"
+    }
+  ],
+  "files": [
+    "lib/presentation/pages/chat_page.dart",
+    "lib/presentation/bloc/chat/chat_bloc.dart",
+    "lib/presentation/bloc/chat/chat_event.dart",
+    "lib/presentation/bloc/chat/chat_state.dart",
+    "lib/domain/entities/chat_message.dart",
+    "lib/domain/entities/gasto.dart",
+    "lib/domain/repositories/gasto_ai_repository.dart",
+    "lib/domain/usecases/interpretar_gasto_usecase.dart",
+    "lib/domain/usecases/guardar_gasto_usecase.dart",
+    "lib/data/models/gasto_parcial_model.dart",
+    "lib/data/repositories/gasto_ai_repository_impl.dart",
+    "lib/data/services/openai_gasto_service.dart"
+  ],
   "media": [
     {
       "id": "analisis",

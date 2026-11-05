@@ -1,0 +1,11 @@
+  @override
+  Future<Project> getProjectBySlug(
+    String slug,
+    ContentLanguage language,
+  ) async {
+    final projects = await getProjects(language);
+    for (final project in projects) {
+      if (project.slug == slug) return project;
+    }
+    throw ContentNotFound('Project "$slug" not found');
+  }

@@ -37,9 +37,37 @@
       "ProjectDto"
     ]
   },
-  "snippet": {
-    "path": "lib/features/projects/domain/usecases/get_project_by_slug.dart",
-    "language": "dart"
-  },
+  "snippets": [
+    {
+      "id": "providers",
+      "layer": "presentation",
+      "path": "lib/features/projects/presentation/providers/projects_providers.dart"
+    },
+    {
+      "id": "usecase",
+      "layer": "domain",
+      "path": "lib/features/projects/domain/usecases/get_project_by_slug.dart"
+    },
+    {
+      "id": "repository",
+      "layer": "data",
+      "path": "lib/features/projects/data/repositories/projects_repository_impl.dart"
+    }
+  ],
+  "files": [
+    "lib/features/projects/presentation/pages/project_detail_page.dart",
+    "lib/features/projects/presentation/providers/projects_providers.dart",
+    "lib/features/projects/presentation/widgets/detail/how_its_built_section.dart",
+    "lib/features/projects/domain/entities/project.dart",
+    "lib/features/projects/domain/repositories/projects_repository.dart",
+    "lib/features/projects/domain/usecases/get_project_by_slug.dart",
+    "lib/features/projects/domain/usecases/get_projects.dart",
+    "lib/features/projects/data/dtos/project_dto.dart",
+    "lib/features/projects/data/datasources/projects_local_data_source.dart",
+    "lib/features/projects/data/repositories/projects_repository_impl.dart",
+    "test/features/projects/domain/get_projects_test.dart",
+    "test/features/projects/data/projects_repository_impl_test.dart",
+    "test/features/projects/presentation/project_detail_page_test.dart"
+  ],
   "logo": "assets/projects/portfolio-logo.webp"
 }

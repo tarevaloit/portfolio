@@ -129,16 +129,23 @@ void main() {
       }
     });
 
-    test('its snippet matches the real source file', () async {
-      final snippet = (await portfolio()).snippet;
+    test('its snippets are excerpts of the real source files', () async {
+      final project = await portfolio();
 
-      expect(snippet, isNotNull);
-      expect(
-        snippet!.code,
-        File(snippet.path).readAsStringSync(),
-        reason:
-            'Copy ${snippet.path} to assets/content/projects/portfolio.snippet',
-      );
+      expect(project.snippets, isNotEmpty);
+      for (final snippet in project.snippets) {
+        expect(
+          File(snippet.path).readAsStringSync(),
+          contains(snippet.code),
+          reason: '${snippet.path} changed: copy the excerpt again',
+        );
+      }
+    });
+
+    test('its file tree only lists files that exist', () async {
+      for (final path in (await portfolio()).files) {
+        expect(File(path).existsSync(), isTrue, reason: '$path is missing');
+      }
     });
   });
 }

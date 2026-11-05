@@ -1,0 +1,41 @@
+  Future<ChatMessage> interpretarGastoConHistorial(
+      List<ChatMessage> historial) async {
+    try {
+      final messages = <ChatCompletionMessage>[
+        ChatCompletionMessage.system(content: openAiSystemPrompt),
+        ...historial.map((msg) => ChatCompletionMessage.user(
+              content: ChatCompletionUserMessageContent.string(msg.content),
+            )),
+      ];
+
+      final res = await _client.createChatCompletion(
+        request: CreateChatCompletionRequest(
+          model: ChatCompletionModel.modelId('gpt-4o'),
+          messages: messages,
+          temperature: 0.3,
+          maxTokens: 200,
+        ),
+      );
+
+      final content = res.choices.first.message.content;
+      if (content == null || content.trim().isEmpty) {
+        throw Exception('Respuesta vacía de OpenAI');
+      }
+      final raw = content.trim();
+      final limpio = _limpiarRespuesta(raw);
+
+      final gastoJson = _extraerJson(limpio);
+      final frase = _extraerFrase(limpio);
+      print(gastoJson);
+      print(frase);
+
+      return ChatMessage(
+        role: 'assistant',
+        content: frase,
+        gasto: gastoJson,
+      );
+    } catch (e) {
+      print('Error en interpretarGastoConHistorial: $e');
+      throw Exception('Error al consultar OpenAI: $e');
+    }
+  }

@@ -67,9 +67,24 @@ class ProjectsRepositoryImpl implements ProjectsRepository {
     final body =
         await _source.body(slug, language) ??
         await _source.body(slug, ContentLanguage.fallback);
-    final snippetCode = shared.snippet == null
-        ? null
-        : await _source.snippet(slug);
+    final snippets = <CodeSnippet>[];
+    for (final snippet in shared.snippets) {
+      final code = await _source.snippet(slug, snippet.id);
+      if (code == null) {
+        throw InvalidContent(
+          'projects/$slug.json',
+          'snippet "${snippet.id}" has no $slug.${snippet.id}.snippet file',
+        );
+      }
+      snippets.add(
+        CodeSnippet(
+          path: snippet.path,
+          language: snippet.language,
+          code: code,
+          layer: snippet.layer,
+        ),
+      );
+    }
 
     for (final media in shared.media) {
       if (!texts.mediaCaptions.containsKey(media.id)) {
@@ -79,7 +94,7 @@ class ProjectsRepositoryImpl implements ProjectsRepository {
         );
       }
     }
-    return _toEntity(slug, shared, texts, body, snippetCode);
+    return _toEntity(slug, shared, texts, body, snippets);
   }
 }
 
@@ -88,9 +103,8 @@ Project _toEntity(
   ProjectDto shared,
   ProjectTextsDto texts,
   String? body,
-  String? snippetCode,
+  List<CodeSnippet> snippets,
 ) {
-  final snippet = shared.snippet;
   return Project(
     slug: slug,
     order: shared.order,
@@ -141,12 +155,8 @@ Project _toEntity(
           kind: media.kind,
         ),
     ]),
-    snippet: snippet == null || snippetCode == null
-        ? null
-        : CodeSnippet(
-            path: snippet.path,
-            language: snippet.language,
-            code: snippetCode,
-          ),
+    snippets: List.unmodifiable(snippets),
+    files: List.unmodifiable(shared.files),
+    privateSource: shared.privateSource,
   );
 }
