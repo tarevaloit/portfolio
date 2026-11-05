@@ -4,10 +4,13 @@ import 'package:go_router/go_router.dart';
 import 'package:portfolio/core/design_system/tokens/tokens.dart';
 import 'package:portfolio/core/l10n/l10n.dart';
 import 'package:portfolio/core/platform/document/document_language.dart';
+import 'package:portfolio/core/router/deferred_page.dart';
 import 'package:portfolio/core/router/not_found_page.dart';
 import 'package:portfolio/features/home/presentation/pages/home_page.dart';
-import 'package:portfolio/features/home/presentation/widgets/home_preview.dart';
-import 'package:portfolio/features/projects/presentation/pages/project_detail_page.dart';
+import 'package:portfolio/features/home/presentation/widgets/home_preview.dart'
+    deferred as preview;
+import 'package:portfolio/features/projects/presentation/pages/project_detail_page.dart'
+    deferred as detail;
 
 /// Route names, one per locale (`home-es`, `project-en`...).
 abstract final class AppRoutes {
@@ -18,6 +21,16 @@ abstract final class AppRoutes {
   static String projectPath(AppLocale locale, String slug) =>
       locale.path('/projects/$slug');
 }
+
+/// The project detail (with its demos, the code highlighter and the home
+/// preview) is compiled apart from the home, so the first load is smaller.
+final DeferredLibrary projectDetailLibrary = DeferredLibrary(
+  () => Future.wait([detail.loadLibrary(), preview.loadLibrary()]),
+);
+
+/// Downloads the deferred routes in the background. Called after the first
+/// frame, so a click on a card finds the detail ready (and the Hero flies).
+Future<void> preloadDeferredRoutes() => projectDetailLibrary.load();
 
 /// App-wide router. Tests override it to start at another location.
 final appRouterProvider = Provider<GoRouter>((ref) {
@@ -38,7 +51,7 @@ GoRouter createAppRouter({String initialLocation = '/'}) {
     errorBuilder: (context, state) => _withLocale(
       context,
       AppLocale.fromPath(state.uri.path),
-      const NotFoundPage(),
+      NotFoundPage(path: state.uri.path),
     ),
   );
 }
@@ -64,9 +77,14 @@ ShellRoute _localeShell(AppLocale locale) {
             pageBuilder: (context, state) => _fadePage(
               context,
               state,
-              ProjectDetailPage(
-                slug: state.pathParameters['slug']!,
-                extraDemos: {'portfolio': (_) => const HomePreview()},
+              DeferredPage(
+                library: projectDetailLibrary,
+                builder: (context) => detail.ProjectDetailPage(
+                  slug: state.pathParameters['slug']!,
+                  extraDemos: {
+                    'portfolio': (_) => preview.HomePreview(),
+                  },
+                ),
               ),
             ),
           ),

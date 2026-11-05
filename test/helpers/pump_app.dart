@@ -35,6 +35,8 @@ extension PumpPortfolio on WidgetTester {
       addTearDown(platformDispatcher.clearAccessibilityFeaturesTestValue);
     }
 
+    // As in main.dart: the deferred detail is fetched before it is needed.
+    await runAsync(preloadDeferredRoutes);
     final router = createAppRouter(initialLocation: location);
     addTearDown(router.dispose);
     await pumpWidget(

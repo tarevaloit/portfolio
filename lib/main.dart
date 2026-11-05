@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:portfolio/app/app.dart';
 import 'package:portfolio/app/di/repository_overrides.dart';
+import 'package:portfolio/core/router/app_router.dart';
 
 void main() {
   // Clean URLs (`/projects/fishar` instead of `/#/projects/fishar`).
@@ -12,5 +15,9 @@ void main() {
       overrides: repositoryOverrides(),
       child: const PortfolioApp(),
     ),
+  );
+  // Once the first frame is up, fetch the deferred project detail.
+  WidgetsBinding.instance.addPostFrameCallback(
+    (_) => unawaited(preloadDeferredRoutes()),
   );
 }
