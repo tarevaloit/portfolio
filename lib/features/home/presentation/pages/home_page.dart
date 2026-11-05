@@ -7,6 +7,7 @@ import 'package:portfolio/core/shaders/blueprint_background.dart';
 import 'package:portfolio/features/about/presentation/widgets/about_section.dart';
 import 'package:portfolio/features/contact/presentation/widgets/contact_section.dart';
 import 'package:portfolio/features/experience/presentation/widgets/experience_section.dart';
+import 'package:portfolio/features/home/presentation/widgets/byto_section.dart';
 import 'package:portfolio/features/home/presentation/widgets/hero_section.dart';
 import 'package:portfolio/features/home/presentation/widgets/home_footer.dart';
 import 'package:portfolio/features/home/presentation/widgets/home_nav_bar.dart';
@@ -98,6 +99,13 @@ class _HomePageState extends State<HomePage> {
                 LayerBadge(
                   chain: ArchitectureMap.marquee,
                   child: Marquee(items: _stackItems(context)),
+                ),
+                gap,
+                const PageContainer(
+                  child: LayerBadge(
+                    chain: ArchitectureMap.byto,
+                    child: BytoSection(),
+                  ),
                 ),
                 gap,
                 PageContainer(

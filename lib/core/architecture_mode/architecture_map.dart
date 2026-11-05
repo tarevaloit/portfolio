@@ -47,9 +47,20 @@ abstract final class ArchitectureMap {
 
   static const List<LayerRef> hero = [
     LayerRef.presentation('HeroSection', '$_home/widgets/hero_section.dart'),
-    _contactProvider,
-    _getContactInfo,
-    _contactRepository,
+    LayerRef.presentation(
+      'ProjectsShowcase',
+      '$_projects/presentation/widgets/projects_showcase.dart',
+    ),
+    _projectsProvider,
+    _getProjects,
+    _projectsRepository,
+  ];
+
+  static const List<LayerRef> byto = [
+    LayerRef.presentation('BytoSection', '$_home/widgets/byto_section.dart'),
+    _projectsProvider,
+    _getProjects,
+    _projectsRepository,
   ];
 
   static const List<LayerRef> metrics = [
@@ -205,6 +216,7 @@ abstract final class ArchitectureMap {
   static List<List<LayerRef>> get all => [
     navBar,
     hero,
+    byto,
     metrics,
     marquee,
     projects,

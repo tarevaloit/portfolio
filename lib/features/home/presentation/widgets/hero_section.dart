@@ -4,16 +4,16 @@ import 'package:portfolio/core/design_system/design_system.dart';
 import 'package:portfolio/core/l10n/l10n.dart';
 import 'package:portfolio/core/platform/link_opener.dart';
 import 'package:portfolio/features/contact/presentation/providers/contact_providers.dart';
-import 'package:portfolio/features/home/presentation/widgets/layer_plates.dart';
+import 'package:portfolio/features/projects/presentation/widgets/projects_showcase.dart';
 
 /// Hero: eyebrow, title with the highlighted last words, paragraph, CTAs
-/// and the floating layer plates.
+/// and a phone with the real apps.
 class HeroSection extends StatelessWidget {
   const HeroSection({required this.onSeeProjects, super.key});
 
   final VoidCallback onSeeProjects;
 
-  /// Below this width the plates go under the copy instead of beside it.
+  /// Below this width the phone goes under the copy instead of beside it.
   static const double sideBySideMinWidth = 900;
 
   @override
@@ -86,19 +86,19 @@ class HeroSection extends StatelessWidget {
       ],
     );
 
-    const plates = Entrance(index: 4, child: LayerPlates());
+    const phone = Entrance(index: 4, child: ProjectsShowcase());
 
     return LayoutBuilder(
       builder: (context, constraints) {
         // Side by side only when the copy column stays wide enough for the
-        // longest word of the title ("arquitectura") at this size.
+        // title at this size.
         if (constraints.maxWidth < sideBySideMinWidth) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               copy,
               const SizedBox(height: AppSpacing.xxl),
-              const Center(child: plates),
+              const Center(child: phone),
             ],
           );
         }
@@ -106,7 +106,7 @@ class HeroSection extends StatelessWidget {
           children: [
             Expanded(child: copy),
             const SizedBox(width: AppSpacing.xxl),
-            plates,
+            phone,
           ],
         );
       },

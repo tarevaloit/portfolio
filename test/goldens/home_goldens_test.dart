@@ -3,13 +3,14 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:portfolio/app/di/repository_overrides.dart';
 import 'package:portfolio/core/design_system/design_system.dart';
-import 'package:portfolio/features/contact/presentation/providers/contact_providers.dart';
 import 'package:portfolio/features/home/presentation/widgets/hero_section.dart';
 import 'package:portfolio/features/projects/domain/entities/project.dart';
 import 'package:portfolio/features/projects/presentation/widgets/project_card.dart';
 
 import '../helpers/fakes.dart';
+import '../helpers/pump_app.dart';
 import '../helpers/pump_localized.dart';
 
 // Regenerate on macOS with:
@@ -81,10 +82,10 @@ void main() {
       await tester.pumpLocalized(
         PageContainer(child: HeroSection(onSeeProjects: () {})),
         size: size,
-        overrides: [
-          contactRepositoryProvider.overrideWithValue(FakeContactRepository()),
-        ],
+        // The real projects, so the phone shows the real screens.
+        overrides: repositoryOverrides(contact: FakeContactRepository()),
       );
+      await tester.settleImages();
 
       await expectLater(
         find.byType(Scaffold),

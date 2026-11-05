@@ -3,8 +3,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:portfolio/core/l10n/l10n.dart';
 import 'package:portfolio/features/home/presentation/pages/home_page.dart';
-import 'package:portfolio/features/home/presentation/widgets/layer_plates.dart';
 import 'package:portfolio/features/projects/presentation/widgets/project_card.dart';
+import 'package:portfolio/features/projects/presentation/widgets/projects_showcase.dart';
 
 import '../../helpers/pump_app.dart';
 
@@ -43,17 +43,17 @@ void main() {
             isA<NeverScrollableScrollPhysics>(),
           );
 
-          // The hero title never breaks a word: the plates move under the
+          // The hero title never breaks a word: the phone moves under the
           // copy when the column would get too narrow.
           final titleFinder = find.textContaining(
-            locale == AppLocale.es ? 'Apps Flutter' : 'Flutter apps',
+            locale == AppLocale.es ? 'Apps mobile' : 'Mobile apps',
           );
           final title = tester.getRect(titleFinder);
-          final plates = tester.getRect(find.byType(LayerPlates));
+          final phone = tester.getRect(find.byType(ProjectsShowcase));
           expect(
-            plates.left >= title.right || plates.top >= title.bottom,
+            phone.left >= title.right || phone.top >= title.bottom,
             isTrue,
-            reason: 'the plates overlap the title',
+            reason: 'the phone overlaps the title',
           );
           expect(
             title.width,

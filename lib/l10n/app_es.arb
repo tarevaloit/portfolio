@@ -40,19 +40,19 @@
   "@architectureMode": {
     "description": "Label of the toggle that overlays the clean-architecture layers on the UI."
   },
-  "heroEyebrow": "// flutter developer · buenos aires, argentina",
+  "heroEyebrow": "// senior flutter developer · buenos aires, argentina",
   "@heroEyebrow": {
     "description": "Small monospace line above the hero title."
   },
-  "heroTitleLead": "Apps Flutter con arquitectura que",
+  "heroTitleLead": "Apps mobile, de la idea",
   "@heroTitleLead": {
     "description": "First part of the hero title, before the highlighted word."
   },
-  "heroTitleHighlight": "aguanta.",
+  "heroTitleHighlight": "a las stores.",
   "@heroTitleHighlight": {
     "description": "Last part of the hero title, drawn in the accent color."
   },
-  "heroBody": "Desde un MVP hasta una super-app con más de 40 microapps. Trabajo en el equipo Mobile Core de ueno bank y construyo productos propios bajo Byto Apps.",
+  "heroBody": "Soy Tobias, desarrollador Flutter hace más de 6 años. En ueno bank trabajo en el core mobile y me encargo del deploy a App Store y Google Play. Las ideas propias las llevo a producto con Byto Apps, cada vez más con IA adentro.",
   "@heroBody": {
     "description": "Hero paragraph under the title."
   },
@@ -76,43 +76,15 @@
   "@layerData": {
     "description": "Name of the data layer."
   },
-  "layerPresentationItems": "pages · widgets · state",
-  "@layerPresentationItems": {
-    "description": "What lives in the presentation layer (hero plate)."
-  },
-  "layerDomainItems": "entities · usecases · contracts",
-  "@layerDomainItems": {
-    "description": "What lives in the domain layer (hero plate)."
-  },
-  "layerDataItems": "repositories · datasources · dtos",
-  "@layerDataItems": {
-    "description": "What lives in the data layer (hero plate)."
-  },
-  "metricMicroappsValue": "40+",
-  "@metricMicroappsValue": {
-    "description": "Metric value."
-  },
-  "metricMicroappsLabel": "microapps integradas como packages",
-  "@metricMicroappsLabel": {
-    "description": "Metric label."
-  },
-  "metricFlagsValue": "~1 s",
-  "@metricFlagsValue": {
-    "description": "Metric value."
-  },
-  "metricFlagsLabel": "feature flags en tiempo real (vs. hasta 24 h)",
-  "@metricFlagsLabel": {
-    "description": "Metric label."
-  },
   "metricStoresValue": "iOS + Android",
   "@metricStoresValue": {
     "description": "Metric value."
   },
-  "metricStoresLabel": "deploy de una app bancaria a las stores",
+  "metricStoresLabel": "deploys a App Store y Google Play: banca, billeteras y apps propias",
   "@metricStoresLabel": {
     "description": "Metric label."
   },
-  "stackItems": "Flutter,Dart,Clean Architecture,Firebase,Google Maps,Mercado Pago,Microapps,CI/CD",
+  "stackItems": "Flutter,Dart,Clean Architecture,Riverpod,Bloc,Firebase,Supabase,OpenAI,App Store Connect,Google Play Console,Google Maps,Mercado Pago,CI/CD",
   "@stackItems": {
     "description": "Comma-separated items of the stack marquee."
   },
@@ -372,6 +344,84 @@
   "detailAccessSubject": "Acceso al código de {name}",
   "@detailAccessSubject": {
     "description": "Subject of the email that asks for access to a private repository.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "metricYearsValue": "6+",
+  "@metricYearsValue": {
+    "description": "Metric value."
+  },
+  "metricYearsLabel": "años con Flutter, de trainee a Senior en fintech",
+  "@metricYearsLabel": {
+    "description": "Metric label."
+  },
+  "metricAiValue": "IA",
+  "@metricAiValue": {
+    "description": "Metric value."
+  },
+  "metricAiLabel": "aplicada a producto: el What's New generado con IA en ueno bank y los gastos por chat de Fundido",
+  "@metricAiLabel": {
+    "description": "Metric label."
+  },
+  "bytoEyebrow": "// by to apps · hecho por toby",
+  "@bytoEyebrow": {
+    "description": "Small monospace line above the Byto Apps title."
+  },
+  "bytoTitle": "Byto Apps",
+  "@bytoTitle": {
+    "description": "Title of the Byto Apps section."
+  },
+  "bytoLead": "By To Apps: hecho por Toby.",
+  "@bytoLead": {
+    "description": "What the name Byto Apps means."
+  },
+  "bytoBody": "Nació de las ganas de bajar a tierra las ideas que tengo en la cabeza. Funciona como una consultora propia: cada idea se diseña, se desarrolla y se publica de punta a punta, con el mismo estándar que uso en banca. Con el mismo nombre también desarrollo apps para clientes.",
+  "@bytoBody": {
+    "description": "What Byto Apps is."
+  },
+  "bytoApps": "Hechas por Toby",
+  "@bytoApps": {
+    "description": "Label above the links to the apps."
+  },
+  "bytoStepIdeaTitle": "La idea",
+  "@bytoStepIdeaTitle": {
+    "description": "Step 1 of how a Byto Apps idea is carried out."
+  },
+  "bytoStepIdeaBody": "Del problema real al flujo completo: qué resuelve, para quién y cómo se usa.",
+  "@bytoStepIdeaBody": {
+    "description": "Step 1 detail."
+  },
+  "bytoStepBuildTitle": "El desarrollo",
+  "@bytoStepBuildTitle": {
+    "description": "Step 2 title."
+  },
+  "bytoStepBuildBody": "Flutter con clean architecture, Supabase o Firebase atrás, e IA donde suma.",
+  "@bytoStepBuildBody": {
+    "description": "Step 2 detail."
+  },
+  "bytoStepShipTitle": "La publicación",
+  "@bytoStepShipTitle": {
+    "description": "Step 3 title."
+  },
+  "bytoStepShipBody": "TestFlight, Google Play y web: releases versionadas hasta llegar a las stores.",
+  "@bytoStepShipBody": {
+    "description": "Step 3 detail."
+  },
+  "showcaseScreenLabel": "Una pantalla de {name}",
+  "@showcaseScreenLabel": {
+    "description": "Accessible label of the hero phone showing a screen of an app.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "showcaseOpen": "Ver {name} →",
+  "@showcaseOpen": {
+    "description": "Link under the hero phone that opens the app shown.",
     "placeholders": {
       "name": {
         "type": "String"

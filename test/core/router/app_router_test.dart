@@ -9,7 +9,7 @@ void main() {
       await tester.pumpPortfolio();
 
       expect(
-        find.text('Apps Flutter con arquitectura que aguanta.'),
+        find.text('Apps mobile, de la idea a las stores.'),
         findsOneWidget,
       );
       expect(find.widgetWithText(TextButton, 'EN'), findsOneWidget);
@@ -19,7 +19,7 @@ void main() {
       await tester.pumpPortfolio(location: '/en');
 
       expect(
-        find.text('Flutter apps with architecture that holds up.'),
+        find.text('Mobile apps, from the idea to the stores.'),
         findsOneWidget,
       );
       expect(find.widgetWithText(TextButton, 'ES'), findsOneWidget);
@@ -35,7 +35,7 @@ void main() {
 
       expect(router.routeInformationProvider.value.uri.path, '/en');
       expect(
-        find.text('Flutter apps with architecture that holds up.'),
+        find.text('Mobile apps, from the idea to the stores.'),
         findsOneWidget,
       );
 
@@ -44,7 +44,7 @@ void main() {
 
       expect(router.routeInformationProvider.value.uri.path, '/');
       expect(
-        find.text('Apps Flutter con arquitectura que aguanta.'),
+        find.text('Apps mobile, de la idea a las stores.'),
         findsOneWidget,
       );
     });
@@ -67,7 +67,7 @@ void main() {
 
       expect(router.routeInformationProvider.value.uri.path, '/en');
       expect(
-        find.text('Flutter apps with architecture that holds up.'),
+        find.text('Mobile apps, from the idea to the stores.'),
         findsOneWidget,
       );
     });

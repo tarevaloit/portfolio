@@ -10,9 +10,9 @@ class MetricsRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final metrics = [
-      (l10n.metricMicroappsValue, l10n.metricMicroappsLabel),
-      (l10n.metricFlagsValue, l10n.metricFlagsLabel),
+      (l10n.metricYearsValue, l10n.metricYearsLabel),
       (l10n.metricStoresValue, l10n.metricStoresLabel),
+      (l10n.metricAiValue, l10n.metricAiLabel),
     ];
     final cards = [
       for (final (value, label) in metrics)
