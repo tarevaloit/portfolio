@@ -138,6 +138,7 @@ Project _toEntity(
         ProjectMedia(
           asset: media.asset,
           caption: texts.mediaCaptions[media.id]!,
+          kind: media.kind,
         ),
     ]),
     snippet: snippet == null || snippetCode == null

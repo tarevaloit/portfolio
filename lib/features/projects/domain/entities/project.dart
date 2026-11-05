@@ -57,8 +57,23 @@ abstract class Project with _$Project {
 /// what screen readers announce.
 @freezed
 abstract class ProjectMedia with _$ProjectMedia {
-  const factory ProjectMedia({required String asset, required String caption}) =
-      _ProjectMedia;
+  const factory ProjectMedia({
+    required String asset,
+    required String caption,
+    @Default(ProjectMediaKind.figure) ProjectMediaKind kind,
+  }) = _ProjectMedia;
+}
+
+/// What an image shows, which decides where the detail page puts it.
+enum ProjectMediaKind {
+  /// A screen of the mobile app, shown in the phone.
+  phone,
+
+  /// A page of the web version, shown in a browser window.
+  web,
+
+  /// Anything else (a chart, a diagram), shown as is.
+  figure,
 }
 
 /// External links of a project. Any of them can be missing.

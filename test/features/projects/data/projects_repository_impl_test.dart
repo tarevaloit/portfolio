@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:portfolio/core/domain/domain.dart';
 import 'package:portfolio/features/projects/data/datasources/projects_local_data_source.dart';
 import 'package:portfolio/features/projects/data/repositories/projects_repository_impl.dart';
+import 'package:portfolio/features/projects/domain/entities/project.dart';
 
 import '../../../helpers/in_memory_content_reader.dart';
 import '../../../helpers/project_fixtures.dart';
@@ -82,12 +83,17 @@ void main() {
             'logo': 'assets/projects/fishar-logo.webp',
             'media': [
               {'id': 'map', 'asset': 'assets/projects/fishar-map.webp'},
+              {
+                'id': 'feed',
+                'asset': 'assets/projects/fishar-feed.webp',
+                'kind': 'phone',
+              },
             ],
           },
         ),
         '$_root/es/projects/fishar.json': {
           ...projectTextsJson(),
-          'mediaCaptions': {'map': 'El mapa de spots'},
+          'mediaCaptions': {'map': 'El mapa de spots', 'feed': 'El feed'},
         },
       });
 
@@ -96,8 +102,17 @@ void main() {
       ).getProjects(ContentLanguage.es)).single;
 
       expect(project.logo, 'assets/projects/fishar-logo.webp');
-      expect(project.media.single.asset, 'assets/projects/fishar-map.webp');
-      expect(project.media.single.caption, 'El mapa de spots');
+      expect(project.media, const [
+        ProjectMedia(
+          asset: 'assets/projects/fishar-map.webp',
+          caption: 'El mapa de spots',
+        ),
+        ProjectMedia(
+          asset: 'assets/projects/fishar-feed.webp',
+          caption: 'El feed',
+          kind: ProjectMediaKind.phone,
+        ),
+      ]);
     });
 
     test('an image without a caption is InvalidContent', () async {

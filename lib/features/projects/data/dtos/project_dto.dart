@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:portfolio/core/content/content.dart';
+import 'package:portfolio/features/projects/domain/entities/project.dart';
 
 part 'project_dto.g.dart';
 
@@ -40,13 +41,20 @@ class ProjectDto {
 /// An image; its caption lives in the texts of each language, by [id].
 @JsonSerializable()
 class ProjectMediaDto {
-  const ProjectMediaDto({required this.id, required this.asset});
+  const ProjectMediaDto({
+    required this.id,
+    required this.asset,
+    this.kind = ProjectMediaKind.figure,
+  });
 
   factory ProjectMediaDto.fromJson(Map<String, dynamic> json) =>
       _$ProjectMediaDtoFromJson(json);
 
   final String id;
   final String asset;
+
+  /// `phone`, `web` or `figure` (the default).
+  final ProjectMediaKind kind;
 }
 
 @JsonSerializable()
