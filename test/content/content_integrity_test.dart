@@ -76,8 +76,14 @@ void main() {
         }
       });
 
-      test('contact loads', () async {
-        await container.read(contactInfoProvider(language).future);
+      test('contact loads and its CV is bundled', () async {
+        final contact = await container.read(
+          contactInfoProvider(language).future,
+        );
+        final cv = contact.cvAssetPath;
+        if (cv != null) {
+          expect(await reader.list('assets/cv/'), contains(cv));
+        }
       });
     });
   }

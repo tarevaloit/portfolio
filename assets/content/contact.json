@@ -1,9 +1,9 @@
 {
   "email": null,
   "github": "https://github.com/tarevaloit",
-  "linkedin": null,
+  "linkedin": "https://www.linkedin.com/in/tobias-arevalo-588112176/",
   "cv": {
-    "es": null,
-    "en": null
+    "es": "assets/cv/cv-tobias-arevalo-es.pdf",
+    "en": "assets/cv/cv-tobias-arevalo-en.pdf"
   }
 }

@@ -45,6 +45,8 @@ flutter:
     - assets/content/en/projects/
     # Real images of the projects (WebP, fixed sizes).
     - assets/projects/
+    # Downloadable CV, one PDF per language.
+    - assets/cv/
 
   shaders:
     - shaders/blueprint.frag

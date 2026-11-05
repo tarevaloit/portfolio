@@ -61,7 +61,8 @@ void main() {
   testWidgets('"Descargar CV" is disabled while there is no CV', (
     tester,
   ) async {
-    await tester.pumpPortfolio();
+    await tester.pumpPortfolio(contactRepository: FakeContactRepository());
+    await tester.pump();
 
     final button = tester.widget<OutlinedButton>(
       find.widgetWithText(OutlinedButton, 'Descargar CV'),

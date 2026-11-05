@@ -7,8 +7,12 @@ complete.
 ## Contenido (Fase 0 — Tobias)
 
 ### Experiencia (`assets/content/experience.json`)
-- [ ] `startYear` de ueno bank / itti (hoy `null`).
-- [ ] `startYear` de Byto Apps (hoy `null`).
+- [x] `startYear` de ueno bank / itti: 2025 (del CV), con el cargo actual
+      "Software Engineer — Mobile Core".
+- [ ] Byto Apps no aparece en el CV: ¿se mantiene en la experiencia? Si sí,
+      falta su `startYear`.
+- [ ] El CV tiene más puestos (OneInfo 2024–2025, freelance 2024, Miiii
+      2019–2024): decidir si suman a la experiencia del sitio.
 - [ ] **Confidencialidad:** saqué el nombre `uacd` del bullet de dependencias
       cross ("Mantenimiento y versionado (tags) de las dependencias cross…")
       porque el PLAN prohíbe nombres de repos privados del banco y no sé si
@@ -17,9 +21,8 @@ complete.
 ### Contacto (`assets/content/contact.json`, hoy todo en `null`)
 - [ ] `email` (`[TU EMAIL]` en el mockup).
 - [ ] `github` (URL).
-- [ ] `linkedin` (URL).
-- [ ] CV en PDF, ES y EN → `assets/cv/`, declarar la carpeta en `pubspec.yaml`
-      y completar `cv.es` / `cv.en` con la ruta.
+- [x] `linkedin`.
+- [x] CV en PDF, ES y EN, en `assets/cv/` (incluyen teléfono, email y foto).
 
 ### Proyectos (`assets/content/projects/` y `{es,en}/projects/`)
 Los textos de cards y descripciones salen de PLAN.md y del mockup. Faltan:
