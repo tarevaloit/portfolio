@@ -94,7 +94,7 @@ void main() {
       );
       expect(phone, findsOneWidget);
       expect(
-        find.textContaining('zona de cobertura', findRichText: true),
+        find.textContaining('Billetera de tokens', findRichText: true),
         findsOneWidget,
       );
       expect(find.byType(WebMediaSection), findsOneWidget);
