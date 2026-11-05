@@ -1,6 +1,6 @@
 {
   "@@locale": "es",
-  "appTitle": "Tobias Arevalo · Mobile & AI Engineer",
+  "appTitle": "Tobias Arevalo · AI Engineer · Senior Mobile Developer",
   "@appTitle": {
     "description": "Browser tab title."
   },
@@ -40,7 +40,7 @@
   "@architectureMode": {
     "description": "Label of the toggle that overlays the clean-architecture layers on the UI."
   },
-  "heroEyebrow": "// mobile & ai engineer · buenos aires, argentina",
+  "heroEyebrow": "// ai engineer · senior mobile developer · buenos aires",
   "@heroEyebrow": {
     "description": "Small monospace line above the hero title."
   },
@@ -52,7 +52,7 @@
   "@heroTitleHighlight": {
     "description": "Last part of the hero title, drawn in the accent color."
   },
-  "heroBody": "Soy Tobias, Mobile & AI Engineer con más de 6 años construyendo apps. Integro LLMs en el producto, como el What's New generado con IA en ueno bank, y trabajo con agentes de código en el día a día. Mi base es Flutter, y también trabajo con React Native, Swift, Kotlin y React. Mis propias ideas las llevo a producto con Byto Apps.",
+  "heroBody": "Soy Tobias, AI Engineer con más de 6 años construyendo productos mobile, especializado en fintech. Integro IA en el producto y en el desarrollo: herramientas internas con LLMs y flujos con agentes como Claude Code, Cursor y GitHub Copilot. Mi base es Flutter, y también trabajo con React Native, Swift, Kotlin y React.",
   "@heroBody": {
     "description": "Hero paragraph under the title."
   },
@@ -84,7 +84,7 @@
   "@metricStoresLabel": {
     "description": "Metric label."
   },
-  "stackItems": "LLMs,OpenAI,Claude Code,Flutter,React Native,React,Swift,Kotlin,Dart,Clean Architecture,Riverpod,Bloc,Firebase,Supabase,App Store Connect,Google Play Console,CI/CD",
+  "stackItems": "Claude Code,Cursor,GitHub Copilot,Integración de LLMs,Prompt engineering,OpenAI,Flutter,Flutter Web,React Native,React,Swift,Kotlin,Dart,Clean Architecture,Riverpod,Bloc,Firebase,Supabase,App Store Connect,Google Play Console,CI/CD",
   "@stackItems": {
     "description": "Comma-separated items of the stack marquee."
   },
@@ -362,7 +362,7 @@
   "@metricAiValue": {
     "description": "Metric value."
   },
-  "metricAiLabel": "LLMs en el producto y desarrollo con agentes de código",
+  "metricAiLabel": "herramientas internas con LLMs y desarrollo con Claude Code, Cursor y GitHub Copilot",
   "@metricAiLabel": {
     "description": "Metric label."
   },

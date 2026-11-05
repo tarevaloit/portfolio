@@ -1,11 +1,11 @@
 {
-  "name": "Tobias Arevalo · Mobile & AI Engineer",
+  "name": "Tobias Arevalo · AI Engineer · Senior Mobile Developer",
   "short_name": "tobias.dev",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#0E0F12",
   "theme_color": "#0E0F12",
-  "description": "Portfolio de Tobias Arevalo, Mobile & AI Engineer: apps mobile y web con IA, de la idea a producción.",
+  "description": "Portfolio de Tobias Arevalo, AI Engineer y Senior Mobile Developer: apps mobile y web con IA, de la idea a producción.",
   "orientation": "any",
   "prefer_related_applications": false,
   "icons": [

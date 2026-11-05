@@ -74,7 +74,7 @@ y = 170
 for text, color in lines:
     d.text((pad, y), text, font=title, fill=color)
     y += 84
-d.text((pad, H - 92), 'Mobile & AI Engineer · Flutter · React Native · LLMs', font=mono(24, 400), fill=MUTED)
+d.text((pad, H - 92), 'AI Engineer · Senior Mobile Developer · LLMs · Flutter', font=mono(24, 400), fill=MUTED)
 # Layer plates.
 px, pw, ph = 820, 300, 96
 plates = [

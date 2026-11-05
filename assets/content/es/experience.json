@@ -3,10 +3,10 @@
     "ueno-itti": {
       "role": "Software Engineer — Mobile Core",
       "highlights": [
+        "Generador de What's New con IA: recorre los proyectos de las microapps, analiza sus cambios con un LLM y redacta las novedades de cada sección de la app.",
         "Features para una super-app que integra más de 40 microapps como packages.",
         "Mantenimiento y versionado (tags) de las dependencias cross que usan todas las microapps.",
         "Feature flags nativas en tiempo real (~1 s) en lugar de las hasta 24 h de Firebase Remote Config.",
-        "Generador de What's New con IA que analiza los cambios de cada microapp y redacta las novedades.",
         "Deploy de la app a App Store y Google Play.",
         "Revisiones de arquitectura en el SDK interno (por ejemplo, Strategy pattern para conexiones de feature flags)."
       ]
