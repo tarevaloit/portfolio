@@ -4,7 +4,7 @@
   "badge": "Final project",
   "summary": "A geolocated platform that connects people looking for a service with tradespeople: a web app for Seekers, a mobile app for professionals and an admin panel.",
   "description": "A geolocated platform that connects Seekers with tradespeople. One Flutter codebase with three surfaces: the Seeker web app, the native app for professionals and a desktop panel to run the platform. Final degree project at USAL (Professional Integration Seminar 2026), planned with IEEE 1058, a risk matrix and burndown.",
-  "role": "[Role]",
+  "role": "Founder · planning, design, development and deployment",
   "status": "Sprint 6 · release v1.0.0",
   "architecture": {
     "presentation": "CrearPedidoScreen is a step-by-step form (what, where, photos, validity); CrearPedidoController, generated with riverpod_generator, holds the state.",

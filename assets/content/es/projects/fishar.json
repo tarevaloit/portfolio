@@ -4,7 +4,7 @@
   "badge": "Beta · TestFlight",
   "summary": "Red social de pesca para iOS y Android. Compartí capturas, guardá tus spots en el mapa y mirá el clima antes de salir.",
   "description": "La red social de los pescadores: subís tus capturas, marcás los spots donde pican y mirás el clima antes de cargar la caña en el auto.",
-  "role": "Diseño, desarrollo y publicación",
+  "role": "Founder · diseño, desarrollo y publicación",
   "status": "TestFlight · Play closed testing",
   "architecture": {
     "presentation": "MapScreen lee mapSpotsProvider, un AsyncNotifier de Riverpod. Los widgets no saben que existe Supabase.",

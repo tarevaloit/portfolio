@@ -4,7 +4,7 @@
   "badge": "You are here",
   "summary": "Flutter Web compiled to WASM, content in JSON/Markdown and an architecture mode that shows how it is built.",
   "description": "A case study of this very site.",
-  "role": "[Role]",
+  "role": "Design, development and deployment",
   "status": "Online",
   "architecture": {
     "presentation": "Riverpod providers that expose the use cases; they do not know the data layer.",

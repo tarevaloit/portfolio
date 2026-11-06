@@ -148,4 +148,18 @@ void main() {
       }
     });
   });
+
+  test('no JSON in assets/content keeps a "[placeholder]"', () {
+    // Text like "[Rol]" or "[Plataformas]" was a gap left to fill in later;
+    // the site must never show one.
+    final placeholder = RegExp(r'"\[[^\]"]+\]"|"\[[A-ZÁÉÍÓÚ][^\]"]*\]');
+    final files = Directory('assets/content')
+        .listSync(recursive: true)
+        .whereType<File>()
+        .where((file) => file.path.endsWith('.json'));
+    for (final file in files) {
+      final match = placeholder.firstMatch(file.readAsStringSync());
+      expect(match, isNull, reason: '${file.path}: ${match?.group(0)}');
+    }
+  });
 }

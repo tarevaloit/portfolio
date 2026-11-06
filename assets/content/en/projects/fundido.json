@@ -4,7 +4,7 @@
   "badge": "Personal app",
   "summary": "An expense app with conversational AI: you write to Fundi, the piggy, and it turns your sentences into expenses.",
   "description": "An expense tracking app with conversational AI: tell Fundi what you spent and it turns your sentence into an expense with description, amount, date and category.",
-  "role": "[Role]",
+  "role": "Founder · design and development",
   "status": "Prototype · 2025",
   "architecture": {
     "presentation": "ChatPage listens to ChatBloc: each message is an event and the state brings Fundi's answer.",

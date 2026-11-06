@@ -132,10 +132,6 @@
   "@experiencePresent": {
     "description": "End of a current position."
   },
-  "experienceYearUnknown": "[AÑO]",
-  "@experienceYearUnknown": {
-    "description": "Placeholder while a year is not filled in yet."
-  },
   "experienceError": "No se pudo cargar la experiencia.",
   "@experienceError": {
     "description": "Shown when the experience content fails to load."

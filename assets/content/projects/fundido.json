@@ -3,7 +3,7 @@
   "monogram": "Fu",
   "color": "#F9A8D4",
   "logo": "assets/projects/fundido-logo.webp",
-  "platforms": ["[Plataformas]"],
+  "platforms": ["iOS", "Android"],
   "stack": ["Flutter", "Bloc", "Firebase", "OpenAI", "Rive"],
   "links": {
     "appStore": null,

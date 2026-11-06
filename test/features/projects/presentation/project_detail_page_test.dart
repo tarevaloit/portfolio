@@ -30,7 +30,7 @@ void main() {
         find.text('App social · Byto Apps · Beta · TestFlight'),
         findsOneWidget,
       );
-      expect(find.text('Diseño, desarrollo y publicación'), findsOneWidget);
+      expect(find.text('Founder · diseño, desarrollo y publicación'), findsOneWidget);
       expect(find.text('iOS · Android'), findsOneWidget);
       expect(find.text('feature: spots'), findsOneWidget);
       expect(find.byType(LayerCard), findsNWidgets(3));

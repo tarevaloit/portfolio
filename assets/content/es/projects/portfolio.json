@@ -4,7 +4,7 @@
   "badge": "Estás acá",
   "summary": "Flutter Web compilado a WASM, contenido en JSON/Markdown y un modo arquitectura que muestra cómo está hecho.",
   "description": "Caso de estudio del propio sitio.",
-  "role": "[Rol]",
+  "role": "Diseño, desarrollo y deploy",
   "status": "Online",
   "architecture": {
     "presentation": "Providers de Riverpod que exponen los casos de uso; no conocen la capa de datos.",

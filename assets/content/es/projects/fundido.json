@@ -4,7 +4,7 @@
   "badge": "App personal",
   "summary": "Una app de gastos con IA conversacional: le escribís a Fundi, el cerdito, y convierte tus frases en gastos.",
   "description": "App de gestión de gastos con IA conversacional: le contás a Fundi en qué gastaste y convierte tu frase en un gasto con descripción, monto, fecha y categoría.",
-  "role": "[Rol]",
+  "role": "Founder · diseño y desarrollo",
   "status": "Prototipo · 2025",
   "architecture": {
     "presentation": "ChatPage escucha a ChatBloc: cada mensaje es un evento y el estado trae la respuesta de Fundi.",

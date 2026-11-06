@@ -29,7 +29,6 @@
   "experienceTitle": "Experience",
   "experiencePeriod": "{start} — {end}",
   "experiencePresent": "present",
-  "experienceYearUnknown": "[YEAR]",
   "experienceError": "Experience could not be loaded.",
   "contactTitle": "Shall we build something together?",
   "contactEmailPlaceholder": "[YOUR EMAIL]",

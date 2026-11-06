@@ -57,17 +57,14 @@ void main() {
     );
   });
 
-  testWidgets('a missing start year shows the placeholder', (tester) async {
+  testWidgets('a missing start year shows no period, never a placeholder', (
+    tester,
+  ) async {
     await pump(tester);
 
-    expect(find.text('[AÑO] — presente'), findsOneWidget);
+    expect(find.textContaining('presente'), findsNothing);
+    expect(find.textContaining('['), findsNothing);
     expect(find.text('2019 — 2021'), findsOneWidget);
-  });
-
-  testWidgets('placeholder and "present" are translated', (tester) async {
-    await pump(tester, locale: AppLocale.en);
-
-    expect(find.text('[YEAR] — present'), findsOneWidget);
   });
 
   testWidgets('stacks the highlights below on compact screens', (
