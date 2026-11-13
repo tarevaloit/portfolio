@@ -3,19 +3,20 @@
     "ueno-itti": {
       "role": "Software Engineer — Mobile Core",
       "highlights": [
-        "AI-powered What's New generator: scans every microapp project, analyzes its changes with an LLM and writes release notes for each section of the app.",
         "Features for a super-app that bundles more than 40 microapps as packages.",
         "Maintenance and versioning (tags) of the shared dependencies used by every microapp.",
         "Native real-time feature flags (~1 s) instead of the up to 24 h of Firebase Remote Config.",
+        "AI-powered What's New generator: scans every microapp project, analyzes its changes with an LLM and writes release notes for each section of the app.",
         "App releases to the App Store and Google Play.",
         "Architecture reviews in the internal SDK (for example, the Strategy pattern for feature flag connections)."
       ]
     },
     "byto-apps": {
-      "role": "Founder · Freelance mobile developer",
+      "role": "Own products — Flutter & React Native",
       "highlights": [
+        "RentAr (co-founder, tech lead): React Native app and React web app on Supabase; AI reads the lease and alerts rent increases.",
         "Mobile app development for international clients.",
-        "In-house products end to end: idea, design, development and release."
+        "In-house products end to end in Flutter and React Native: idea, design, development and release."
       ]
     },
     "oneinfo": {

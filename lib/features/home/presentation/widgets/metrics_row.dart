@@ -11,7 +11,7 @@ class MetricsRow extends StatelessWidget {
     final l10n = context.l10n;
     final metrics = [
       (l10n.metricYearsValue, l10n.metricYearsLabel),
-      (l10n.metricAiValue, l10n.metricAiLabel),
+      (l10n.metricCrossPlatformValue, l10n.metricCrossPlatformLabel),
       (l10n.metricStoresValue, l10n.metricStoresLabel),
     ];
     final cards = [

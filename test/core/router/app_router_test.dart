@@ -9,7 +9,7 @@ void main() {
       await tester.pumpPortfolio();
 
       expect(
-        find.text('Apps mobile y web con IA, de la idea a producción.'),
+        find.text('Apps mobile y web, de la idea a producción.'),
         findsOneWidget,
       );
       expect(find.widgetWithText(TextButton, 'EN'), findsOneWidget);
@@ -19,7 +19,7 @@ void main() {
       await tester.pumpPortfolio(location: '/en');
 
       expect(
-        find.text('Mobile and web apps with AI, from idea to production.'),
+        find.text('Mobile and web apps, from idea to production.'),
         findsOneWidget,
       );
       expect(find.widgetWithText(TextButton, 'ES'), findsOneWidget);
@@ -35,7 +35,7 @@ void main() {
 
       expect(router.routeInformationProvider.value.uri.path, '/en');
       expect(
-        find.text('Mobile and web apps with AI, from idea to production.'),
+        find.text('Mobile and web apps, from idea to production.'),
         findsOneWidget,
       );
 
@@ -44,7 +44,7 @@ void main() {
 
       expect(router.routeInformationProvider.value.uri.path, '/');
       expect(
-        find.text('Apps mobile y web con IA, de la idea a producción.'),
+        find.text('Apps mobile y web, de la idea a producción.'),
         findsOneWidget,
       );
     });
@@ -67,7 +67,7 @@ void main() {
 
       expect(router.routeInformationProvider.value.uri.path, '/en');
       expect(
-        find.text('Mobile and web apps with AI, from idea to production.'),
+        find.text('Mobile and web apps, from idea to production.'),
         findsOneWidget,
       );
     });
