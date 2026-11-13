@@ -1,6 +1,6 @@
 {
   "@@locale": "es",
-  "appTitle": "Tobias Arevalo · AI Engineer · Senior Mobile Developer",
+  "appTitle": "Tobias Arevalo · Mobile Engineer · Flutter & React Native",
   "@appTitle": {
     "description": "Browser tab title."
   },
@@ -40,11 +40,11 @@
   "@architectureMode": {
     "description": "Label of the toggle that overlays the clean-architecture layers on the UI."
   },
-  "heroEyebrow": "// ai engineer · senior mobile developer · buenos aires",
+  "heroEyebrow": "// mobile engineer · flutter & react native · buenos aires",
   "@heroEyebrow": {
     "description": "Small monospace line above the hero title."
   },
-  "heroTitleLead": "Apps mobile y web con IA,",
+  "heroTitleLead": "Apps mobile y web,",
   "@heroTitleLead": {
     "description": "First part of the hero title, before the highlighted word."
   },
@@ -52,7 +52,7 @@
   "@heroTitleHighlight": {
     "description": "Last part of the hero title, drawn in the accent color."
   },
-  "heroBody": "Soy Tobias, AI Engineer con más de 6 años construyendo productos mobile, especializado en fintech. Integro IA en el producto y en el desarrollo: herramientas internas con LLMs y flujos con agentes como Claude Code, Cursor y GitHub Copilot. Mi base es Flutter, y también trabajo con React Native, Swift, Kotlin y React.",
+  "heroBody": "Soy Tobias, Mobile Engineer con más de 6 años construyendo apps en producción, especializado en fintech y banca digital. Flutter es mi base y en proyectos propios también desarrollo con React Native y React. Uso IA a diario para desarrollar (Claude Code, Cursor, Copilot) y la integro en productos y herramientas internas.",
   "@heroBody": {
     "description": "Hero paragraph under the title."
   },
@@ -84,7 +84,7 @@
   "@metricStoresLabel": {
     "description": "Metric label."
   },
-  "stackItems": "Claude Code,Cursor,GitHub Copilot,Integración de LLMs,Prompt engineering,OpenAI,Flutter,Flutter Web,React Native,React,Swift,Kotlin,Dart,Clean Architecture,Riverpod,Bloc,Firebase,Supabase,App Store Connect,Google Play Console,CI/CD",
+  "stackItems": "Flutter,React Native,Dart,Flutter Web,React,Swift,Kotlin,Clean Architecture,Riverpod,Bloc,Firebase,Supabase,App Store Connect,Google Play Console,CI/CD,Claude Code,Cursor,GitHub Copilot,Integración de LLMs,OpenAI",
   "@stackItems": {
     "description": "Comma-separated items of the stack marquee."
   },
@@ -350,16 +350,16 @@
   "@metricYearsValue": {
     "description": "Metric value."
   },
-  "metricYearsLabel": "años construyendo apps mobile y web, de trainee a Senior en fintech",
+  "metricYearsLabel": "años construyendo apps en producción, de IT Trainee a banca digital",
   "@metricYearsLabel": {
     "description": "Metric label."
   },
-  "metricAiValue": "IA",
-  "@metricAiValue": {
+  "metricCrossPlatformValue": "Flutter + RN",
+  "@metricCrossPlatformValue": {
     "description": "Metric value."
   },
-  "metricAiLabel": "herramientas internas con LLMs y desarrollo con Claude Code, Cursor y GitHub Copilot",
-  "@metricAiLabel": {
+  "metricCrossPlatformLabel": "apps cross-platform: Flutter como base y React Native en proyectos propios",
+  "@metricCrossPlatformLabel": {
     "description": "Metric label."
   },
   "bytoEyebrow": "// by to apps · hecho por toby",
@@ -394,7 +394,7 @@
   "@bytoStepBuildTitle": {
     "description": "Step 2 title."
   },
-  "bytoStepBuildBody": "El stack que pida la idea: Flutter, nativo o web, con clean architecture e IA donde suma.",
+  "bytoStepBuildBody": "El stack que pida la idea: Flutter, React Native o web, con clean architecture e IA donde suma.",
   "@bytoStepBuildBody": {
     "description": "Step 2 detail."
   },

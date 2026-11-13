@@ -69,12 +69,12 @@ d.text((pad, 64), 'tobias.', font=mono(30, 500), fill=TEXT)
 w = d.textlength('tobias.', font=mono(30, 500))
 d.text((pad + w, 64), 'dev_', font=mono(30, 500), fill=LIME)
 title = sans(76)
-lines = [('Apps mobile y web', TEXT), ('con IA, de la idea', TEXT), ('a producción.', LIME)]
+lines = [('Apps mobile y web,', TEXT), ('de la idea', TEXT), ('a producción.', LIME)]
 y = 170
 for text, color in lines:
     d.text((pad, y), text, font=title, fill=color)
     y += 84
-d.text((pad, H - 92), 'AI Engineer · Senior Mobile Developer · LLMs · Flutter', font=mono(24, 400), fill=MUTED)
+d.text((pad, H - 92), 'Mobile Engineer · Flutter · React Native', font=mono(24, 400), fill=MUTED)
 # Layer plates.
 px, pw, ph = 820, 300, 96
 plates = [
